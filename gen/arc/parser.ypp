@@ -931,6 +931,8 @@ expr_field
 expr_size
     : expr_object DOT SIZE %prec SIZEOF
         { $$ = expr_size::make(@$, std::move($1)); }
+    | expr_string DOT SIZE %prec SIZEOF
+        { $$ = expr_size::make(@$, std::move($1)); }
     ;
 
 expr_paren
@@ -1003,9 +1005,7 @@ expr_identifier
     ;
 
 expr_path
-    : PATH DIV IDENTIFIER
-        { $$ = expr_path::make(@$, $1 + "/" + $3); };
-    | IDENTIFIER
+    : IDENTIFIER 
         { $$ = expr_path::make(@$, $1); };
     | PATH
         { $$ = expr_path::make(@$, $1); };

@@ -30,6 +30,7 @@
 #include "xsk/arc/engine/t7.hpp"
 #include "xsk/arc/engine/t8.hpp"
 #include "xsk/arc/engine/t9.hpp"
+#include "xsk/version.hpp"
 
 namespace fs = std::filesystem;
 
@@ -1014,7 +1015,11 @@ auto print_usage() -> void
     std::cout << "\t* game: iw5, iw6, iw7, iw8, iw9, s1, s2, s4, h1, h2, t6, t7, t8, t9\n";
     std::cout << "\t* system: pc, ps3, ps4, ps5, xb2 (360), xb3 (One), xb4 (Series X|S), wiiu\n";
     std::cout << "\t* path: file or directory (recursive)\n";
-    std::cin.get();
+}
+
+auto branding() -> void
+{
+    std::cout << fmt::format("GSC Tool {} created by xensik\n\n", XSK_VERSION_STR);
 }
 
 auto main(u32 argc, char** argv) -> void
@@ -1023,6 +1028,8 @@ auto main(u32 argc, char** argv) -> void
     auto mode = mode::_;
     auto game = game::_;
     auto mach = mach::_;
+
+    branding();
 
     if (!parse_flags(argc, argv, mode, game, mach, path))
     {

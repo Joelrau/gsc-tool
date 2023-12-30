@@ -14,7 +14,7 @@ assembler::assembler(context const* ctx) : ctx_{ ctx }, script_{ ctx->endian() =
 {
 }
 
-auto assembler::assemble(assembly const& data) -> buffer
+auto assembler::assemble(assembly const& data, std::string const& name) -> buffer
 {
     assembly_ = &data;
     script_.clear();
@@ -26,7 +26,7 @@ auto assembler::assemble(assembly const& data) -> buffer
     auto head = header{};
 
     script_.pos((ctx_->props() & props::headerxx) ? 0 : (ctx_->props() & props::header72) ? 72 : 64);
-    process_string("");
+    process_string(name);
 
     for (auto const& func : assembly_->functions)
     {
@@ -183,7 +183,7 @@ auto assembler::assemble(assembly const& data) -> buffer
     head.profile_count = 0;
 
     head.flags = 0;
-    head.name = resolve_string("");
+    head.name = resolve_string(name);
 
     auto endpos = script_.pos();
 
@@ -228,6 +228,7 @@ auto assembler::assemble(assembly const& data) -> buffer
 
 auto assembler::assemble_function(function& func) -> void
 {
+    auto labels = std::unordered_map<u32, std::string>();
     func.index = script_.pos();
     func.size = 0;
     func_ = &func;
@@ -245,10 +246,11 @@ auto assembler::assemble_function(function& func) -> void
 
         if (itr != func.labels.end())
         {
-            func.labels.insert({ inst->index, itr->second });
-            func.labels.erase(old_idx);
+            labels.insert({ inst->index, itr->second });
         }
     }
+
+    func.labels = std::move(labels);
 
     script_.pos(func.index);
 
