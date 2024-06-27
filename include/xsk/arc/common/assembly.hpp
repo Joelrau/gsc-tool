@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -158,12 +158,19 @@ enum class opcode : u8
     OP_Count,
 };
 
+struct sourcepos
+{
+    u16 line;
+    u16 column;
+};
+
 struct instruction
 {
     using ptr = std::unique_ptr<instruction>;
 
     u32 index;
     u32 size;
+    sourcepos pos;
     opcode opcode;
     std::vector<std::string> data;
 

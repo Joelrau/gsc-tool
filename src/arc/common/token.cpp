@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -58,10 +58,10 @@ auto token::to_string() -> std::string
         case token::ELLIPSIS: return "...";
         case token::SEMICOLON: return ";";
         case token::DOUBLECOLON: return "::";
-        case token::LBRACKET: return "{";
-        case token::RBRACKET: return "}";
-        case token::LBRACE: return "[";
-        case token::RBRACE: return "]";
+        case token::LBRACKET: return "[";
+        case token::RBRACKET: return "]";
+        case token::LBRACE: return "{";
+        case token::RBRACE: return "}";
         case token::LPAREN: return "(";
         case token::RPAREN: return ")";
         case token::NAME: return data;
@@ -83,6 +83,7 @@ auto token::to_string() -> std::string
         case token::ENDON: return "endon";
         case token::NOTIFY: return "notify";
         case token::WAIT: return "wait";
+        case token::WAITREALTIME: return "waitrealtime";
         case token::WAITTILL: return "waittill";
         case token::WAITTILLMATCH: return "waittillmatch";
         case token::WAITTILLFRAMEEND: return "waittillframeend";

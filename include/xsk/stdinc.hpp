@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -13,6 +13,7 @@
 #include <array>
 #include <deque>
 #include <filesystem>
+#include <format>
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -30,13 +31,6 @@
 #include <unordered_set>
 #include <vector>
 #include <version>
-
-#ifdef __cpp_lib_format
-#include <format>
-namespace fmt = std;
-#else
-#include <fmt/core.h>
-#endif
 
 #ifdef _WINDOWS_
 #undef ERROR

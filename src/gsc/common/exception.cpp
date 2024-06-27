@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -10,27 +10,27 @@
 namespace xsk::gsc
 {
 
-error::error(std::string const& what) : std::runtime_error(fmt::format("[ERROR]: {}", what))
+error::error(std::string const& what) : std::runtime_error(std::format("[ERROR]: {}", what))
 {
 }
 
-asm_error::asm_error(std::string const& what) : std::runtime_error(fmt::format("[ERROR]:assembler: {}", what))
+asm_error::asm_error(std::string const& what) : std::runtime_error(std::format("[ERROR]:assembler: {}", what))
 {
 }
 
-disasm_error::disasm_error(std::string const& what) : std::runtime_error(fmt::format("[ERROR]:disassembler: {}", what))
+disasm_error::disasm_error(std::string const& what) : std::runtime_error(std::format("[ERROR]:disassembler: {}", what))
 {
 }
 
-ppr_error::ppr_error(location const& loc, std::string const& what) : std::runtime_error(fmt::format("[ERROR]:preprocessor:{}: {}", loc.print(), what))
+ppr_error::ppr_error(location const& loc, std::string const& what) : std::runtime_error(std::format("[ERROR]:preprocessor:{}: {}", loc.print(), what))
 {
 }
 
-comp_error::comp_error(location const& loc, std::string const& what) : std::runtime_error(fmt::format("[ERROR]:compiler:{}: {}", loc.print(), what))
+comp_error::comp_error(location const& loc, std::string const& what) : std::runtime_error(std::format("[ERROR]:compiler:{}: {}", loc.print(), what))
 {
 }
 
-decomp_error::decomp_error(std::string const& what) : std::runtime_error(fmt::format("[ERROR]:decompiler: {}", what))
+decomp_error::decomp_error(std::string const& what) : std::runtime_error(std::format("[ERROR]:decompiler: {}", what))
 {
 }
 

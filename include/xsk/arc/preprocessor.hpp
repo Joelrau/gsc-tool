@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -15,8 +15,8 @@ class preprocessor
 {
     context* ctx_;
     std::stack<lexer> lexer_;
-    std::stack<directive> indents_;
     std::vector<std::string> includes_;
+    std::stack<std::stack<directive>> indents_;
     std::unordered_map<std::string_view, directive::kind> directives_;
     std::unordered_map<std::string, define> defines_;
     std::set<std::string> reject_;

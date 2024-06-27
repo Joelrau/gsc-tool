@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -10,14 +10,16 @@
 namespace xsk::arc
 {
 
-preprocessor::preprocessor(context* ctx, std::string const& name, char const* data, usize size) : ctx_{ ctx }, curr_expr_{ 0 }, expand_{ 0 }, skip_{ false }
+preprocessor::preprocessor(context* ctx, std::string const& name, char const* data, usize size) : ctx_{ ctx }, curr_expr_{ 0 }, expand_{ 0 }, skip_{ 0 }
 {
     lexer_.push(lexer{ ctx, name, data, size });
-    defines_.reserve(4);
+    indents_.push({});
+    defines_.reserve(5);
     defines_.insert({ "__FILE__", { define::BUILTIN,/* false,*/ {}, {} }});
     defines_.insert({ "__LINE__", { define::BUILTIN,/* false,*/ {}, {} }});
     defines_.insert({ "__DATE__", { define::BUILTIN,/* false,*/ {}, {} }});
     defines_.insert({ "__TIME__", { define::BUILTIN,/* false,*/ {}, {} }});
+    defines_.insert({ std::string(ctx->engine_name()), { define::BUILTIN,/* false,*/ {}, {} }});
     directives_.reserve(15);
     directives_.insert({ "if", directive::IF });
     directives_.insert({ "ifdef", directive::IFDEF });
@@ -96,22 +98,23 @@ auto preprocessor::push_header(std::string const& file) -> void
 {
     try
     {
-        auto name = fmt::format("{}.gsh", file);
+        auto name = std::format("{}.gsh", file);
 
         for (auto& inc : includes_)
         {
             if (inc == name)
-                throw ppr_error(location{}, fmt::format("recursive header inclusion {} at {}", name, includes_.back()));
+                throw ppr_error(location{}, std::format("recursive header inclusion {} at {}", name, includes_.back()));
         }
 
         auto data = ctx_->load_header(name);
 
         includes_.push_back(*std::get<0>(data));
+        indents_.push({});
         lexer_.push(lexer{ ctx_, *std::get<0>(data), std::get<1>(data), std::get<2>(data) });
     }
     catch (std::exception const& e)
     {
-        throw error(fmt::format("parsing header file '{}': {}", file, e.what()));
+        throw error(std::format("parsing header file '{}': {}", file, e.what()));
     }
 }
 
@@ -120,6 +123,7 @@ auto preprocessor::pop_header() -> void
     if (lexer_.size() > 1)
     {
         lexer_.pop();
+        indents_.pop();
         includes_.erase(includes_.end() - 1);
     }
     else
@@ -163,7 +167,7 @@ auto preprocessor::read_token() -> token
 
     if (tok.type == token::EOS)
     {
-        if (!indents_.empty())
+        if (!indents_.top().empty())
         {
             skip_ = 0;
             // clear indents
@@ -251,13 +255,13 @@ auto preprocessor::read_directive(token& tok) -> void
         }
     }
 
-    throw ppr_error(next.pos, fmt::format("invalid preprocessing directive '{}'", next.data));
+    throw ppr_error(next.pos, std::format("invalid preprocessing directive '{}'", next.data));
 }
 
 auto preprocessor::read_directive_if(token&) -> void
 {
     auto skip = !evaluate();
-    indents_.push({ directive::IF, skip });
+    indents_.top().push({ directive::IF, skip, !skip });
     skip_ += skip ? 1 : 0;
 }
 
@@ -282,7 +286,7 @@ auto preprocessor::read_directive_ifdef(token&) -> void
         skip = !defines_.contains(name);
     }
 
-    indents_.push({ directive::IFDEF, skip });
+    indents_.top().push({ directive::IFDEF, skip, !skip });
     skip_ += skip ? 1 : 0;
 }
 
@@ -307,19 +311,19 @@ auto preprocessor::read_directive_ifndef(token&) -> void
         skip = defines_.contains(name);
     }
 
-    indents_.push({ directive::IFNDEF, skip });
+    indents_.top().push({ directive::IFNDEF, skip, !skip });
     skip_ += skip ? 1 : 0;
 }
 
 auto preprocessor::read_directive_elif(token& tok) -> void
 {
-    if (indents_.empty())
+    if (indents_.top().empty())
     {
         throw ppr_error(tok.pos, "#elif without #if");
     }
 
-    auto dir = indents_.top();
-    indents_.pop();
+    auto dir = indents_.top().top();
+    indents_.top().pop();
     skip_ -= dir.skip ? 1 : 0;
 
     if (dir.type == directive::ELSE)
@@ -327,20 +331,20 @@ auto preprocessor::read_directive_elif(token& tok) -> void
         throw ppr_error(tok.pos, "#elif after #else");
     }
 
-    auto skip = !evaluate();
-    indents_.push({ directive::ELIF, skip });
+    auto skip = !evaluate() || dir.exec;
+    indents_.top().push({ directive::ELIF, skip, !skip || dir.exec });
     skip_ += skip ? 1 : 0;
 }
 
 auto preprocessor::read_directive_elifdef(token& tok) -> void
 {
-    if (indents_.empty())
+    if (indents_.top().empty())
     {
         throw ppr_error(tok.pos, "#elifdef without #if");
     }
 
-    auto dir = indents_.top();
-    indents_.pop();
+    auto dir = indents_.top().top();
+    indents_.top().pop();
     skip_ -= dir.skip ? 1 : 0;
 
     if (dir.type == directive::ELSE)
@@ -364,22 +368,22 @@ auto preprocessor::read_directive_elifdef(token& tok) -> void
         next = read_token();
         expect(next, token::NEWLINE);
 
-        skip = !defines_.contains(name);
+        skip = !defines_.contains(name) || dir.exec;
     }
 
-    indents_.push({ directive::ELIFDEF, skip });
+    indents_.top().push({ directive::ELIFDEF, skip, !skip || dir.exec });
     skip_ += skip ? 1 : 0;
 }
 
 auto preprocessor::read_directive_elifndef(token& tok) -> void
 {
-    if (indents_.empty())
+    if (indents_.top().empty())
     {
         throw ppr_error(tok.pos, "#elifdef without #if");
     }
 
-    auto dir = indents_.top();
-    indents_.pop();
+    auto dir = indents_.top().top();
+    indents_.top().pop();
     skip_ -= dir.skip ? 1 : 0;
 
     if (dir.type == directive::ELSE)
@@ -403,10 +407,10 @@ auto preprocessor::read_directive_elifndef(token& tok) -> void
         next = read_token();
         expect(next, token::NEWLINE);
 
-        skip = defines_.contains(name);
+        skip = defines_.contains(name) || dir.exec;
     }
 
-    indents_.push({ directive::ELIFNDEF, skip });
+    indents_.top().push({ directive::ELIFNDEF, skip, !skip || dir.exec });
     skip_ += skip ? 1 : 0;
 }
 
@@ -415,13 +419,13 @@ auto preprocessor::read_directive_else(token& tok) -> void
     auto next = read_token();
     expect(next, token::NEWLINE);
 
-    if (indents_.empty())
+    if (indents_.top().empty())
     {
         throw ppr_error(tok.pos, "#else without #if");
     }
 
-    auto dir = indents_.top();
-    indents_.pop();
+    auto dir = indents_.top().top();
+    indents_.top().pop();
     skip_ -= dir.skip ? 1 : 0;
 
     if (dir.type == directive::ELSE)
@@ -429,8 +433,8 @@ auto preprocessor::read_directive_else(token& tok) -> void
         throw ppr_error(tok.pos, "#else after #else");
     }
 
-    auto skip = !dir.skip;
-    indents_.push({ directive::ELSE, skip });
+    auto skip = dir.exec;
+    indents_.top().push({ directive::ELSE, skip, dir.exec });
     skip_ += skip ? 1 : 0;
 }
 
@@ -439,13 +443,13 @@ auto preprocessor::read_directive_endif(token& tok) -> void
     auto next = read_token();
     expect(next, token::NEWLINE);
 
-    if (indents_.empty())
+    if (indents_.top().empty())
     {
         throw ppr_error(tok.pos, "#endif without #if");
     }
 
-    auto dir = indents_.top();
-    indents_.pop();
+    auto dir = indents_.top().top();
+    indents_.top().pop();
     skip_ -= dir.skip ? 1 : 0;
 }
 
@@ -654,21 +658,29 @@ auto preprocessor::read_directive_undef(token& tok) -> void
 
 auto preprocessor::read_directive_pragma(token& tok) -> void
 {
+    if (skip_) return skip_line();
+
     throw ppr_error(tok.pos, "#pragma directive not supported");
 }
 
 auto preprocessor::read_directive_warning(token& tok) -> void
 {
+    if (skip_) return skip_line();
+
     throw ppr_error(tok.pos, "#warning directive not supported");
 }
 
 auto preprocessor::read_directive_error(token& tok) -> void
 {
+    if (skip_) return skip_line();
+
     throw ppr_error(tok.pos, "#error directive not supported");
 }
 
 auto preprocessor::read_directive_line(token& tok) -> void
 {
+    if (skip_) return skip_line();
+
     throw ppr_error(tok.pos, "#line directive not supported");
 }
 
@@ -762,7 +774,7 @@ auto preprocessor::expand(token& tok, define& def) -> void
         }
         else if (tok.data == "__LINE__")
         {
-            tokens_.push_front(token{ token::STRING, tok.space, tok.pos, fmt::format("{}", tok.pos.begin.line) });
+            tokens_.push_front(token{ token::STRING, tok.space, tok.pos, std::format("{}", tok.pos.begin.line) });
         }
         else if (tok.data == "__DATE__")
         {
@@ -807,7 +819,9 @@ auto preprocessor::expand(token& tok, define& def) -> void
                 {
                     if (def.args[n].data == name)
                     {
-                        for (auto t : args.at(n)) exp.push_back(t);
+                        for (auto t : args.at(n))
+                            exp.push_back(token{ t.type, t.space, def.exp[i].pos, t.data });
+
                         break;
                     }
                 }
@@ -941,7 +955,7 @@ auto preprocessor::expect(token& tok, token::kind expected, spacing) -> void
 {
     if (tok.type != expected)
     {
-        throw ppr_error(tok.pos, fmt::format("expected {} found {}", (u8)expected, (u8)tok.type));
+        throw ppr_error(tok.pos, std::format("expected {} found {}", (u8)expected, (u8)tok.type));
     }
 }
 
@@ -986,7 +1000,21 @@ auto preprocessor::evaluate() -> bool
         }
         else if (tok.type == token::NAME)
         {
-            if (tok.data == "defined")
+            if (tok.data == "true")
+            {
+                last_def = false;
+                last_paren = false;
+                tok.type = token::TRUE;
+                expr_.push_back(std::move(tok));
+            }
+            else if (tok.data == "false")
+            {
+                last_def = false;
+                last_paren = false;
+                tok.type = token::FALSE;
+                expr_.push_back(std::move(tok));
+            }
+            else if (tok.data == "defined")
             {
                 last_def = true;
                 tok.type = token::DEFINED;
@@ -1080,7 +1108,7 @@ auto preprocessor::eval_consume(token::kind type, std::string_view msg)
 {
     if (eval_check(type)) return eval_next();
 
-    throw ppr_error(eval_peek().pos, fmt::format("{}", msg));
+    throw ppr_error(eval_peek().pos, std::format("{}", msg));
 }
 
 auto preprocessor::eval_expr() -> i32

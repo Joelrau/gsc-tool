@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -20,6 +20,7 @@ class compiler
     std::vector<scope> scopes_;
     std::unordered_map<std::string, expr const*> constants_;
     std::string animtree_;
+    sourcepos debug_pos_;
     u32 index_;
     u32 label_idx_;
     bool can_break_;
@@ -45,6 +46,7 @@ private:
     auto emit_stmt_endon(stmt_endon const& stm) -> void;
     auto emit_stmt_notify(stmt_notify const& stm) -> void;
     auto emit_stmt_wait(stmt_wait const& stm) -> void;
+    auto emit_stmt_waitrealtime(stmt_waitrealtime const& stm) -> void;
     auto emit_stmt_waittill(stmt_waittill const& stm) -> void;
     auto emit_stmt_waittillmatch(stmt_waittillmatch const& stm) -> void;
     auto emit_stmt_waittillframeend(stmt_waittillframeend const& stm) -> void;

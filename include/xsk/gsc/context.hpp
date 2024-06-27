@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -18,7 +18,7 @@ namespace xsk::gsc
 class context
 {
 public:
-    using fs_callback = std::function<std::pair<buffer, std::vector<u8>>(std::string const&)>;
+    using fs_callback = std::function<std::pair<buffer, std::vector<u8>>(context const*, std::string const&)>;
 
     context(props props, engine engine, endian endian, system system, u32 str_count);
 

@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -65,9 +65,9 @@ private:
     auto process_stmt_endon(stmt_endon& stm) -> void;
     auto process_stmt_notify(stmt_notify& stm) -> void;
     auto process_stmt_wait(stmt_wait& stm) -> void;
+    auto process_stmt_waitrealtime(stmt_waitrealtime& stm) -> void;
     auto process_stmt_waittill(stmt_waittill& stm) -> void;
     auto process_stmt_waittillmatch(stmt_waittillmatch& stm) -> void;
-    auto process_stmt_waitrealtime(stmt_waitrealtime& stm) -> void;
     auto process_stmt_if(stmt_if& stm) -> void;
     auto process_stmt_ifelse(stmt_ifelse& stm) -> void;
     auto process_stmt_while(stmt_while& stm) -> void;

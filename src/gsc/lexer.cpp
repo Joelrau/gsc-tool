@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -77,7 +77,7 @@ auto lexer::lex() -> token
                     if (indev_)
                         throw comp_error(loc_, "cannot recurse devblock ('/#')");
 
-                    if (ctx_->build() == build::dev)
+                    if ((ctx_->build() & build::dev_blocks) != build::prod)
                     {
                         indev_ = true;
                         return token{ token::DEVBEGIN, spacing_, loc_ };
@@ -327,7 +327,7 @@ auto lexer::lex() -> token
                 else if (last == '_' || (last >= 'A' && last <= 'Z') || (last >= 'a' && last <= 'z'))
                     goto lex_name;
 
-                throw comp_error(loc_, fmt::format("bad token: '{}'", last));
+                throw comp_error(loc_, std::format("bad token: '{}'", last));
         }
 
 lex_string:

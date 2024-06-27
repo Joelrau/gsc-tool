@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -104,7 +104,6 @@ auto node::is_boolean() -> bool
                 default:
                     return false;
             }
-            return false;
         default:
             return false;
     }
@@ -411,10 +410,10 @@ XSK_ARC_STMT_IS(stmt_expr)
 XSK_ARC_STMT_IS(stmt_endon)
 XSK_ARC_STMT_IS(stmt_notify)
 XSK_ARC_STMT_IS(stmt_wait)
+XSK_ARC_STMT_IS(stmt_waitrealtime)
 XSK_ARC_STMT_IS(stmt_waittill)
 XSK_ARC_STMT_IS(stmt_waittillmatch)
 XSK_ARC_STMT_IS(stmt_waittillframeend)
-XSK_ARC_STMT_IS(stmt_waitrealtime)
 XSK_ARC_STMT_IS(stmt_if)
 XSK_ARC_STMT_IS(stmt_ifelse)
 XSK_ARC_STMT_IS(stmt_while)
@@ -742,6 +741,10 @@ stmt_wait::stmt_wait(location const& loc, expr::ptr time) : stmt{ type::stmt_wai
 {
 }
 
+stmt_waitrealtime::stmt_waitrealtime(location const& loc, expr::ptr time) : stmt{ type::stmt_waitrealtime, loc }, time{ std::move(time) }
+{
+}
+
 stmt_waittill::stmt_waittill(location const& loc, expr::ptr obj, expr::ptr event, expr_arguments::ptr args) : stmt{ type::stmt_waittill, loc }, obj{ std::move(obj) }, event{ std::move(event) }, args{ std::move(args) }
 {
 }
@@ -751,10 +754,6 @@ stmt_waittillmatch::stmt_waittillmatch(location const& loc, expr::ptr obj, expr:
 }
 
 stmt_waittillframeend::stmt_waittillframeend(location const& loc) : stmt{ type::stmt_waittillframeend, loc }
-{
-}
-
-stmt_waitrealtime::stmt_waitrealtime(location const& loc, expr::ptr time) : stmt{ type::stmt_waitrealtime, loc }, time{ std::move(time) }
 {
 }
 

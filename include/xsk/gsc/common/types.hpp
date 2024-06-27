@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -29,9 +29,16 @@ enum class instance : u8
 
 enum class build : u8
 {
-    dev,
-    prod,
+    prod       = 0,
+    dev_blocks = 1 << 0,
+    dev_maps   = 1 << 1,
+    dev        = dev_blocks | dev_maps,
 };
+
+inline build operator&(build lhs, build rhs)
+{
+    return static_cast<build>(static_cast<std::underlying_type<build>::type>(lhs) & static_cast<std::underlying_type<build>::type>(rhs));
+}
 
 enum class endian : u8
 {
@@ -64,7 +71,7 @@ struct props
 {
     enum values : u32
     {
-        none       = 0 << 0,
+        none       = 0,
         str4       = 1 << 0,  // strings size 4
         tok4       = 1 << 1,  // tokenid size 4
         waitframe  = 1 << 2,  // waitframe opcode

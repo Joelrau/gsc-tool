@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -12,7 +12,7 @@ class position
 {
 public:
     typedef const std::string filename_type;
-    typedef int counter_type;
+    typedef u16 counter_type;
 
     filename_type *filename;
     counter_type line;
@@ -119,12 +119,12 @@ public:
 
     auto print() const -> std::string
     {
-        return fmt::format("{}:{}:{}", *begin.filename, begin.line, begin.column);
+        return std::format("{}:{}:{}", *begin.filename, begin.line, begin.column);
     }
 
     auto label() const -> std::string
     {
-        return fmt::format("loc_{:X}", begin.line);
+        return std::format("loc_{:X}", begin.line);
     }
 };
 

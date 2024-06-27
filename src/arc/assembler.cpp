@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -14,17 +14,20 @@ assembler::assembler(context const* ctx) : ctx_{ ctx }, script_{ ctx->endian() =
 {
 }
 
-auto assembler::assemble(assembly const& data, std::string const& name) -> buffer
+auto assembler::assemble(assembly const& data, std::string const& name) -> std::pair<buffer, buffer>
 {
     assembly_ = &data;
     script_.clear();
+    devmap_.clear();
     strpool_.clear();
     exports_.clear();
     imports_.clear();
     strings_.clear();
     anims_.clear();
+    devmap_count_ = 0;
     auto head = header{};
 
+    devmap_.pos(sizeof(u32));
     script_.pos((ctx_->props() & props::headerxx) ? 0 : (ctx_->props() & props::header72) ? 72 : 64);
     process_string(name);
 
@@ -185,7 +188,7 @@ auto assembler::assemble(assembly const& data, std::string const& name) -> buffe
     head.flags = 0;
     head.name = resolve_string(name);
 
-    auto endpos = script_.pos();
+    auto const endpos = script_.pos();
 
     script_.pos(0);
     script_.write<u64>(ctx_->magic());
@@ -223,7 +226,12 @@ auto assembler::assemble(assembly const& data, std::string const& name) -> buffe
     script_.write<u8>(head.flags);
     script_.pos(endpos);
 
-    return buffer{ script_.data(), script_.pos() };
+    auto const dev_endpos = devmap_.pos();
+    devmap_.pos(0);
+    devmap_.write<u32>(devmap_count_);
+    devmap_.pos(dev_endpos);
+
+    return { buffer{ script_.data(), script_.pos() }, buffer{ devmap_.data(), devmap_.pos() } };
 }
 
 auto assembler::assemble_function(function& func) -> void
@@ -271,6 +279,14 @@ auto assembler::assemble_function(function& func) -> void
 auto assembler::assemble_instruction(instruction const& inst) -> void
 {
     script_.write<u8>(static_cast<u8>(ctx_->opcode_id(inst.opcode)));
+
+    if ((ctx_->build() & build::dev_maps) != build::prod)
+    {
+        devmap_.write<u32>(script_.pos());
+        devmap_.write<u16>(inst.pos.line);
+        devmap_.write<u16>(inst.pos.column);
+        devmap_count_++;
+    }
 
     switch (inst.opcode)
     {
@@ -451,7 +467,7 @@ auto assembler::assemble_instruction(instruction const& inst) -> void
             assemble_end_switch(inst);
             break;
         default:
-            throw asm_error(fmt::format("unhandled opcode {} at index {:04X}", ctx_->opcode_name(inst.opcode), inst.index));
+            throw asm_error(std::format("unhandled opcode {} at index {:04X}", ctx_->opcode_name(inst.opcode), inst.index));
     }
 }
 
@@ -517,7 +533,7 @@ auto assembler::assemble_end_switch(instruction const& inst) -> void
         }
         else
         {
-            throw asm_error(fmt::format("invalid switch case {}", inst.data[1 + (3 * i)]));
+            throw asm_error(std::format("invalid switch case {}", inst.data[1 + (3 * i)]));
         }
     }
 }
@@ -830,7 +846,7 @@ auto assembler::align_instruction(instruction& inst) -> void
             break;
         }
         default:
-            throw asm_error(fmt::format("unhandled opcode {} at index {:04X}", ctx_->opcode_name(inst.opcode), inst.index));
+            throw asm_error(std::format("unhandled opcode {} at index {:04X}", ctx_->opcode_name(inst.opcode), inst.index));
     }
 }
 
@@ -844,7 +860,7 @@ auto assembler::resolve_label(std::string const& name) -> i32
         }
     }
 
-    throw asm_error(fmt::format("couldn't resolve label address of {}", name));
+    throw asm_error(std::format("couldn't resolve label address of {}", name));
 }
 
 auto assembler::resolve_string(std::string const& name) -> u16
@@ -856,7 +872,7 @@ auto assembler::resolve_string(std::string const& name) -> u16
         return itr->second;
     }
 
-    throw asm_error(fmt::format("couldn't resolve string address of {}", name));
+    throw asm_error(std::format("couldn't resolve string address of {}", name));
 }
 
 void assembler::add_stringref(std::string const& str, string_type type, u32 ref)

@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -18,10 +18,12 @@ class assembler
     assembly const* assembly_;
     utils::writer script_;
     utils::writer stack_;
+    utils::writer devmap_;
+    u32 devmap_count_;
 
 public:
     assembler(context const* ctx);
-    auto assemble(assembly const& data) -> std::pair<buffer, buffer>;
+    auto assemble(assembly const& data) -> std::tuple<buffer, buffer, buffer>;
 
 private:
     auto assemble_function(function const& func) -> void;

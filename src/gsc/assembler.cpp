@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -14,12 +14,15 @@ assembler::assembler(context const* ctx) : ctx_{ ctx }, script_{ ctx->endian() =
 {
 }
 
-auto assembler::assemble(assembly const& data) -> std::pair<buffer, buffer>
+auto assembler::assemble(assembly const& data) -> std::tuple<buffer, buffer, buffer>
 {
     assembly_ = &data;
     script_.clear();
     stack_.clear();
+    devmap_.clear();
+    devmap_count_ = 0;
 
+    devmap_.pos(sizeof(u32));
     script_.write<u8>(ctx_->opcode_id(opcode::OP_End));
 
     for (auto const& func : data.functions)
@@ -27,7 +30,12 @@ auto assembler::assemble(assembly const& data) -> std::pair<buffer, buffer>
         assemble_function(*func);
     }
 
-    return { buffer{ script_.data(), script_.pos() }, buffer{ stack_.data(), stack_.pos() } };
+    auto const dev_endpos = devmap_.pos();
+    devmap_.pos(0);
+    devmap_.write<u32>(devmap_count_);
+    devmap_.pos(dev_endpos);
+
+    return { buffer{ script_.data(), script_.pos() }, buffer{ stack_.data(), stack_.pos() }, buffer{ devmap_.data(), devmap_.pos() } };
 }
 
 auto assembler::assemble_function(function const& func) -> void
@@ -62,6 +70,14 @@ auto assembler::assemble_function(function const& func) -> void
 auto assembler::assemble_instruction(instruction const& inst) -> void
 {
     script_.write<u8>(ctx_->opcode_id(inst.opcode));
+
+    if ((ctx_->build() & build::dev_maps) != build::prod)
+    {
+        devmap_.write<u32>(script_.pos());
+        devmap_.write<u16>(inst.pos.line);
+        devmap_.write<u16>(inst.pos.column);
+        devmap_count_++;
+    }
 
     switch (inst.opcode)
     {
@@ -310,7 +326,7 @@ auto assembler::assemble_instruction(instruction const& inst) -> void
             assemble_formal_params(inst);
             break;
         default:
-            throw asm_error(fmt::format("unhandled opcode {} at index {:04X}", ctx_->opcode_name(inst.opcode), inst.index));
+            throw asm_error(std::format("unhandled opcode {} at index {:04X}", ctx_->opcode_name(inst.opcode), inst.index));
     }
 }
 
@@ -323,7 +339,7 @@ auto assembler::assemble_builtin_call(instruction const& inst, bool method, bool
 
     if (ctx_->props() & props::hash)
     {
-        stack_.write_cstr(fmt::format("#xS{:x}", ctx_->hash_id(inst.data[0])));
+        stack_.write_cstr(std::format("#xS{:x}", ctx_->hash_id(inst.data[0])));
         script_.write<u16>(0);
     }
     else
@@ -461,7 +477,7 @@ auto assembler::assemble_end_switch(instruction const& inst) -> void
             }
             else
             {
-                throw asm_error(fmt::format("invalid switch case {}", inst.data[1 + (4 * i)]));
+                throw asm_error(std::format("invalid switch case {}", inst.data[1 + (4 * i)]));
             }
         }
         else
@@ -497,7 +513,7 @@ auto assembler::assemble_end_switch(instruction const& inst) -> void
             }
             else
             {
-                throw asm_error(fmt::format("invalid switch case {}", inst.data[1 + (3 * i)]));
+                throw asm_error(std::format("invalid switch case {}", inst.data[1 + (3 * i)]));
             }
         }
     }
@@ -603,7 +619,7 @@ auto assembler::resolve_function(std::string const& name) -> std::int32_t
         }
     }
 
-    throw asm_error(fmt::format("couldn't resolve local function address of {}", name));
+    throw asm_error(std::format("couldn't resolve local function address of {}", name));
 }
 
 auto assembler::resolve_label(std::string const& name) -> std::int32_t
@@ -616,7 +632,7 @@ auto assembler::resolve_label(std::string const& name) -> std::int32_t
         }
     }
 
-    throw asm_error(fmt::format("couldn't resolve label address of {}", name));
+    throw asm_error(std::format("couldn't resolve label address of {}", name));
 }
 
 auto assembler::encrypt_string(std::string const& str) -> std::string

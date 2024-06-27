@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -17,15 +17,17 @@ class assembler
     function const* func_;
     assembly const* assembly_;
     utils::writer script_;
+    utils::writer devmap_;
     std::unordered_map<std::string, u16> strpool_;
     std::vector<export_ref> exports_;
     std::vector<import_ref> imports_;
     std::vector<string_ref> strings_;
     std::vector<animtree_ref> anims_;
+    u32 devmap_count_;
 
 public:
     assembler(context const* ctx);
-    auto assemble(assembly const& data, std::string const& name = {}) -> buffer;
+    auto assemble(assembly const& data, std::string const& name = {}) -> std::pair<buffer, buffer>;
 
 private:
     auto assemble_function(function& func) -> void;

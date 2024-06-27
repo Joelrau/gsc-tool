@@ -1,4 +1,4 @@
-// Copyright 2023 xensik. All rights reserved.
+// Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -22,6 +22,7 @@ class compiler
     std::vector<scope*> break_blks_;
     std::vector<scope*> continue_blks_;
     std::string animname_;
+    sourcepos debug_pos_;
     u32 index_;
     u32 label_idx_;
     bool can_break_;

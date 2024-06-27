@@ -1,4 +1,4 @@
-/* Copyright 2023 xensik. All rights reserved.
+/* Copyright 2024 xensik. All rights reserved.
 //
 // Use of this source code is governed by a GNU GPLv3 license
 // that can be found in the LICENSE file.
@@ -63,6 +63,7 @@ namespace xsk::arc
 %token ENDON            "endon"
 %token NOTIFY           "notify"
 %token WAIT             "wait"
+%token WAITREALTIME     "waitrealtime"
 %token WAITTILL         "waittill"
 %token WAITTILLMATCH    "waittillmatch"
 %token WAITTILLFRAMEEND "waittillframeend"
@@ -183,6 +184,7 @@ namespace xsk::arc
 %type <stmt_endon::ptr>            stmt_endon
 %type <stmt_notify::ptr>           stmt_notify
 %type <stmt_wait::ptr>             stmt_wait
+%type <stmt_waitrealtime::ptr>     stmt_waitrealtime
 %type <stmt_waittill::ptr>         stmt_waittill
 %type <stmt_waittillmatch::ptr>    stmt_waittillmatch
 %type <stmt_waittillframeend::ptr> stmt_waittillframeend
@@ -357,6 +359,7 @@ stmt
     | stmt_endon             { $$ = std::move($1); }
     | stmt_notify            { $$ = std::move($1); }
     | stmt_wait              { $$ = std::move($1); }
+    | stmt_waitrealtime      { $$ = std::move($1); }
     | stmt_waittill          { $$ = std::move($1); }
     | stmt_waittillmatch     { $$ = std::move($1); }
     | stmt_waittillframeend  { $$ = std::move($1); }
@@ -462,6 +465,11 @@ stmt_wait
         { $$ = stmt_wait::make(@$, std::move($2)); }
     ;
 
+stmt_waitrealtime
+    : WAITREALTIME expr SEMICOLON
+        { $$ = stmt_waitrealtime::make(@$, std::move($2)); }
+    ;
+
 stmt_waittill
     : expr_object WAITTILL LPAREN expr COMMA expr_arguments_no_empty RPAREN SEMICOLON
         { $$ = stmt_waittill::make(@$, std::move($1), std::move($4), std::move($6)); }
@@ -509,13 +517,13 @@ stmt_for
 stmt_foreach
     : FOREACH LPAREN expr_identifier IN expr RPAREN stmt
         {
-            auto array = expr_identifier::make(@$, fmt::format("_a{}", ++index));
-            auto key = expr_identifier::make(@$, fmt::format("_k{}", ++index));
+            auto array = expr_identifier::make(@$, std::format("_a{}", ++index));
+            auto key = expr_identifier::make(@$, std::format("_k{}", ++index));
             $$ = stmt_foreach::make(@$, std::move($5), std::move($3), std::move(array), std::move(key), std::move($7), false);
         }
     | FOREACH LPAREN expr_identifier COMMA expr_identifier IN expr RPAREN stmt
         {
-            auto array = expr_identifier::make(@$, fmt::format("_a{}", ++index));
+            auto array = expr_identifier::make(@$, std::format("_a{}", ++index));
             $$ = stmt_foreach::make(@$, std::move($7), std::move($5), std::move(array), std::move($3), std::move($9), true);
         }
     ;
@@ -1153,7 +1161,7 @@ auto map_token(context const* ctx_, token& tok) -> parser::symbol_type
         }
     }
 
-    throw error(fmt::format("unmapped token! {}", (u8)tok.type));
+    throw error(std::format("unmapped token! {}", (u8)tok.type));
 }
 
 auto ARClex(context const* ctx_, preprocessor& ppr) -> parser::symbol_type
@@ -1230,6 +1238,7 @@ std::unordered_map<token::kind, parser::token::token_kind_type> const tok_to_par
     { token::ENDON, parser::token::ENDON },
     { token::NOTIFY, parser::token::NOTIFY },
     { token::WAIT, parser::token::WAIT },
+    { token::WAITREALTIME, parser::token::WAITREALTIME },
     { token::WAITTILL, parser::token::WAITTILL },
     { token::WAITTILLMATCH, parser::token::WAITTILLMATCH },
     { token::WAITTILLFRAMEEND, parser::token::WAITTILLFRAMEEND },
@@ -1289,6 +1298,7 @@ std::unordered_map<std::string_view, parser::token::token_kind_type> const keywo
     { "endon", parser::token::ENDON },
     { "notify", parser::token::NOTIFY },
     { "wait", parser::token::WAIT },
+    { "waitrealtime", parser::token::WAITREALTIME},
     { "waittill", parser::token::WAITTILL },
     { "waittillmatch", parser::token::WAITTILLMATCH },
     { "waittillframeend", parser::token::WAITTILLFRAMEEND },
