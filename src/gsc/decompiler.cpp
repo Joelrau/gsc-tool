@@ -2056,7 +2056,7 @@ auto decompiler::decompile_loop(stmt_list& stm, usize begin, usize end) -> void
                 {
                     auto ref = stm.list.at(begin)->label();
 
-                    if (!find_location_reference(stm, 0, begin, ref))
+                    if (!find_location_reference(stm, 0, begin, ref) && is_foreach_header(stm, begin))
                     {
                         decompile_foreach(stm, begin, end);
                         return;
@@ -2395,6 +2395,48 @@ auto decompiler::decompile_switch(stmt_list& stm, usize begin, usize end) -> voi
     }
 
     stm.list.insert(stm.list.begin() + begin, stmt_switch::make(loc, std::move(test), stmt_comp::make(loc, std::move(body))));
+}
+
+// a compiled foreach is preceded by 'array = container; key = getfirstarraykey(array);' with array a local,
+// then an optional 'index = undefined;' and the local creates. a hand-written getfirstarraykey/getnextarraykey
+// loop may not be, and decompile_foreach would then consume unrelated statements.
+auto decompiler::is_foreach_header(stmt_list const& stm, usize begin) -> bool
+{
+    if (begin == 0)
+        return false;
+
+    auto i = begin - 1;
+
+    while (i > 0 && stm.list[i]->is<stmt_create>())
+        i--;
+
+    if ((ctx_->features() & feature::foreach) && i > 0 && stm.list[i]->is<stmt_expr>() && stm.list[i]->as<stmt_expr>().value->is<expr_assign>() && stm.list[i]->as<stmt_expr>().value->as<expr_assign>().rvalue->is<expr_undefined>())
+        i--;
+
+    if (i == 0 || !stm.list[i]->is<stmt_expr>() || !stm.list[i - 1]->is<stmt_expr>())
+        return false;
+
+    auto const& key = stm.list[i]->as<stmt_expr>().value;
+    auto const& array = stm.list[i - 1]->as<stmt_expr>().value;
+
+    if (!key->is<expr_assign>() || !array->is<expr_assign>())
+        return false;
+
+    auto const& call = key->as<expr_assign>().rvalue;
+
+    if (!call->is<expr_call>() || !call->as<expr_call>().value->is<expr_function>())
+        return false;
+
+    auto const& func = call->as<expr_call>().value->as<expr_function>();
+
+    if (utils::string::to_lower(func.name->value) != "getfirstarraykey" || func.args->list.size() != 1)
+        return false;
+
+    // cached local indices are stack relative, so the array var can't be matched by index here
+    auto const& arg = func.args->list[0];
+    auto const& lvalue = array->as<expr_assign>().lvalue;
+
+    return arg->is<expr_var_access>() && (lvalue->is<expr_var_create>() || lvalue->is<expr_var_access>());
 }
 
 auto decompiler::find_location_reference(stmt_list const& stm, usize begin, usize end, std::string const& loc) -> bool

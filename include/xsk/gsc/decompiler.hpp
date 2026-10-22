@@ -48,6 +48,7 @@ private:
     auto decompile_for(stmt_list& stm, usize begin, usize end) -> void;
     auto decompile_foreach(stmt_list& stm, usize begin, usize end) -> void;
     auto decompile_switch(stmt_list& stm, usize begin, usize end) -> void;
+    auto is_foreach_header(stmt_list const& stm, usize begin) -> bool;
     auto find_location_reference(stmt_list const& stm, usize begin, usize end, std::string const& loc) -> bool;
     auto find_location_index(stmt_list const& stm, std::string const& loc) const -> usize;
     auto last_location_index(stmt_list const& stm, usize index) -> bool;
