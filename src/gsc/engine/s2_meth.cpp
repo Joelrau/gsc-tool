@@ -8,567 +8,569 @@
 namespace xsk::gsc::s2
 {
 
+// comments: handler address (RVA) in D:\Files\IDB\s2\s2_mp64_ship_dump.exe.i64 (image base 0), from the builtin registration lists
+// no comment = not found in the registration lists
 extern std::array<std::pair<u16, char const*>, meth_count> const meth_list
 {{
-    { 0x8000, "_meth_8000" },
-    { 0x8001, "_meth_8001" },
+    { 0x8000, "_meth_8000" }, // 0x5DDCA0
+    { 0x8001, "setturretdismountorg" },
     { 0x8002, "_meth_8002" },
-    { 0x8003, "_meth_8003" },
-    { 0x8004, "_meth_8004" },
-    { 0x8005, "_meth_8005" },
-    { 0x8006, "_meth_8006" },
-    { 0x8007, "_meth_8007" },
-    { 0x8008, "_meth_8008" },
-    { 0x8009, "_meth_8009" },
-    { 0x800A, "_meth_800A" },
-    { 0x800B, "_meth_800B" },
-    { 0x800C, "enableplayeruse" },
-    { 0x800D, "disableplayeruse" },
-    { 0x800E, "_meth_800E" },
-    { 0x800F, "_meth_800F" },
-    { 0x8010, "_meth_8010" },
-    { 0x8011, "_meth_8011" },
-    { 0x8012, "_meth_8012" },
-    { 0x8013, "_meth_8013" },
-    { 0x8014, "_meth_8014" },
-    { 0x8015, "_meth_8015" },
-    { 0x8016, "_meth_8016" },
-    { 0x8017, "_meth_8017" },
-    { 0x8018, "_meth_8018" },
-    { 0x8019, "_meth_8019" },
-    { 0x801A, "_meth_801A" },
-    { 0x801B, "_meth_801B" },
-    { 0x801C, "_meth_801C" },
-    { 0x801D, "_meth_801D" },
-    { 0x801E, "_meth_801E" },
-    { 0x801F, "_meth_801F" },
-    { 0x8020, "_meth_8020" },
-    { 0x8021, "_meth_8021" },
-    { 0x8022, "attach" },
+    { 0x8003, "playerhide" }, // 0x6118F0
+    { 0x8004, "playershow" }, // 0x611980
+    { 0x8005, "showtoplayer" }, // 0x611AA0
+    { 0x8006, "_meth_8006" }, // 0x605BD0
+    { 0x8007, "threatdetectedtoplayer" }, // 0x605E50
+    { 0x8008, "_meth_8008" }, // 0x606070
+    { 0x8009, "_meth_8009" }, // 0x6062A0
+    { 0x800A, "_meth_800A" }, // 0x606520
+    { 0x800B, "_meth_800B" }, // 0x606820
+    { 0x800C, "enableplayeruse" }, // 0x60B900
+    { 0x800D, "disableplayeruse" }, // 0x60C5D0
+    { 0x800E, "enableammogeneration" }, // 0x60CF40
+    { 0x800F, "disableammogeneration" }, // 0x60C770
+    { 0x8010, "_meth_8010" }, // 0x609040
+    { 0x8011, "makeportableradar" }, // 0x6091E0
+    { 0x8012, "_meth_8012" }, // 0x609650
+    { 0x8013, "_meth_8013" }, // 0x609830
+    { 0x8014, "_meth_8014" }, // 0x6090D0
+    { 0x8015, "_meth_8015" }, // 0x609260
+    { 0x8016, "setteamfortrigger" }, // 0x605C30
+    { 0x8017, "clientclaimtrigger" }, // 0x605FA0
+    { 0x8018, "clientreleasetrigger" }, // 0x606140
+    { 0x8019, "releaseclaimedtrigger" }, // 0x606340
+    { 0x801A, "isusingonlinedataoffline" }, // 0x611680
+    { 0x801B, "_meth_801B" }, // 0x611930
+    { 0x801C, "sendleaderboards" }, // 0x608B90
+    { 0x801D, "isonladder" }, // 0x5F5100
+    { 0x801E, "getcorpseanim" }, // 0x6083D0
+    { 0x801F, "_meth_801F" }, // 0x6085B0
+    { 0x8020, "playerforcedeathanim" }, // 0x6090F0
+    { 0x8021, "_meth_8021" }, // 0x609510
+    { 0x8022, "attach" }, // 0x5F9930
     { 0x8023, "_meth_8023" },
     { 0x8024, "_meth_8024" },
-    { 0x8025, "_meth_8025" },
+    { 0x8025, "setlightfovrange" },
     { 0x8026, "_meth_8026" },
     { 0x8027, "_meth_8027" },
-    { 0x8028, "_meth_8028" },
-    { 0x8029, "_meth_8029" },
+    { 0x8028, "startragdoll" }, // 0x607AB0
+    { 0x8029, "startragdollfromimpact" }, // 0x608020
     { 0x802A, "_meth_802A" },
-    { 0x802B, "logstring" },
+    { 0x802B, "logstring" }, // 0x60BA30
     { 0x802C, "_meth_802C" },
-    { 0x802D, "_meth_802D" },
-    { 0x802E, "detach" },
-    { 0x802F, "detachall" },
-    { 0x8030, "getattachsize" },
-    { 0x8031, "getattachmodelname" },
-    { 0x8032, "getattachtagname" },
-    { 0x8033, "_meth_8033" },
+    { 0x802D, "_meth_802D" }, // 0x5DD950
+    { 0x802E, "detach" }, // 0x5FAC20
+    { 0x802F, "detachall" }, // 0x5FADF0
+    { 0x8030, "getattachsize" }, // 0x5FEC70
+    { 0x8031, "getattachmodelname" }, // 0x5DDB90
+    { 0x8032, "getattachtagname" }, // 0x5DE0D0
+    { 0x8033, "setturretcanaidetach" },
     { 0x8034, "_meth_8034" },
-    { 0x8035, "_meth_8035" },
-    { 0x8036, "_meth_8036" },
-    { 0x8037, "_meth_8037" },
-    { 0x8038, "_meth_8038" },
-    { 0x8039, "_meth_8039" },
-    { 0x803A, "_meth_803A" },
-    { 0x803B, "_meth_803B" },
-    { 0x803C, "_meth_803C" },
-    { 0x803D, "_meth_803D" },
-    { 0x803E, "_meth_803E" },
-    { 0x803F, "_meth_803F" },
-    { 0x8040, "_meth_8040" },
+    { 0x8035, "lerpfov" }, // 0x5F2EC0
+    { 0x8036, "lerpfovscale" }, // 0x5F3710
+    { 0x8037, "getvalidcoverpeekouts" },
+    { 0x8038, "gethighestnodestance" }, // 0x5A17B0
+    { 0x8039, "doesnodeallowstance" }, // 0x5A16F0
+    { 0x803A, "_meth_803A" }, // 0x5E43B0
+    { 0x803B, "_meth_803B" }, // 0x5E5110
+    { 0x803C, "_meth_803C" }, // 0x5E7190
+    { 0x803D, "_meth_803D" }, // 0x5E7C20
+    { 0x803E, "_meth_803E" }, // 0x5E8090
+    { 0x803F, "getgunangles" },
+    { 0x8040, "magicgrenade" },
     { 0x8041, "_meth_8041" },
     { 0x8042, "_meth_8042" },
     { 0x8043, "_meth_8043" },
-    { 0x8044, "_meth_8044" },
-    { 0x8045, "_meth_8045" },
-    { 0x8046, "_meth_8046" },
-    { 0x8047, "_meth_8047" },
-    { 0x8048, "_meth_8048" },
-    { 0x8049, "_meth_8049" },
-    { 0x804A, "_meth_804A" },
-    { 0x804B, "_meth_804B" },
-    { 0x804C, "_meth_804C" },
-    { 0x804D, "_meth_804D" },
-    { 0x804E, "_meth_804E" },
-    { 0x804F, "_meth_804F" },
-    { 0x8050, "_meth_8050" },
-    { 0x8051, "_meth_8051" },
-    { 0x8052, "_meth_8052" },
-    { 0x8053, "_meth_8053" },
-    { 0x8054, "_meth_8054" },
-    { 0x8055, "_meth_8055" },
-    { 0x8056, "_meth_8056" },
-    { 0x8057, "_meth_8057" },
-    { 0x8058, "_meth_8058" },
-    { 0x8059, "_meth_8059" },
-    { 0x805A, "_meth_805A" },
-    { 0x805B, "_meth_805B" },
-    { 0x805C, "_meth_805C" },
+    { 0x8044, "makefakeai" },
+    { 0x8045, "spawndrone" },
+    { 0x8046, "setcorpseremovetimer" },
+    { 0x8047, "setlookattext" },
+    { 0x8048, "setspawnerteam" }, // 0x5EBFC0
+    { 0x8049, "addaieventlistener" },
+    { 0x804A, "removeaieventlistener" },
+    { 0x804B, "getlightcolor" }, // 0x5F4220
+    { 0x804C, "setlightcolor" }, // 0x5F46F0
+    { 0x804D, "getlightradius" },
+    { 0x804E, "setlightradius" },
+    { 0x804F, "getattachignorecollision" }, // 0x5DED40
+    { 0x8050, "hidepart" }, // 0x5DF090
+    { 0x8051, "hidepart_allinstances" }, // 0x5DFE40
+    { 0x8052, "hideallparts" }, // 0x5E0C40
+    { 0x8053, "showpart" }, // 0x5E1250
+    { 0x8054, "showallparts" }, // 0x5E1E20
+    { 0x8055, "linkto" }, // 0x5E7D10
+    { 0x8056, "linktoblendtotag" }, // 0x5E87B0
+    { 0x8057, "unlink" }, // 0x5E88A0
+    { 0x8058, "setnormalhealth" }, // 0x60EB70
+    { 0x8059, "dodamage" }, // 0x5E4890
+    { 0x805A, "kill" },
+    { 0x805B, "show" }, // 0x611630
+    { 0x805C, "hide" }, // 0x6116C0
     { 0x805D, "_meth_805D" },
     { 0x805E, "_meth_805E" },
-    { 0x805F, "_meth_805F" },
-    { 0x8060, "_meth_8060" },
-    { 0x8061, "_meth_8061" },
-    { 0x8062, "_meth_8062" },
-    { 0x8063, "_meth_8063" },
-    { 0x8064, "_meth_8064" },
+    { 0x805F, "disconnectpaths" }, // 0x5E8D10
+    { 0x8060, "connectpaths" }, // 0x5E93F0
+    { 0x8061, "disconnectnode" }, // 0x5E96B0
+    { 0x8062, "connectnode" }, // 0x5E99E0
+    { 0x8063, "_meth_8063" }, // 0x5EAC10
+    { 0x8064, "startusingheroonlylighting" },
     { 0x8065, "_meth_8065" },
     { 0x8066, "_meth_8066" },
     { 0x8067, "_meth_8067" },
     { 0x8068, "_meth_8068" },
     { 0x8069, "_meth_8069" },
     { 0x806A, "_meth_806A" },
-    { 0x806B, "_meth_806B" },
-    { 0x806C, "_meth_806C" },
-    { 0x806D, "_meth_806D" },
-    { 0x806E, "_meth_806E" },
-    { 0x806F, "_meth_806F" },
-    { 0x8070, "_meth_8070" },
-    { 0x8071, "_meth_8071" },
+    { 0x806B, "digitaldistortsetparams" }, // 0x5EDDD0
+    { 0x806C, "setmode" }, // 0x5E9100
+    { 0x806D, "getmode" }, // 0x5E9770
+    { 0x806E, "setturretignoregoals" },
+    { 0x806F, "islinked" }, // 0x5E8B60
+    { 0x8070, "enablelinkto" }, // 0x5EAFD0
+    { 0x8071, "enableportalgroup" }, // 0x5F52F0
     { 0x8072, "_meth_8072" },
     { 0x8073, "_meth_8073" },
     { 0x8074, "_meth_8074" },
-    { 0x8075, "_meth_8075" },
-    { 0x8076, "_meth_8076" },
-    { 0x8077, "_meth_8077" },
-    { 0x8078, "_meth_8078" },
-    { 0x8079, "_meth_8079" },
-    { 0x807A, "_meth_807A" },
-    { 0x807B, "_meth_807B" },
-    { 0x807C, "_meth_807C" },
-    { 0x807D, "_meth_807D" },
-    { 0x807E, "fadeovertime" },
-    { 0x807F, "scaleovertime" },
-    { 0x8080, "_meth_8080" },
-    { 0x8081, "_meth_8081" },
-    { 0x8082, "destroy" },
-    { 0x8083, "_meth_8083" },
-    { 0x8084, "_meth_8084" },
-    { 0x8085, "_meth_8085" },
+    { 0x8075, "playfoley" },
+    { 0x8076, "getnormalhealth" }, // 0x60E9C0
+    { 0x8077, "playerlinkto" }, // 0x5ECDB0
+    { 0x8078, "playerlinktodelta" }, // 0x5ED1B0
+    { 0x8079, "playerlinkweaponviewtodelta" }, // 0x5ED420
+    { 0x807A, "playerlinktoabsolute" }, // 0x5ED820
+    { 0x807B, "playerlinktoblend" }, // 0x5EFEE0
+    { 0x807C, "setwaypointedgestyle_secondaryarrow" }, // 0x5BCD50
+    { 0x807D, "setwaypointiconoffscreenonly" }, // 0x5BCD60
+    { 0x807E, "fadeovertime" }, // 0x5BA680
+    { 0x807F, "scaleovertime" }, // 0x5BA820
+    { 0x8080, "moveovertime" }, // 0x5BA930
+    { 0x8081, "_meth_8081" }, // 0x5BAA20
+    { 0x8082, "destroy" }, // 0x5BAA80
+    { 0x8083, "setpulsefx" }, // 0x5BAB70
+    { 0x8084, "setplayernamestring" }, // 0x5BAAD0
+    { 0x8085, "changefontscaleovertime" }, // 0x5BA750
     { 0x8086, "_meth_8086" },
     { 0x8087, "_meth_8087" },
-    { 0x8088, "_meth_8088" },
-    { 0x8089, "_meth_8089" },
-    { 0x808A, "_meth_808A" },
-    { 0x808B, "_meth_808B" },
-    { 0x808C, "_meth_808C" },
-    { 0x808D, "_meth_808D" },
-    { 0x808E, "_meth_808E" },
-    { 0x808F, "_meth_808F" },
-    { 0x8090, "_meth_8090" },
-    { 0x8091, "_meth_8091" },
+    { 0x8088, "dontcastshadows" }, // 0x605830
+    { 0x8089, "castshadows" }, // 0x605AF0
+    { 0x808A, "setstablemissile" }, // 0x5EE260
+    { 0x808B, "playersetgroundreferenceent" }, // 0x60B0D0
+    { 0x808C, "dontinterpolate" }, // 0x5E11A0
+    { 0x808D, "dospawn" },
+    { 0x808E, "stalingradspawn" },
+    { 0x808F, "getorigin" }, // 0x60BA40
+    { 0x8090, "getcentroid" },
+    { 0x8091, "getshootatpos" },
     { 0x8092, "_meth_8092" },
-    { 0x8093, "_meth_8093" },
-    { 0x8094, "_meth_8094" },
-    { 0x8095, "_meth_8095" },
-    { 0x8096, "_meth_8096" },
-    { 0x8097, "_meth_8097" },
-    { 0x8098, "_meth_8098" },
-    { 0x8099, "_meth_8099" },
-    { 0x809A, "_meth_809A" },
-    { 0x809B, "_meth_809B" },
-    { 0x809C, "geteye" },
-    { 0x809D, "istouching" },
-    { 0x809E, "_meth_809E" },
-    { 0x809F, "_meth_809F" },
-    { 0x80A0, "_meth_80A0" },
-    { 0x80A1, "_meth_80A1" },
-    { 0x80A2, "delete" },
-    { 0x80A3, "setmodel" },
-    { 0x80A4, "_meth_80A4" },
-    { 0x80A5, "_meth_80A5" },
+    { 0x8093, "useby" }, // 0x60C390
+    { 0x8094, "playerlinkedsetviewznear" }, // 0x5EE590
+    { 0x8095, "playerlinkedsetusebaseangleforviewclamp" }, // 0x5EF090
+    { 0x8096, "lerpviewangleclamp" }, // 0x5F1860
+    { 0x8097, "_meth_8097" }, // 0x5F29C0
+    { 0x8098, "springcamenabled" },
+    { 0x8099, "springcamdisabled" },
+    { 0x809A, "linktoplayerview" }, // 0x5F4310
+    { 0x809B, "unlinkfromplayerview" }, // 0x5F59F0
+    { 0x809C, "geteye" }, // 0x5EB4A0
+    { 0x809D, "istouching" }, // 0x5ECC70
+    { 0x809E, "getistouchingentities" }, // 0x5ED1D0
+    { 0x809F, "playrumbleonentity" }, // 0x5EF6B0
+    { 0x80A0, "playrumblelooponentity" }, // 0x5EF780
+    { 0x80A1, "stoprumble" }, // 0x5F0220
+    { 0x80A2, "delete" }, // 0x5E9FD0
+    { 0x80A3, "setmodel" }, // 0x5F5170
+    { 0x80A4, "laseron" }, // 0x5FC910
+    { 0x80A5, "laseroff" }, // 0x5FD040
     { 0x80A6, "_meth_80A6" },
     { 0x80A7, "_meth_80A7" },
-    { 0x80A8, "_meth_80A8" },
-    { 0x80A9, "_meth_80A9" },
-    { 0x80AA, "_meth_80AA" },
-    { 0x80AB, "_meth_80AB" },
+    { 0x80A8, "thermalvisionon" }, // 0x5FD390
+    { 0x80A9, "thermalvisionoff" }, // 0x5FE6C0
+    { 0x80AA, "_meth_80AA" }, // 0x5E46C0
+    { 0x80AB, "_meth_80AB" }, // 0x5E50A0
     { 0x80AC, "_meth_80AC" },
     { 0x80AD, "_meth_80AD" },
-    { 0x80AE, "_meth_80AE" },
+    { 0x80AE, "_meth_80AE" }, // 0x5E5B60
     { 0x80AF, "_meth_80AF" },
-    { 0x80B0, "_meth_80B0" },
-    { 0x80B1, "_meth_80B1" },
-    { 0x80B2, "makeusable" },
-    { 0x80B3, "_meth_80B3" },
-    { 0x80B4, "_meth_80B4" },
-    { 0x80B5, "_meth_80B5" },
-    { 0x80B6, "_meth_80B6" },
+    { 0x80B0, "setcontents" }, // 0x5F5FC0
+    { 0x80B1, "_meth_80B1" }, // 0x5F5A80
+    { 0x80B2, "makeusable" }, // 0x5F6620
+    { 0x80B3, "makeunusable" }, // 0x5F6B60
+    { 0x80B4, "makeglobalusable" }, // 0x5E6C20
+    { 0x80B5, "makeglobalunusable" }, // 0x5E7740
+    { 0x80B6, "setwhizbyprobabilities" },
     { 0x80B7, "_meth_80B7" },
     { 0x80B8, "_meth_80B8" },
     { 0x80B9, "_meth_80B9" },
     { 0x80BA, "_meth_80BA" },
     { 0x80BB, "_meth_80BB" },
     { 0x80BC, "_meth_80BC" },
-    { 0x80BD, "settext" },
-    { 0x80BE, "clearalltextafterhudelem" },
-    { 0x80BF, "setshader" },
-    { 0x80C0, "_meth_80C0" },
-    { 0x80C1, "_meth_80C1" },
-    { 0x80C2, "settimer" },
-    { 0x80C3, "_meth_80C3" },
-    { 0x80C4, "_meth_80C4" },
-    { 0x80C5, "_meth_80C5" },
-    { 0x80C6, "_meth_80C6" },
-    { 0x80C7, "_meth_80C7" },
-    { 0x80C8, "_meth_80C8" },
-    { 0x80C9, "_meth_80C9" },
-    { 0x80CA, "setvalue" },
-    { 0x80CB, "_meth_80CB" },
-    { 0x80CC, "_meth_80CC" },
-    { 0x80CD, "_meth_80CD" },
-    { 0x80CE, "_meth_80CE" },
-    { 0x80CF, "_meth_80CF" },
-    { 0x80D0, "_meth_80D0" },
-    { 0x80D1, "_meth_80D1" },
-    { 0x80D2, "_meth_80D2" },
-    { 0x80D3, "_meth_80D3" },
-    { 0x80D4, "_meth_80D4" },
-    { 0x80D5, "_meth_80D5" },
-    { 0x80D6, "_meth_80D6" },
-    { 0x80D7, "_meth_80D7" },
-    { 0x80D8, "_meth_80D8" },
-    { 0x80D9, "_meth_80D9" },
-    { 0x80DA, "_meth_80DA" },
-    { 0x80DB, "_meth_80DB" },
-    { 0x80DC, "_meth_80DC" },
-    { 0x80DD, "_meth_80DD" },
-    { 0x80DE, "_meth_80DE" },
-    { 0x80DF, "_meth_80DF" },
-    { 0x80E0, "_meth_80E0" },
-    { 0x80E1, "_meth_80E1" },
-    { 0x80E2, "_meth_80E2" },
-    { 0x80E3, "_meth_80E3" },
+    { 0x80BD, "settext" }, // 0x5BB1C0
+    { 0x80BE, "clearalltextafterhudelem" }, // 0x5BB2B0
+    { 0x80BF, "setshader" }, // 0x5BB2C0
+    { 0x80C0, "settargetent" }, // 0x5BB490
+    { 0x80C1, "cleartargetent" }, // 0x5BBAA0
+    { 0x80C2, "settimer" }, // 0x5BC1A0
+    { 0x80C3, "settimerup" }, // 0x5BC2B0
+    { 0x80C4, "settimerstatic" }, // 0x5BC3C0
+    { 0x80C5, "settenthstimer" }, // 0x5BC4F0
+    { 0x80C6, "_meth_80C6" }, // 0x5BC600
+    { 0x80C7, "_meth_80C7" }, // 0x5BC720
+    { 0x80C8, "setclock" }, // 0x5BC850
+    { 0x80C9, "setclockup" }, // 0x5BC890
+    { 0x80CA, "setvalue" }, // 0x5BC8F0
+    { 0x80CB, "setwaypoint" }, // 0x5BCBF0
+    { 0x80CC, "setwaypointedgestyle_rotatingicon" }, // 0x5BCD40
+    { 0x80CD, "setcursorhint" }, // 0x5F8E70
+    { 0x80CE, "sethintstring" }, // 0x5FA4D0
+    { 0x80CF, "setsecondaryhintstring" }, // 0x60CFD0
+    { 0x80D0, "forceusehinton" }, // 0x5FA9E0
+    { 0x80D1, "forceusehintoff" }, // 0x5FB3F0
+    { 0x80D2, "_meth_80D2" }, // 0x5F8480
+    { 0x80D3, "_meth_80D3" }, // 0x5F8580
+    { 0x80D4, "willneverchange" }, // 0x5F8A20
+    { 0x80D5, "startfiring" }, // 0x5EF7A0
+    { 0x80D6, "stopfiring" }, // 0x5EF8D0
+    { 0x80D7, "isfiringturret" }, // 0x5EFAA0
+    { 0x80D8, "_meth_80D8" }, // 0x5EFE40
+    { 0x80D9, "_meth_80D9" }, // 0x5F0710
+    { 0x80DA, "_meth_80DA" }, // 0x5F0FE0
+    { 0x80DB, "_meth_80DB" }, // 0x5F12D0
+    { 0x80DC, "startbarrelspin" }, // 0x5F1FE0
+    { 0x80DD, "stopbarrelspin" }, // 0x5F2050
+    { 0x80DE, "getbarrelspinrate" }, // 0x5F21A0
+    { 0x80DF, "remotecontrolturret" }, // 0x5EE300
+    { 0x80E0, "remotecontrolturretoff" }, // 0x5EF130
+    { 0x80E1, "shootturret" }, // 0x5F39F0
+    { 0x80E2, "getturretowner" }, // 0x5F3E80
+    { 0x80E3, "enabledeathshield" },
     { 0x80E4, "_meth_80E4" },
     { 0x80E5, "_meth_80E5" },
-    { 0x80E6, "_meth_80E6" },
-    { 0x80E7, "_meth_80E7" },
+    { 0x80E6, "enableinvulnerability" },
+    { 0x80E7, "disableinvulnerability" },
     { 0x80E8, "_meth_80E8" },
     { 0x80E9, "_meth_80E9" },
-    { 0x80EA, "_meth_80EA" },
-    { 0x80EB, "_meth_80EB" },
-    { 0x80EC, "_meth_80EC" },
+    { 0x80EA, "forceviewmodelanimation" },
+    { 0x80EB, "disableturretdismount" }, // 0x19FCC0
+    { 0x80EC, "enableturretdismount" }, // 0x1A01A0
     { 0x80ED, "_meth_80ED" },
     { 0x80EE, "_meth_80EE" },
     { 0x80EF, "_meth_80EF" },
-    { 0x80F0, "_meth_80F0" },
+    { 0x80F0, "giveachievement" }, // 0x170660
     { 0x80F1, "_meth_80F1" },
     { 0x80F2, "_meth_80F2" },
-    { 0x80F3, "_meth_80F3" },
-    { 0x80F4, "_meth_80F4" },
-    { 0x80F5, "_meth_80F5" },
-    { 0x80F6, "_meth_80F6" },
+    { 0x80F3, "mountvehicle" }, // 0x1999F0
+    { 0x80F4, "dismountvehicle" }, // 0x19A7B0
+    { 0x80F5, "enableslowaim" }, // 0x188AF0
+    { 0x80F6, "disableslowaim" }, // 0x189F40
     { 0x80F7, "_meth_80F7" },
-    { 0x80F8, "_meth_80F8" },
-    { 0x80F9, "_meth_80F9" },
-    { 0x80FA, "_meth_80FA" },
-    { 0x80FB, "_meth_80FB" },
-    { 0x80FC, "_meth_80FC" },
-    { 0x80FD, "_meth_80FD" },
-    { 0x80FE, "_meth_80FE" },
-    { 0x80FF, "_meth_80FF" },
-    { 0x8100, "_meth_8100" },
-    { 0x8101, "_meth_8101" },
+    { 0x80F8, "setwhizbyoffset" },
+    { 0x80F9, "setsentryowner" }, // 0x5F4E90
+    { 0x80FA, "setsentrycarrier" }, // 0x5F5920
+    { 0x80FB, "setturretminimapvisible" }, // 0x5F6300
+    { 0x80FC, "_meth_80FC" }, // 0x5F66C0
+    { 0x80FD, "settargetentity" }, // 0x5F6A30
+    { 0x80FE, "cleartargetentity" }, // 0x5F7060
+    { 0x80FF, "_meth_80FF" }, // 0x5F8290
+    { 0x8100, "_meth_8100" }, // 0x5F8770
+    { 0x8101, "getturrettarget" }, // 0x5F9410
     { 0x8102, "_meth_8102" },
     { 0x8103, "_meth_8103" },
-    { 0x8104, "_meth_8104" },
-    { 0x8105, "_meth_8105" },
-    { 0x8106, "_meth_8106" },
-    { 0x8107, "_meth_8107" },
-    { 0x8108, "_meth_8108" },
+    { 0x8104, "_meth_8104" }, // 0x5FB1F0
+    { 0x8105, "setaispread" }, // 0x5FB4B0
+    { 0x8106, "setsuppressiontime" }, // 0x5FBFA0
+    { 0x8107, "setflaggedanimknobrestart" },
+    { 0x8108, "setflaggedanimknoblimitedrestart" },
     { 0x8109, "_meth_8109" },
-    { 0x810A, "_meth_810A" },
-    { 0x810B, "_meth_810B" },
-    { 0x810C, "_meth_810C" },
-    { 0x810D, "_meth_810D" },
+    { 0x810A, "setflaggedanimknoballrestart" },
+    { 0x810B, "setflaggedanim" },
+    { 0x810C, "setflaggedanimlimited" },
+    { 0x810D, "setflaggedanimrestart" },
     { 0x810E, "_meth_810E" },
-    { 0x810F, "_meth_810F" },
+    { 0x810F, "useanimtree" },
     { 0x8110, "_meth_8110" },
-    { 0x8111, "_meth_8111" },
-    { 0x8112, "_meth_8112" },
-    { 0x8113, "_meth_8113" },
-    { 0x8114, "_meth_8114" },
-    { 0x8115, "_meth_8115" },
-    { 0x8116, "_meth_8116" },
+    { 0x8111, "setanimtime" },
+    { 0x8112, "allowstand" }, // 0x1950F0
+    { 0x8113, "allowcrouch" }, // 0x195800
+    { 0x8114, "allowprone" }, // 0x195B10
+    { 0x8115, "allowlean" }, // 0x195DE0
+    { 0x8116, "_meth_8116" }, // 0x197680
     { 0x8117, "_meth_8117" },
-    { 0x8118, "_meth_8118" },
+    { 0x8118, "setocclusion" },
     { 0x8119, "_meth_8119" },
-    { 0x811A, "_meth_811A" },
+    { 0x811A, "deactivateocclusion" },
     { 0x811B, "_meth_811B" },
     { 0x811C, "_meth_811C" },
     { 0x811D, "_meth_811D" },
     { 0x811E, "_meth_811E" },
     { 0x811F, "_meth_811F" },
     { 0x8120, "_meth_8120" },
-    { 0x8121, "_meth_8121" },
+    { 0x8121, "seteq" },
     { 0x8122, "_meth_8122" },
-    { 0x8123, "_meth_8123" },
-    { 0x8124, "_meth_8124" },
+    { 0x8123, "deactivateeq" },
+    { 0x8124, "seteqlerp" },
     { 0x8125, "_meth_8125" },
-    { 0x8126, "_meth_8126" },
-    { 0x8127, "_meth_8127" },
-    { 0x8128, "_meth_8128" },
+    { 0x8126, "isthrowinggrenade" }, // 0x16B870
+    { 0x8127, "isfiring" }, // 0x16FE60
+    { 0x8128, "ismeleeing" }, // 0x174A10
     { 0x8129, "_meth_8129" },
-    { 0x812A, "_meth_812A" },
-    { 0x812B, "_meth_812B" },
-    { 0x812C, "_meth_812C" },
-    { 0x812D, "_meth_812D" },
-    { 0x812E, "_meth_812E" },
-    { 0x812F, "_meth_812F" },
-    { 0x8130, "_meth_8130" },
-    { 0x8131, "_meth_8131" },
-    { 0x8132, "_meth_8132" },
-    { 0x8133, "_meth_8133" },
-    { 0x8134, "_meth_8134" },
-    { 0x8135, "_meth_8135" },
+    { 0x812A, "allowmelee" }, // 0x18ACB0
+    { 0x812B, "allowfire" }, // 0x18D3E0
+    { 0x812C, "_meth_812C" }, // 0x18FDE0
+    { 0x812D, "enablehealthshield" },
+    { 0x812E, "setconvergencetime" }, // 0x5FC480
+    { 0x812F, "setconvergenceheightpercent" }, // 0x5FC9C0
+    { 0x8130, "setturretteam" }, // 0x5FD290
+    { 0x8131, "maketurretsolid" }, // 0x5FDB10
+    { 0x8132, "maketurretoperable" }, // 0x5FDE80
+    { 0x8133, "maketurretinoperable" }, // 0x5FE180
+    { 0x8134, "makeentitysentient" }, // 0x29CD50
+    { 0x8135, "freeentitysentient" }, // 0x29D020
     { 0x8136, "_meth_8136" },
-    { 0x8137, "_meth_8137" },
-    { 0x8138, "_meth_8138" },
-    { 0x8139, "_meth_8139" },
+    { 0x8137, "getdroptofloorposition" },
+    { 0x8138, "isbadguy" },
+    { 0x8139, "animscripted" },
     { 0x813A, "_meth_813A" },
     { 0x813B, "_meth_813B" },
-    { 0x813C, "_meth_813C" },
-    { 0x813D, "_meth_813D" },
-    { 0x813E, "_meth_813E" },
-    { 0x813F, "_meth_813F" },
-    { 0x8140, "_meth_8140" },
-    { 0x8141, "_meth_8141" },
+    { 0x813C, "stopanimscripted" },
+    { 0x813D, "clearanim" },
+    { 0x813E, "setanimknob" },
+    { 0x813F, "setanimknoblimited" },
+    { 0x8140, "setanimknobrestart" },
+    { 0x8141, "setanimknoblimitedrestart" },
     { 0x8142, "_meth_8142" },
     { 0x8143, "_meth_8143" },
-    { 0x8144, "_meth_8144" },
+    { 0x8144, "setanimknoballrestart" },
     { 0x8145, "_meth_8145" },
-    { 0x8146, "_meth_8146" },
-    { 0x8147, "_meth_8147" },
-    { 0x8148, "_meth_8148" },
-    { 0x8149, "_meth_8149" },
-    { 0x814A, "_meth_814A" },
-    { 0x814B, "_meth_814B" },
+    { 0x8146, "setanim" },
+    { 0x8147, "setanimlimited" },
+    { 0x8148, "setanimrestart" },
+    { 0x8149, "setanimlimitedrestart" },
+    { 0x814A, "getanimtime" },
+    { 0x814B, "getanimweight" },
     { 0x814C, "_meth_814C" },
-    { 0x814D, "_meth_814D" },
-    { 0x814E, "_meth_814E" },
-    { 0x814F, "_meth_814F" },
-    { 0x8150, "_meth_8150" },
-    { 0x8151, "_meth_8151" },
-    { 0x8152, "_meth_8152" },
-    { 0x8153, "_meth_8153" },
-    { 0x8154, "_meth_8154" },
-    { 0x8155, "_meth_8155" },
-    { 0x8156, "_meth_8156" },
-    { 0x8157, "_meth_8157" },
-    { 0x8158, "_meth_8158" },
+    { 0x814D, "setflaggedanimknob" },
+    { 0x814E, "setflaggedanimknoblimited" },
+    { 0x814F, "setturretaccuracy" }, // 0x5FEBE0
+    { 0x8150, "setrightarc" }, // 0x5DDB20
+    { 0x8151, "setleftarc" }, // 0x5DE290
+    { 0x8152, "settoparc" }, // 0x5DEEB0
+    { 0x8153, "setbottomarc" }, // 0x5DF710
+    { 0x8154, "_meth_8154" }, // 0x5DFBE0
+    { 0x8155, "_meth_8155" }, // 0x5E0700
+    { 0x8156, "_meth_8156" }, // 0x5E0DD0
+    { 0x8157, "_meth_8157" }, // 0x5E14A0
+    { 0x8158, "turretfiredisable" }, // 0x5E3760
     { 0x8159, "_meth_8159" },
-    { 0x815A, "_meth_815A" },
-    { 0x815B, "_meth_815B" },
-    { 0x815C, "_meth_815C" },
-    { 0x815D, "_meth_815D" },
-    { 0x815E, "_meth_815E" },
+    { 0x815A, "clearfixednodesafevolume" },
+    { 0x815B, "isingoal" },
+    { 0x815C, "setruntopos" },
+    { 0x815D, "nearnode" },
+    { 0x815E, "nearclaimnode" },
     { 0x815F, "_meth_815F" },
-    { 0x8160, "_meth_8160" },
-    { 0x8161, "_meth_8161" },
-    { 0x8162, "_meth_8162" },
-    { 0x8163, "_meth_8163" },
-    { 0x8164, "_meth_8164" },
+    { 0x8160, "atdangerousnode" },
+    { 0x8161, "getenemyinfo" }, // 0x1A0110
+    { 0x8162, "clearenemy" },
+    { 0x8163, "setentitytarget" },
+    { 0x8164, "clearentitytarget" },
     { 0x8165, "_meth_8165" },
     { 0x8166, "_meth_8166" },
-    { 0x8167, "_meth_8167" },
-    { 0x8168, "_meth_8168" },
-    { 0x8169, "_meth_8169" },
-    { 0x816A, "_meth_816A" },
-    { 0x816B, "_meth_816B" },
+    { 0x8167, "setflashbanged" },
+    { 0x8168, "setengagementmindist" },
+    { 0x8169, "setengagementmaxdist" },
+    { 0x816A, "isknownenemyinradius" },
+    { 0x816B, "isknownenemyinvolume" },
     { 0x816C, "_meth_816C" },
-    { 0x816D, "_meth_816D" },
-    { 0x816E, "_meth_816E" },
-    { 0x816F, "_meth_816F" },
+    { 0x816D, "invisiblenotsolid" },
+    { 0x816E, "visiblesolid" },
+    { 0x816F, "setdefaultaimlimits" },
     { 0x8170, "_meth_8170" },
-    { 0x8171, "_meth_8171" },
-    { 0x8172, "_meth_8172" },
-    { 0x8173, "_meth_8173" },
-    { 0x8174, "_meth_8174" },
-    { 0x8175, "_meth_8175" },
-    { 0x8176, "_meth_8176" },
-    { 0x8177, "_meth_8177" },
-    { 0x8178, "_meth_8178" },
-    { 0x8179, "_meth_8179" },
-    { 0x817A, "_meth_817A" },
-    { 0x817B, "_meth_817B" },
-    { 0x817C, "_meth_817C" },
-    { 0x817D, "_meth_817D" },
-    { 0x817E, "_meth_817E" },
-    { 0x817F, "getammocount" },
-    { 0x8180, "gettagorigin" },
-    { 0x8181, "_meth_8181" },
-    { 0x8182, "_meth_8182" },
-    { 0x8183, "_meth_8183" },
-    { 0x8184, "_meth_8184" },
-    { 0x8185, "_meth_8185" },
-    { 0x8186, "setdepthoffield" },
-    { 0x8187, "_meth_8187" },
-    { 0x8188, "_meth_8188" },
-    { 0x8189, "_meth_8189" },
-    { 0x818A, "_meth_818A" },
-    { 0x818B, "_meth_818B" },
+    { 0x8171, "_meth_8171" }, // 0x29C570
+    { 0x8172, "getclosestenemysqdist" }, // 0x29C5C0
+    { 0x8173, "setthreatbiasgroup" }, // 0x29CB40
+    { 0x8174, "getthreatbiasgroup" }, // 0x29CBD0
+    { 0x8175, "turretfireenable" }, // 0x5E3B30
+    { 0x8176, "_meth_8176" }, // 0x5E8AB0
+    { 0x8177, "usetriggerrequirelookat" }, // 0x5EC020
+    { 0x8178, "getstance" }, // 0x5E6D10
+    { 0x8179, "setstance" }, // 0x5E7430
+    { 0x817A, "_meth_817A" }, // 0x5E8C30
+    { 0x817B, "_meth_817B" }, // 0x5F1CF0
+    { 0x817C, "_meth_817C" }, // 0x5F22C0
+    { 0x817D, "_meth_817D" }, // 0x5F2CA0
+    { 0x817E, "itemweaponsetammo" }, // 0x5F3540
+    { 0x817F, "getammocount" }, // 0x5F6930
+    { 0x8180, "gettagorigin" }, // 0x5E6980
+    { 0x8181, "gettagangles" }, // 0x5E6E20
+    { 0x8182, "shellshock" }, // 0x5E8D80
+    { 0x8183, "stunplayer" }, // 0x5EAE50
+    { 0x8184, "stopshellshock" }, // 0x5F2A00
+    { 0x8185, "fadeoutshellshock" }, // 0x5F31F0
+    { 0x8186, "setdepthoffield" }, // 0x5EA0B0
+    { 0x8187, "setviewmodeldepthoffield" }, // 0x5EB750
+    { 0x8188, "pickupgrenade" },
+    { 0x8189, "useturret" },
+    { 0x818A, "stopuseturret" },
+    { 0x818B, "canuseturret" },
     { 0x818C, "_meth_818C" },
-    { 0x818D, "_meth_818D" },
-    { 0x818E, "_meth_818E" },
-    { 0x818F, "_meth_818F" },
-    { 0x8190, "_meth_8190" },
+    { 0x818D, "animmode" },
+    { 0x818E, "orientmode" },
+    { 0x818F, "getmotionangle" },
+    { 0x8190, "shouldfacemotion" },
     { 0x8191, "_meth_8191" },
-    { 0x8192, "_meth_8192" },
-    { 0x8193, "_meth_8193" },
+    { 0x8192, "setturretanim" },
+    { 0x8193, "getturret" },
     { 0x8194, "_meth_8194" },
-    { 0x8195, "_meth_8195" },
-    { 0x8196, "_meth_8196" },
+    { 0x8195, "animcustom" },
+    { 0x8196, "isinscriptedstate" },
     { 0x8197, "_meth_8197" },
-    { 0x8198, "_meth_8198" },
-    { 0x8199, "_meth_8199" },
-    { 0x819A, "_meth_819A" },
+    { 0x8198, "getnegotiationstartnode" }, // 0x709700
+    { 0x8199, "getnegotiationendnode" }, // 0x709580
+    { 0x819A, "getnegotiationnextnode" },
     { 0x819B, "_meth_819B" },
     { 0x819C, "_meth_819C" },
     { 0x819D, "_meth_819D" },
-    { 0x819E, "_meth_819E" },
+    { 0x819E, "pushplayer" },
     { 0x819F, "_meth_819F" },
     { 0x81A0, "_meth_81A0" },
-    { 0x81A1, "_meth_81A1" },
-    { 0x81A2, "_meth_81A2" },
-    { 0x81A3, "_meth_81A3" },
-    { 0x81A4, "_meth_81A4" },
-    { 0x81A5, "_meth_81A5" },
-    { 0x81A6, "_meth_81A6" },
-    { 0x81A7, "_meth_81A7" },
+    { 0x81A1, "setgoalnode" },
+    { 0x81A2, "setgoalpos" },
+    { 0x81A3, "setgoalentity" },
+    { 0x81A4, "setgoalvolume" },
+    { 0x81A5, "setgoalvolumeauto" },
+    { 0x81A6, "getgoalvolume" },
+    { 0x81A7, "cleargoalvolume" },
     { 0x81A8, "_meth_81A8" },
-    { 0x81A9, "_meth_81A9" },
-    { 0x81AA, "_meth_81AA" },
-    { 0x81AB, "_meth_81AB" },
-    { 0x81AC, "getentitynumber" },
-    { 0x81AD, "_meth_81AD" },
-    { 0x81AE, "_meth_81AE" },
-    { 0x81AF, "_meth_81AF" },
-    { 0x81B0, "_meth_81B0" },
+    { 0x81A9, "setfixednodesafevolume" },
+    { 0x81AA, "viewkick" }, // 0x5F0390
+    { 0x81AB, "localtoworldcoords" }, // 0x5F1B30
+    { 0x81AC, "getentitynumber" }, // 0x5EAF80
+    { 0x81AD, "getentityvelocity" }, // 0x5EB2C0
+    { 0x81AE, "enablegrenadetouchdamage" }, // 0x5EB9F0
+    { 0x81AF, "disablegrenadetouchdamage" }, // 0x5EBCA0
+    { 0x81B0, "enableaimassist" }, // 0x5F10F0
     { 0x81B1, "_meth_81B1" },
-    { 0x81B2, "_meth_81B2" },
-    { 0x81B3, "_meth_81B3" },
-    { 0x81B4, "_meth_81B4" },
-    { 0x81B5, "_meth_81B5" },
+    { 0x81B2, "stoplookat" },
+    { 0x81B3, "getmuzzlepos" },
+    { 0x81B4, "getmuzzleangle" },
+    { 0x81B5, "getmuzzlesideoffsetpos" },
     { 0x81B6, "_meth_81B6" },
-    { 0x81B7, "_meth_81B7" },
-    { 0x81B8, "_meth_81B8" },
-    { 0x81B9, "_meth_81B9" },
-    { 0x81BA, "_meth_81BA" },
+    { 0x81B7, "canshoot" },
+    { 0x81B8, "canshootenemy" },
+    { 0x81B9, "cansee" },
+    { 0x81BA, "seerecently" },
     { 0x81BB, "_meth_81BB" },
-    { 0x81BC, "_meth_81BC" },
-    { 0x81BD, "_meth_81BD" },
-    { 0x81BE, "_meth_81BE" },
-    { 0x81BF, "_meth_81BF" },
-    { 0x81C0, "_meth_81C0" },
-    { 0x81C1, "_meth_81C1" },
-    { 0x81C2, "_meth_81C2" },
-    { 0x81C3, "_meth_81C3" },
+    { 0x81BC, "lastknowntime" }, // 0x29D0A0
+    { 0x81BD, "lastknownpos" }, // 0x29D120
+    { 0x81BE, "dropweapon" },
+    { 0x81BF, "maymovetopoint" },
+    { 0x81C0, "maymovefrompointtopoint" },
+    { 0x81C1, "teleport" },
+    { 0x81C2, "forceteleport" },
+    { 0x81C3, "safeteleport" },
     { 0x81C4, "_meth_81C4" },
     { 0x81C5, "_meth_81C5" },
-    { 0x81C6, "_meth_81C6" },
+    { 0x81C6, "allowedstances" },
     { 0x81C7, "_meth_81C7" },
     { 0x81C8, "_meth_81C8" },
-    { 0x81C9, "_meth_81C9" },
+    { 0x81C9, "isstanceallowed" },
     { 0x81CA, "_meth_81CA" },
-    { 0x81CB, "_meth_81CB" },
+    { 0x81CB, "issuppressed" },
     { 0x81CC, "_meth_81CC" },
     { 0x81CD, "_meth_81CD" },
-    { 0x81CE, "_meth_81CE" },
+    { 0x81CE, "isgrenadepossafe" },
     { 0x81CF, "_meth_81CF" },
     { 0x81D0, "_meth_81D0" },
     { 0x81D1, "_meth_81D1" },
-    { 0x81D2, "_meth_81D2" },
-    { 0x81D3, "_meth_81D3" },
-    { 0x81D4, "_meth_81D4" },
-    { 0x81D5, "_meth_81D5" },
-    { 0x81D6, "_meth_81D6" },
-    { 0x81D7, "_meth_81D7" },
-    { 0x81D8, "_meth_81D8" },
-    { 0x81D9, "_meth_81D9" },
-    { 0x81DA, "_meth_81DA" },
-    { 0x81DB, "_meth_81DB" },
-    { 0x81DC, "_meth_81DC" },
-    { 0x81DD, "_meth_81DD" },
-    { 0x81DE, "_meth_81DE" },
-    { 0x81DF, "_meth_81DF" },
-    { 0x81E0, "_meth_81E0" },
-    { 0x81E1, "_meth_81E1" },
-    { 0x81E2, "_meth_81E2" },
-    { 0x81E3, "_meth_81E3" },
-    { 0x81E4, "_meth_81E4" },
+    { 0x81D2, "throwgrenade" },
+    { 0x81D3, "disableaimassist" }, // 0x5F1240
+    { 0x81D4, "_meth_81D4" }, // 0x5F1610
+    { 0x81D5, "radiusdamage" }, // 0x5E6930
+    { 0x81D6, "detonate" }, // 0x5E7790
+    { 0x81D7, "damageconetrace" }, // 0x5E8610
+    { 0x81D8, "sightconetrace" }, // 0x5E8B40
+    { 0x81D9, "missile_settargetent" }, // 0x5EC680
+    { 0x81DA, "missile_settargetpos" }, // 0x5EC930
+    { 0x81DB, "missile_cleartarget" }, // 0x5ECBD0
+    { 0x81DC, "missile_setflightmodedirect" }, // 0x5ECE50
+    { 0x81DD, "missile_setflightmodetop" }, // 0x5ED3A0
+    { 0x81DE, "getlightintensity" }, // 0x5F3E10
+    { 0x81DF, "setlightintensity" }, // 0x5F3F70
+    { 0x81E0, "isragdoll" }, // 0x5F4DE0
+    { 0x81E1, "setmovespeedscale" }, // 0x5E38D0
+    { 0x81E2, "cameralinkto" }, // 0x5FACF0
+    { 0x81E3, "cameraunlink" }, // 0x5FB270
+    { 0x81E4, "startcoverarrival" },
     { 0x81E5, "_meth_81E5" },
     { 0x81E6, "_meth_81E6" },
-    { 0x81E7, "_meth_81E7" },
-    { 0x81E8, "_meth_81E8" },
-    { 0x81E9, "_meth_81E9" },
-    { 0x81EA, "_meth_81EA" },
-    { 0x81EB, "_meth_81EB" },
+    { 0x81E7, "shoot" },
+    { 0x81E8, "shootblank" },
+    { 0x81E9, "melee" },
+    { 0x81EA, "updateplayersightaccuracy" },
+    { 0x81EB, "findshufflecovernode" },
     { 0x81EC, "_meth_81EC" },
     { 0x81ED, "_meth_81ED" },
-    { 0x81EE, "_meth_81EE" },
-    { 0x81EF, "_meth_81EF" },
-    { 0x81F0, "_meth_81F0" },
-    { 0x81F1, "_meth_81F1" },
-    { 0x81F2, "_meth_81F2" },
-    { 0x81F3, "_meth_81F3" },
+    { 0x81EE, "findbestcovernode" },
+    { 0x81EF, "getcovernode" },
+    { 0x81F0, "usecovernode" },
+    { 0x81F1, "iscovervalidagainstenemy" },
+    { 0x81F2, "reacquirestep" },
+    { 0x81F3, "findreacquiredirectpath" },
     { 0x81F4, "_meth_81F4" },
-    { 0x81F5, "_meth_81F5" },
+    { 0x81F5, "reacquiremove" },
     { 0x81F6, "_meth_81F6" },
-    { 0x81F7, "_meth_81F7" },
+    { 0x81F7, "flagenemyunattackable" },
     { 0x81F8, "_meth_81F8" },
     { 0x81F9, "_meth_81F9" },
-    { 0x81FA, "_meth_81FA" },
+    { 0x81FA, "setproneanimnodes" },
     { 0x81FB, "_meth_81FB" },
     { 0x81FC, "_meth_81FC" },
     { 0x81FD, "_meth_81FD" },
     { 0x81FE, "_meth_81FE" },
-    { 0x81FF, "_meth_81FF" },
-    { 0x8200, "_meth_8200" },
-    { 0x8201, "_meth_8201" },
-    { 0x8202, "_meth_8202" },
+    { 0x81FF, "setlookatentity" },
+    { 0x8200, "_meth_8200" }, // 0x5FB480
+    { 0x8201, "_meth_8201" }, // 0x5FBD70
+    { 0x8202, "_meth_8202" }, // 0x5DE6F0
     { 0x8203, "_meth_8203" },
-    { 0x8204, "_meth_8204" },
+    { 0x8204, "_meth_8204" }, // 0x5DF260
     { 0x8205, "_meth_8205" },
-    { 0x8206, "_meth_8206" },
-    { 0x8207, "_meth_8207" },
-    { 0x8208, "_meth_8208" },
-    { 0x8209, "_meth_8209" },
-    { 0x820A, "_meth_820A" },
-    { 0x820B, "_meth_820B" },
-    { 0x820C, "_meth_820C" },
-    { 0x820D, "_meth_820D" },
-    { 0x820E, "_meth_820E" },
-    { 0x820F, "_meth_820F" },
-    { 0x8210, "_meth_8210" },
-    { 0x8211, "_meth_8211" },
-    { 0x8212, "_meth_8212" },
-    { 0x8213, "_meth_8213" },
-    { 0x8214, "_meth_8214" },
-    { 0x8215, "_meth_8215" },
-    { 0x8216, "_meth_8216" },
-    { 0x8217, "_meth_8217" },
+    { 0x8206, "_meth_8206" }, // 0x5DFB90
+    { 0x8207, "_meth_8207" }, // 0x5E0070
+    { 0x8208, "_meth_8208" }, // 0x5E1CE0
+    { 0x8209, "_meth_8209" }, // 0x5E0370
+    { 0x820A, "_meth_820A" }, // 0x5E0D20
+    { 0x820B, "_meth_820B" }, // 0x5E3BA0
+    { 0x820C, "_meth_820C" }, // 0x5E4660
+    { 0x820D, "getplayersetting" }, // 0x5E4E30
+    { 0x820E, "getlocalplayerprofiledata" }, // 0x5E58B0
+    { 0x820F, "setlocalplayerprofiledata" }, // 0x5E6F90
+    { 0x8210, "_meth_8210" }, // 0x5EF610
+    { 0x8211, "_meth_8211" }, // 0x5EF6D0
+    { 0x8212, "setmotiontrackervisible" }, // 0x5EF810
+    { 0x8213, "_meth_8213" }, // 0x5EF950
+    { 0x8214, "worldpointinreticle_circle" }, // 0x5F7EB0
+    { 0x8215, "worldpointinreticle_rect" }, // 0x5F9220
+    { 0x8216, "getpointinbounds" }, // 0x5F9FA0
+    { 0x8217, "_meth_8217" }, // 0x5FA7C0
     { 0x8218, "_meth_8218" },
     { 0x8219, "_meth_8219" },
-    { 0x821A, "_meth_821A" },
-    { 0x821B, "_meth_821B" },
-    { 0x821C, "_meth_821C" },
-    { 0x821D, "_meth_821D" },
-    { 0x821E, "_meth_821E" },
-    { 0x821F, "getplayerdata" },
-    { 0x8220, "_meth_8220" },
-    { 0x8221, "_meth_8221" },
-    { 0x8222, "_meth_8222" },
-    { 0x8223, "_meth_8223" },
-    { 0x8224, "_meth_8224" },
-    { 0x8225, "_meth_8225" },
-    { 0x8226, "_meth_8226" },
-    { 0x8227, "_meth_8227" },
-    { 0x8228, "_meth_8228" },
-    { 0x8229, "_meth_8229" },
-    { 0x822A, "_meth_822A" },
-    { 0x822B, "_meth_822B" },
-    { 0x822C, "_meth_822C" },
+    { 0x821A, "setweaponhudiconoverride" }, // 0x5EFCE0
+    { 0x821B, "_meth_821B" }, // 0x5F1160
+    { 0x821C, "_meth_821C" }, // 0x5F2210
+    { 0x821D, "_meth_821D" }, // 0x5FDF10
+    { 0x821E, "_meth_821E" }, // 0x5DF780
+    { 0x821F, "getplayerdata" }, // 0x5E0590
+    { 0x8220, "_meth_8220" }, // 0x890650
+    { 0x8221, "_meth_8221" }, // 0x8906B0
+    { 0x8222, "isturretready" }, // 0x8906E0
+    { 0x8223, "vehicleturretcontroloff" }, // 0x8907C0
+    { 0x8224, "vehicledriveto" }, // 0x890B50
+    { 0x8225, "vehicle_dospawn" }, // 0x891710
+    { 0x8226, "vehicle_isphysveh" }, // 0x8917F0
+    { 0x8227, "vehphys_crash" }, // 0x891870
+    { 0x8228, "vehphys_launch" }, // 0x891990
+    { 0x8229, "vehphys_disablecrashing" }, // 0x891B20
+    { 0x822A, "vehphys_enablecrashing" }, // 0x891BD0
+    { 0x822B, "vehphys_setspeed" }, // 0x891C30
+    { 0x822C, "vehphys_setconveyorbelt" }, // 0x891E40
     { 0x822D, "_meth_822D" },
-    { 0x822E, "_meth_822E" },
+    { 0x822E, "playerlinkedturretanglesenable" },
     { 0x822F, "_meth_822F" },
     { 0x8230, "_meth_8230" },
     { 0x8231, "_meth_8231" },
@@ -577,578 +579,578 @@ extern std::array<std::pair<u16, char const*>, meth_count> const meth_list
     { 0x8234, "_meth_8234" },
     { 0x8235, "_meth_8235" },
     { 0x8236, "_meth_8236" },
-    { 0x8237, "_meth_8237" },
-    { 0x8238, "_meth_8238" },
-    { 0x8239, "_meth_8239" },
+    { 0x8237, "painvisionoff" },
+    { 0x8238, "getplayerintelisfound" },
+    { 0x8239, "setplayerintelfound" },
     { 0x823A, "_meth_823A" },
     { 0x823B, "_meth_823B" },
     { 0x823C, "_meth_823C" },
     { 0x823D, "_meth_823D" },
-    { 0x823E, "setplayerdata" },
-    { 0x823F, "_meth_823F" },
-    { 0x8240, "_meth_8240" },
-    { 0x8241, "_meth_8241" },
-    { 0x8242, "_meth_8242" },
-    { 0x8243, "buttonpressed" },
-    { 0x8244, "_meth_8244" },
-    { 0x8245, "_meth_8245" },
-    { 0x8246, "setspawnweapon" },
-    { 0x8247, "_meth_8247" },
-    { 0x8248, "_meth_8248" },
-    { 0x8249, "_meth_8249" },
-    { 0x824A, "_meth_824A" },
-    { 0x824B, "_meth_824B" },
-    { 0x824C, "_meth_824C" },
-    { 0x824D, "_meth_824D" },
-    { 0x824E, "_meth_824E" },
-    { 0x824F, "_meth_824F" },
-    { 0x8250, "_meth_8250" },
-    { 0x8251, "_meth_8251" },
-    { 0x8252, "_meth_8252" },
-    { 0x8253, "_meth_8253" },
-    { 0x8254, "_meth_8254" },
-    { 0x8255, "_meth_8255" },
-    { 0x8256, "_meth_8256" },
-    { 0x8257, "_meth_8257" },
-    { 0x8258, "_meth_8258" },
-    { 0x8259, "_meth_8259" },
-    { 0x825A, "_meth_825A" },
-    { 0x825B, "_meth_825B" },
-    { 0x825C, "_meth_825C" },
-    { 0x825D, "_meth_825D" },
-    { 0x825E, "_meth_825E" },
-    { 0x825F, "_meth_825F" },
-    { 0x8260, "_meth_8260" },
-    { 0x8261, "_meth_8261" },
-    { 0x8262, "_meth_8262" },
-    { 0x8263, "_meth_8263" },
-    { 0x8264, "_meth_8264" },
-    { 0x8265, "_meth_8265" },
-    { 0x8266, "suicide" },
-    { 0x8267, "_meth_8267" },
-    { 0x8268, "iprintln" },
-    { 0x8269, "iprintlnbold" },
-    { 0x826A, "_meth_826A" },
-    { 0x826B, "_meth_826B" },
-    { 0x826C, "_meth_826C" },
-    { 0x826D, "_meth_826D" },
-    { 0x826E, "_meth_826E" },
-    { 0x826F, "_meth_826F" },
-    { 0x8270, "_meth_8270" },
-    { 0x8271, "_meth_8271" },
-    { 0x8272, "_meth_8272" },
-    { 0x8273, "_meth_8273" },
-    { 0x8274, "_meth_8274" },
-    { 0x8275, "_meth_8275" },
-    { 0x8276, "_meth_8276" },
-    { 0x8277, "_meth_8277" },
-    { 0x8278, "_meth_8278" },
-    { 0x8279, "_meth_8279" },
-    { 0x827A, "_meth_827A" },
-    { 0x827B, "_meth_827B" },
-    { 0x827C, "_meth_827C" },
-    { 0x827D, "_meth_827D" },
-    { 0x827E, "_meth_827E" },
-    { 0x827F, "vehicle_finishdamage" },
-    { 0x8280, "_meth_8280" },
-    { 0x8281, "_meth_8281" },
-    { 0x8282, "_meth_8282" },
-    { 0x8283, "_meth_8283" },
-    { 0x8284, "_meth_8284" },
-    { 0x8285, "_meth_8285" },
-    { 0x8286, "_meth_8286" },
-    { 0x8287, "_meth_8287" },
-    { 0x8288, "_meth_8288" },
-    { 0x8289, "_meth_8289" },
-    { 0x828A, "_meth_828A" },
-    { 0x828B, "_meth_828B" },
-    { 0x828C, "_meth_828C" },
-    { 0x828D, "_meth_828D" },
-    { 0x828E, "_meth_828E" },
-    { 0x828F, "_meth_828F" },
-    { 0x8290, "_meth_8290" },
-    { 0x8291, "_meth_8291" },
-    { 0x8292, "_meth_8292" },
-    { 0x8293, "_meth_8293" },
-    { 0x8294, "_meth_8294" },
-    { 0x8295, "_meth_8295" },
-    { 0x8296, "_meth_8296" },
-    { 0x8297, "_meth_8297" },
-    { 0x8298, "_meth_8298" },
-    { 0x8299, "_meth_8299" },
-    { 0x829A, "_meth_829A" },
-    { 0x829B, "_meth_829B" },
-    { 0x829C, "_meth_829C" },
-    { 0x829D, "_meth_829D" },
-    { 0x829E, "_meth_829E" },
-    { 0x829F, "_meth_829F" },
-    { 0x82A0, "_meth_82A0" },
-    { 0x82A1, "_meth_82A1" },
-    { 0x82A2, "_meth_82A2" },
-    { 0x82A3, "_meth_82A3" },
-    { 0x82A4, "_meth_82A4" },
-    { 0x82A5, "setrank" },
-    { 0x82A6, "_meth_82A6" },
-    { 0x82A7, "_meth_82A7" },
-    { 0x82A8, "_meth_82A8" },
-    { 0x82A9, "setperk" },
-    { 0x82AA, "_meth_82AA" },
-    { 0x82AB, "_meth_82AB" },
-    { 0x82AC, "unsetperk" },
-    { 0x82AD, "_meth_82AD" },
-    { 0x82AE, "_meth_82AE" },
-    { 0x82AF, "_meth_82AF" },
-    { 0x82B0, "_meth_82B0" },
-    { 0x82B1, "_meth_82B1" },
-    { 0x82B2, "_meth_82B2" },
-    { 0x82B3, "_meth_82B3" },
-    { 0x82B4, "_meth_82B4" },
-    { 0x82B5, "_meth_82B5" },
-    { 0x82B6, "_meth_82B6" },
-    { 0x82B7, "_meth_82B7" },
-    { 0x82B8, "_meth_82B8" },
-    { 0x82B9, "_meth_82B9" },
-    { 0x82BA, "_meth_82BA" },
-    { 0x82BB, "_meth_82BB" },
-    { 0x82BC, "addpitch" },
-    { 0x82BD, "addyaw" },
-    { 0x82BE, "addroll" },
-    { 0x82BF, "_meth_82BF" },
-    { 0x82C0, "_meth_82C0" },
-    { 0x82C1, "_meth_82C1" },
-    { 0x82C2, "_meth_82C2" },
-    { 0x82C3, "_meth_82C3" },
-    { 0x82C4, "_meth_82C4" },
-    { 0x82C5, "_meth_82C5" },
-    { 0x82C6, "_meth_82C6" },
-    { 0x82C7, "_meth_82C7" },
-    { 0x82C8, "_meth_82C8" },
-    { 0x82C9, "_meth_82C9" },
-    { 0x82CA, "_meth_82CA" },
-    { 0x82CB, "_meth_82CB" },
-    { 0x82CC, "_meth_82CC" },
-    { 0x82CD, "_meth_82CD" },
-    { 0x82CE, "_meth_82CE" },
-    { 0x82CF, "_meth_82CF" },
-    { 0x82D0, "_meth_82D0" },
-    { 0x82D1, "_meth_82D1" },
-    { 0x82D2, "_meth_82D2" },
-    { 0x82D3, "_meth_82D3" },
-    { 0x82D4, "_meth_82D4" },
-    { 0x82D5, "_meth_82D5" },
-    { 0x82D6, "_meth_82D6" },
-    { 0x82D7, "_meth_82D7" },
-    { 0x82D8, "_meth_82D8" },
-    { 0x82D9, "_meth_82D9" },
-    { 0x82DA, "_meth_82DA" },
-    { 0x82DB, "_meth_82DB" },
-    { 0x82DC, "_meth_82DC" },
-    { 0x82DD, "_meth_82DD" },
-    { 0x82DE, "_meth_82DE" },
-    { 0x82DF, "_meth_82DF" },
-    { 0x82E0, "_meth_82E0" },
-    { 0x82E1, "_meth_82E1" },
-    { 0x82E2, "_meth_82E2" },
-    { 0x82E3, "_meth_82E3" },
-    { 0x82E4, "_meth_82E4" },
-    { 0x82E5, "_meth_82E5" },
-    { 0x82E6, "_meth_82E6" },
-    { 0x82E7, "_meth_82E7" },
-    { 0x82E8, "_meth_82E8" },
-    { 0x82E9, "_meth_82E9" },
-    { 0x82EA, "_meth_82EA" },
-    { 0x82EB, "_meth_82EB" },
-    { 0x82EC, "_meth_82EC" },
-    { 0x82ED, "_meth_82ED" },
-    { 0x82EE, "_meth_82EE" },
-    { 0x82EF, "_meth_82EF" },
-    { 0x82F0, "_meth_82F0" },
-    { 0x82F1, "_meth_82F1" },
-    { 0x82F2, "_meth_82F2" },
-    { 0x82F3, "_meth_82F3" },
-    { 0x82F4, "_meth_82F4" },
-    { 0x82F5, "_meth_82F5" },
-    { 0x82F6, "_meth_82F6" },
-    { 0x82F7, "_meth_82F7" },
-    { 0x82F8, "_meth_82F8" },
-    { 0x82F9, "_meth_82F9" },
-    { 0x82FA, "setweaponammoclip" },
-    { 0x82FB, "setweaponammostock" },
-    { 0x82FC, "getweaponammoclip" },
-    { 0x82FD, "getweaponammostock" },
-    { 0x82FE, "_meth_82FE" },
-    { 0x82FF, "_meth_82FF" },
-    { 0x8300, "setclientdvar" },
-    { 0x8301, "setclientdvars" },
+    { 0x823E, "setplayerdata" }, // 0x5E0EE0
+    { 0x823F, "getcacplayerdata" }, // 0x5E2E30
+    { 0x8240, "setcacplayerdata" }, // 0x5E3DA0
+    { 0x8241, "trackerupdate" }, // 0x5E7A60
+    { 0x8242, "pingplayer" }, // 0x5AEC10
+    { 0x8243, "buttonpressed" }, // 0x5AEC00
+    { 0x8244, "sayteam" }, // 0x5B20C0
+    { 0x8245, "sayall" }, // 0x5B2180
+    { 0x8246, "setspawnweapon" }, // 0x5AEE40
+    { 0x8247, "dropitem" }, // 0x189960
+    { 0x8248, "_meth_8248" }, // 0x5AF660
+    { 0x8249, "_meth_8249" }, // 0x892430
+    { 0x824A, "sethoverparams" }, // 0x8924C0
+    { 0x824B, "_meth_824B" }, // 0x892520
+    { 0x824C, "_meth_824C" }, // 0x8926E0
+    { 0x824D, "_meth_824D" }, // 0x892720
+    { 0x824E, "_meth_824E" }, // 0x892760
+    { 0x824F, "getwheelsurface" }, // 0x8927D0
+    { 0x8250, "_meth_8250" }, // 0x892870
+    { 0x8251, "getvehicleowner" }, // 0x892A30
+    { 0x8252, "_meth_8252" }, // 0x892A70
+    { 0x8253, "setvehicleteam" }, // 0x892AC0
+    { 0x8254, "setneargoalnotifydist" }, // 0x892C50
+    { 0x8255, "setvehgoalpos" }, // 0x892C80
+    { 0x8256, "setgoalyaw" }, // 0x892E10
+    { 0x8257, "cleargoalyaw" }, // 0x892E60
+    { 0x8258, "settargetyaw" }, // 0x892ED0
+    { 0x8259, "_meth_8259" }, // 0x892F80
+    { 0x825A, "_meth_825A" }, // 0x892FD0
+    { 0x825B, "setturrettargetvec" }, // 0x88F360
+    { 0x825C, "setturrettargetent" }, // 0x88F430
+    { 0x825D, "clearturrettarget" }, // 0x88F4E0
+    { 0x825E, "vehicle_canturrettargetpoint" }, // 0x88F530
+    { 0x825F, "_meth_825F" }, // 0x88F970
+    { 0x8260, "setlookatent" }, // 0x88F9A0
+    { 0x8261, "clearlookatent" }, // 0x88FA20
+    { 0x8262, "setvehweapon" }, // 0x88FA70
+    { 0x8263, "fireweapon" }, // 0x88FB20
+    { 0x8264, "_meth_8264" }, // 0x890620
+    { 0x8265, "finishplayerdamage" }, // 0x5B01A0
+    { 0x8266, "suicide" }, // 0x5B0C80
+    { 0x8267, "closeingamemenu" }, // 0x5B0E80
+    { 0x8268, "iprintln" }, // 0x5B0FE0
+    { 0x8269, "iprintlnbold" }, // 0x5B1220
+    { 0x826A, "_meth_826A" }, // 0x5B1540
+    { 0x826B, "spawn" }, // 0x5B12C0
+    { 0x826C, "_meth_826C" }, // 0x5B1550
+    { 0x826D, "cloneplayer" }, // 0x5B1770
+    { 0x826E, "_meth_826E" }, // 0x5B2030
+    { 0x826F, "allowspectateteam" }, // 0x5B22A0
+    { 0x8270, "forcespectatepov" }, // 0x5B27A0
+    { 0x8271, "getguid" }, // 0x5B2D60
+    { 0x8272, "physicslaunchserver" }, // 0x617680
+    { 0x8273, "_meth_8273" }, // 0x6178F0
+    { 0x8274, "_meth_8274" }, // 0x617AA0
+    { 0x8275, "clonebrushmodeltoscriptmodel" }, // 0x618250
+    { 0x8276, "scriptmodelplayanim" }, // 0x6155B0
+    { 0x8277, "scriptmodelclearanim" }, // 0x615AD0
+    { 0x8278, "scriptmodelplayanimdeltamotion" }, // 0x615820
+    { 0x8279, "vehicle_teleport" }, // 0x88F840
+    { 0x827A, "attachpath" }, // 0x8901F0
+    { 0x827B, "getattachpos" }, // 0x890320
+    { 0x827C, "startpath" }, // 0x890530
+    { 0x827D, "setswitchnode" }, // 0x890720
+    { 0x827E, "setwaitspeed" }, // 0x890770
+    { 0x827F, "vehicle_finishdamage" }, // 0x890830
+    { 0x8280, "vehicle_setspeed" }, // 0x890DB0
+    { 0x8281, "vehicle_setspeedimmediate" }, // 0x890DD0
+    { 0x8282, "vehicle_rotateyaw" }, // 0x890FB0
+    { 0x8283, "vehicle_getspeed" }, // 0x891110
+    { 0x8284, "_meth_8284" }, // 0x8911E0
+    { 0x8285, "_meth_8285" }, // 0x8914B0
+    { 0x8286, "_meth_8286" }, // 0x891580
+    { 0x8287, "_meth_8287" }, // 0x8916B0
+    { 0x8288, "_meth_8288" }, // 0x8917A0
+    { 0x8289, "vehicle_getvelocity" }, // 0x891960
+    { 0x828A, "vehicle_getbodyvelocity" }, // 0x891A90
+    { 0x828B, "vehicle_getsteering" }, // 0x891AC0
+    { 0x828C, "vehicle_getthrottle" }, // 0x891B80
+    { 0x828D, "vehicle_turnengineoff" }, // 0x891BB0
+    { 0x828E, "vehicle_turnengineon" }, // 0x891C10
+    { 0x828F, "vehicle_orientto" },
+    { 0x8290, "getgoalspeedmph" }, // 0x891CA0
+    { 0x8291, "setacceleration" }, // 0x891CD0
+    { 0x8292, "setdeceleration" }, // 0x891D70
+    { 0x8293, "resumespeed" }, // 0x891DF0
+    { 0x8294, "setyawspeed" }, // 0x891F00
+    { 0x8295, "setyawspeedbyname" }, // 0x892170
+    { 0x8296, "setmaxpitchroll" }, // 0x892300
+    { 0x8297, "_meth_8297" }, // 0x8923A0
+    { 0x8298, "_meth_8298" }, // 0x892400
+    { 0x8299, "getxuid" }, // 0x5B2F00
+    { 0x829A, "_meth_829A" }, // 0x5B3310
+    { 0x829B, "_meth_829B" }, // 0x5B33F0
+    { 0x829C, "_meth_829C" }, // 0x5B34E0
+    { 0x829D, "_meth_829D" }, // 0x5AEB90
+    { 0x829E, "ishost" }, // 0x5AEC90
+    { 0x829F, "getspectatingplayer" }, // 0x5AF200
+    { 0x82A0, "_meth_82A0" }, // 0x5AF350
+    { 0x82A1, "_meth_82A1" }, // 0x5AF7E0
+    { 0x82A2, "_meth_82A2" }, // 0x5AFAB0
+    { 0x82A3, "updatescores" }, // 0x5AF500
+    { 0x82A4, "updatedmscores" }, // 0x5AF510
+    { 0x82A5, "setrank" }, // 0x5AF590
+    { 0x82A6, "_meth_82A6" }, // 0x5AFFC0
+    { 0x82A7, "_meth_82A7" }, // 0x17DAC0
+    { 0x82A8, "visionsyncwithplayer" }, // 0x16D3A0
+    { 0x82A9, "setperk" }, // 0x198630
+    { 0x82AA, "hasperk" }, // 0x199CC0
+    { 0x82AB, "clearperks" }, // 0x19EAE0
+    { 0x82AC, "unsetperk" }, // 0x19B1D0
+    { 0x82AD, "registerparty" }, // 0x5B1C90
+    { 0x82AE, "_meth_82AE" }, // 0x5B1E40
+    { 0x82AF, "_meth_82AF" }, // 0x19FB20
+    { 0x82B0, "_meth_82B0" }, // 0x19FBE0
+    { 0x82B1, "moveto" }, // 0x616030
+    { 0x82B2, "movex" }, // 0x616910
+    { 0x82B3, "movey" }, // 0x616920
+    { 0x82B4, "movez" }, // 0x616940
+    { 0x82B5, "movegravity" }, // 0x616440
+    { 0x82B6, "moveslide" }, // 0x616610
+    { 0x82B7, "stopmoveslide" }, // 0x616870
+    { 0x82B8, "rotateto" }, // 0x616960
+    { 0x82B9, "rotatepitch" }, // 0x616AF0
+    { 0x82BA, "rotateyaw" }, // 0x616B00
+    { 0x82BB, "rotateroll" }, // 0x616B20
+    { 0x82BC, "addpitch" }, // 0x616AA0
+    { 0x82BD, "addyaw" }, // 0x616AC0
+    { 0x82BE, "addroll" }, // 0x616AE0
+    { 0x82BF, "vibrate" }, // 0x616B40
+    { 0x82C0, "rotatevelocity" }, // 0x616F10
+    { 0x82C1, "solid" }, // 0x615D80
+    { 0x82C2, "notsolid" }, // 0x615E40
+    { 0x82C3, "setcandamage" }, // 0x617130
+    { 0x82C4, "setcanradiusdamage" }, // 0x6171A0
+    { 0x82C5, "physicslaunchclient" }, // 0x617230
+    { 0x82C6, "_meth_82C6" }, // 0x5AFFD0
+    { 0x82C7, "_meth_82C7" }, // 0x5AFFE0
+    { 0x82C8, "setcarddisplayslot" }, // 0x5AFFF0
+    { 0x82C9, "laststandrevive" }, // 0x5B0120
+    { 0x82CA, "_meth_82CA" }, // 0x5B08D0
+    { 0x82CB, "setspectatedefaults" }, // 0x5B0950
+    { 0x82CC, "_meth_82CC" }, // 0x5B0BF0
+    { 0x82CD, "disableweaponpickup" }, // 0x16E6F0
+    { 0x82CE, "enableweaponpickup" }, // 0x170AA0
+    { 0x82CF, "weaponpickupenabled" }, // 0x16F960
+    { 0x82D0, "issplitscreenplayer" }, // 0x5B0DD0
+    { 0x82D1, "getweaponslistoffhands" }, // 0x16A6E0
+    { 0x82D2, "getweaponslistitems" }, // 0x16A7B0
+    { 0x82D3, "getweaponslistexclusives" }, // 0x16A7F0
+    { 0x82D4, "getweaponslist" }, // 0x16AA50
+    { 0x82D5, "_meth_82D5" }, // 0x16C090
+    { 0x82D6, "_meth_82D6" }, // 0x194470
+    { 0x82D7, "_meth_82D7" }, // 0x196C70
+    { 0x82D8, "visionsetnakedforplayer" }, // 0x179600
+    { 0x82D9, "_meth_82D9" }, // 0x179850
+    { 0x82DA, "visionsetmissilecamforplayer" }, // 0x179AA0
+    { 0x82DB, "visionsetthermalforplayer" }, // 0x179C70
+    { 0x82DC, "visionsetpainforplayer" }, // 0x179E90
+    { 0x82DD, "setblurforplayer" }, // 0x18C580
+    { 0x82DE, "_meth_82DE" }, // 0x193CB0
+    { 0x82DF, "_meth_82DF" }, // 0x194190
+    { 0x82E0, "updateentitywithweapons" },
+    { 0x82E1, "notifyonplayercommand" }, // 0x19FC30
+    { 0x82E2, "canmantle" }, // 0x16A730
+    { 0x82E3, "forcemantle" }, // 0x16ADB0
+    { 0x82E4, "ismantling" }, // 0x16CB60
+    { 0x82E5, "_meth_82E5" }, // 0x16D650
+    { 0x82E6, "_meth_82E6" }, // 0x170BB0
+    { 0x82E7, "_meth_82E7" }, // 0x1724F0
+    { 0x82E8, "playerrecoilscaleoff" }, // 0x174710
+    { 0x82E9, "_meth_82E9" }, // 0x175730
+    { 0x82EA, "weaponlockfinalize" }, // 0x1772C0
+    { 0x82EB, "weaponlockfree" }, // 0x17A380
+    { 0x82EC, "_meth_82EC" }, // 0x17BE10
+    { 0x82ED, "issplitscreenplayerprimary" }, // 0x5B0F40
+    { 0x82EE, "_meth_82EE" }, // 0x5B13D0
+    { 0x82EF, "_meth_82EF" }, // 0x5B1460
+    { 0x82F0, "getsightedplayers" }, // 0x5B1AF0
+    { 0x82F1, "_meth_82F1" }, // 0x5B15C0
+    { 0x82F2, "_meth_82F2" }, // 0x5B1650
+    { 0x82F3, "getviewmodel" }, // 0x16ACA0
+    { 0x82F4, "fragbuttonpressed" }, // 0x195B30
+    { 0x82F5, "secondaryoffhandbuttonpressed" }, // 0x196ED0
+    { 0x82F6, "getcurrentweaponclipammo" }, // 0x174EA0
+    { 0x82F7, "setvelocity" }, // 0x1750D0
+    { 0x82F8, "getplayerviewheight" }, // 0x17DF60
+    { 0x82F9, "getnormalizedmovement" }, // 0x180860
+    { 0x82FA, "setweaponammoclip" }, // 0x19FD70
+    { 0x82FB, "setweaponammostock" }, // 0x169D50
+    { 0x82FC, "getweaponammoclip" }, // 0x16AF80
+    { 0x82FD, "getweaponammostock" }, // 0x16C460
+    { 0x82FE, "anyammoforweaponmodes" }, // 0x16D7C0
+    { 0x82FF, "setclientomnvar" }, // 0x1731E0
+    { 0x8300, "setclientdvar" }, // 0x176D70
+    { 0x8301, "setclientdvars" }, // 0x179280
     { 0x8302, "_meth_8302" },
     { 0x8303, "_meth_8303" },
-    { 0x8304, "_meth_8304" },
-    { 0x8305, "_meth_8305" },
-    { 0x8306, "_meth_8306" },
-    { 0x8307, "_meth_8307" },
-    { 0x8308, "_meth_8308" },
-    { 0x8309, "_meth_8309" },
-    { 0x830A, "_meth_830A" },
-    { 0x830B, "_meth_830B" },
-    { 0x830C, "_meth_830C" },
-    { 0x830D, "setactionslot" },
-    { 0x830E, "_meth_830E" },
-    { 0x830F, "_meth_830F" },
-    { 0x8310, "getweaponlistall" },
-    { 0x8311, "getweaponlistprimaries" },
-    { 0x8312, "_meth_8312" },
-    { 0x8313, "giveweapon" },
-    { 0x8314, "takeweapon" },
-    { 0x8315, "_meth_8315" },
-    { 0x8316, "getcurrentweapon" },
-    { 0x8317, "_meth_8317" },
-    { 0x8318, "_meth_8318" },
-    { 0x8319, "_meth_8319" },
-    { 0x831A, "switchtoweapon" },
-    { 0x831B, "_meth_831B" },
-    { 0x831C, "_meth_831C" },
-    { 0x831D, "_meth_831D" },
-    { 0x831E, "setoffhandsecondaryclass" },
-    { 0x831F, "getoffhandsecondaryclass" },
-    { 0x8320, "_meth_8320" },
-    { 0x8321, "_meth_8321" },
-    { 0x8322, "_meth_8322" },
-    { 0x8323, "_meth_8323" },
-    { 0x8324, "_meth_8324" },
-    { 0x8325, "_meth_8325" },
-    { 0x8326, "_meth_8326" },
-    { 0x8327, "_meth_8327" },
-    { 0x8328, "_meth_8328" },
-    { 0x8329, "_meth_8329" },
-    { 0x832A, "_meth_832A" },
-    { 0x832B, "_meth_832B" },
-    { 0x832C, "_meth_832C" },
-    { 0x832D, "_meth_832D" },
-    { 0x832E, "_meth_832E" },
+    { 0x8304, "allowads" }, // 0x1847A0
+    { 0x8305, "allowjump" }, // 0x186B90
+    { 0x8306, "_meth_8306" }, // 0x197EF0
+    { 0x8307, "allowmantle" }, // 0x198E10
+    { 0x8308, "allowsprint" }, // 0x1995D0
+    { 0x8309, "_meth_8309" }, // 0x19AB40
+    { 0x830A, "_meth_830A" }, // 0x16D2D0
+    { 0x830B, "resetspreadoverride" }, // 0x16E780
+    { 0x830C, "setaimspreadmovementscale" }, // 0x16F610
+    { 0x830D, "setactionslot" }, // 0x19F2F0
+    { 0x830E, "setviewkickscale" }, // 0x17FC60
+    { 0x830F, "getviewkickscale" }, // 0x1829C0
+    { 0x8310, "getweaponlistall" }, // 0x16A440
+    { 0x8311, "getweaponlistprimaries" }, // 0x16A640
+    { 0x8312, "getnormalizedcameramovements" }, // 0x182A30
+    { 0x8313, "giveweapon" }, // 0x16B1A0
+    { 0x8314, "takeweapon" }, // 0x16EED0
+    { 0x8315, "takeallweapons" }, // 0x170360
+    { 0x8316, "getcurrentweapon" }, // 0x171B20
+    { 0x8317, "getcurrentprimaryweapon" }, // 0x1732B0
+    { 0x8318, "getcurrentoffhand" }, // 0x176800
+    { 0x8319, "hasweapon" }, // 0x17FF20
+    { 0x831A, "switchtoweapon" }, // 0x186160
+    { 0x831B, "switchtoweaponimmediate" }, // 0x187530
+    { 0x831C, "gethybridsightenabled" }, // 0x194860
+    { 0x831D, "switchtooffhand" }, // 0x196140
+    { 0x831E, "setoffhandsecondaryclass" }, // 0x17B7C0
+    { 0x831F, "getoffhandsecondaryclass" }, // 0x17DE10
+    { 0x8320, "beginlocationselection" }, // 0x17E850
+    { 0x8321, "endlocationselection" }, // 0x182DB0
+    { 0x8322, "disableweapons" }, // 0x180710
+    { 0x8323, "enableweapons" }, // 0x182C80
+    { 0x8324, "disableoffhandweapons" }, // 0x186B00
+    { 0x8325, "enableoffhandweapons" }, // 0x1881D0
+    { 0x8326, "disableweaponswitch" }, // 0x1921E0
+    { 0x8327, "enableweaponswitch" }, // 0x194290
+    { 0x8328, "disablealternatemelee" }, // 0x1975E0
+    { 0x8329, "enablealternatemelee" }, // 0x199FD0
+    { 0x832A, "openpopupmenu" }, // 0x1716F0
+    { 0x832B, "openpopupmenunomouse" }, // 0x172BF0
+    { 0x832C, "closepopupmenu" }, // 0x174A90
+    { 0x832D, "_meth_832D" }, // 0x1758C0
+    { 0x832E, "_meth_832E" }, // 0x176F20
     { 0x832F, "_meth_832F" },
-    { 0x8330, "freezecontrols" },
-    { 0x8331, "_meth_8331" },
-    { 0x8332, "_meth_8332" },
-    { 0x8333, "_meth_8333" },
-    { 0x8334, "_meth_8334" },
-    { 0x8335, "givestartammo" },
-    { 0x8336, "givemaxammo" },
-    { 0x8337, "_meth_8337" },
-    { 0x8338, "_meth_8338" },
-    { 0x8339, "_meth_8339" },
-    { 0x833A, "_meth_833A" },
-    { 0x833B, "_meth_833B" },
-    { 0x833C, "setorigin" },
-    { 0x833D, "_meth_833D" },
-    { 0x833E, "_meth_833E" },
-    { 0x833F, "getplayerangles" },
-    { 0x8340, "_meth_8340" },
-    { 0x8341, "_meth_8341" },
-    { 0x8342, "_meth_8342" },
-    { 0x8343, "_meth_8343" },
-    { 0x8344, "_meth_8344" },
-    { 0x8345, "_meth_8345" },
-    { 0x8346, "_meth_8346" },
-    { 0x8347, "_meth_8347" },
-    { 0x8348, "_meth_8348" },
-    { 0x8349, "_meth_8349" },
-    { 0x834A, "_meth_834A" },
-    { 0x834B, "_meth_834B" },
-    { 0x834C, "_meth_834C" },
-    { 0x834D, "_meth_834D" },
-    { 0x834E, "_meth_834E" },
-    { 0x834F, "_meth_834F" },
-    { 0x8350, "_meth_8350" },
-    { 0x8351, "_meth_8351" },
-    { 0x8352, "_meth_8352" },
-    { 0x8353, "_meth_8353" },
-    { 0x8354, "_meth_8354" },
-    { 0x8355, "_meth_8355" },
-    { 0x8356, "_meth_8356" },
-    { 0x8357, "_meth_8357" },
-    { 0x8358, "_meth_8358" },
-    { 0x8359, "_meth_8359" },
-    { 0x835A, "_meth_835A" },
-    { 0x835B, "_meth_835B" },
-    { 0x835C, "_meth_835C" },
-    { 0x835D, "_meth_835D" },
-    { 0x835E, "_meth_835E" },
-    { 0x835F, "_meth_835F" },
+    { 0x8330, "freezecontrols" }, // 0x178F00
+    { 0x8331, "disableusability" }, // 0x17C1F0
+    { 0x8332, "enableusability" }, // 0x17E590
+    { 0x8333, "setwhizbyspreads" }, // 0x17C0A0
+    { 0x8334, "setwhizbyradii" }, // 0x17DC80
+    { 0x8335, "givestartammo" }, // 0x199030
+    { 0x8336, "givemaxammo" }, // 0x199690
+    { 0x8337, "getfractionstartammo" }, // 0x19A1F0
+    { 0x8338, "getfractionmaxammo" }, // 0x19D060
+    { 0x8339, "isdualwielding" }, // 0x19EEC0
+    { 0x833A, "isreloading" }, // 0x19F710
+    { 0x833B, "isswitchingweapon" }, // 0x16ABE0
+    { 0x833C, "setorigin" }, // 0x173D30
+    { 0x833D, "getvelocity" }, // 0x176770
+    { 0x833E, "setplayerangles" }, // 0x179700
+    { 0x833F, "getplayerangles" }, // 0x17A9A0
+    { 0x8340, "_meth_8340" }, // 0x17C7B0
+    { 0x8341, "usebuttonpressed" }, // 0x18CEE0
+    { 0x8342, "attackbuttonpressed" }, // 0x18EEF0
+    { 0x8343, "adsbuttonpressed" }, // 0x1924F0
+    { 0x8344, "meleebuttonpressed" }, // 0x194600
+    { 0x8345, "playerads" }, // 0x199EE0
+    { 0x8346, "isonground" }, // 0x19CED0
+    { 0x8347, "isusingturret" }, // 0x19F570
+    { 0x8348, "setviewmodel" }, // 0x169AD0
+    { 0x8349, "setlethalweapon" }, // 0x177E40
+    { 0x834A, "getlethalweapon" }, // 0x179F20
+    { 0x834B, "_meth_834B" }, // 0x5DDDC0
+    { 0x834C, "enablemousesteer" }, // 0x17FF00
+    { 0x834D, "setscriptmoverkillcam" }, // 0x6080A0
+    { 0x834E, "usinggamepad" }, // 0x198D80
+    { 0x834F, "forcethirdpersonwhenfollowing" }, // 0x609940
+    { 0x8350, "disableforcethirdpersonwhenfollowing" }, // 0x609980
+    { 0x8351, "_meth_8351" }, // 0x60A760
+    { 0x8352, "_meth_8352" }, // 0x60B370
+    { 0x8353, "botsetflag" }, // 0x739DF0
+    { 0x8354, "botsetstance" }, // 0x73A8A0
+    { 0x8355, "botsetscriptmove" }, // 0x73A6A0
+    { 0x8356, "botsetscriptgoal" }, // 0x73A220
+    { 0x8357, "botsetscriptgoalnode" }, // 0x73A470
+    { 0x8358, "botclearscriptgoal" }, // 0x7377D0
+    { 0x8359, "botsetscriptenemy" }, // 0x73A130
+    { 0x835A, "botclearscriptenemy" }, // 0x737720
+    { 0x835B, "botsetattacker" }, // 0x739A80
+    { 0x835C, "botgetscriptgoal" }, // 0x738360
+    { 0x835D, "botgetscriptgoalradius" }, // 0x738500
+    { 0x835E, "botgetscriptgoalyaw" }, // 0x738660
+    { 0x835F, "botgetscriptgoaltype" }, // 0x7385B0
     { 0x8360, "_meth_8360" },
-    { 0x8361, "_meth_8361" },
-    { 0x8362, "_meth_8362" },
-    { 0x8363, "_meth_8363" },
-    { 0x8364, "_meth_8364" },
+    { 0x8361, "botgetworldsize" }, // 0x738820
+    { 0x8362, "botnodeavailable" }, // 0x739060
+    { 0x8363, "botfindnoderandom" }, // 0x737880
+    { 0x8364, "botmemoryevent" }, // 0x738D60
     { 0x8365, "_meth_8365" },
-    { 0x8366, "_meth_8366" },
-    { 0x8367, "_meth_8367" },
-    { 0x8368, "_meth_8368" },
-    { 0x8369, "_meth_8369" },
+    { 0x8366, "botnodepick" }, // 0x739140
+    { 0x8367, "bothasscriptgoal" }, // 0x738860
+    { 0x8368, "botgetpersonality" }, // 0x7382B0
+    { 0x8369, "_meth_8369" }, // 0x73A9B0
     { 0x836A, "_meth_836A" },
-    { 0x836B, "_meth_836B" },
-    { 0x836C, "_meth_836C" },
-    { 0x836D, "_meth_836D" },
-    { 0x836E, "_meth_836E" },
-    { 0x836F, "_meth_836F" },
-    { 0x8370, "_meth_8370" },
-    { 0x8371, "_meth_8371" },
-    { 0x8372, "_meth_8372" },
-    { 0x8373, "_meth_8373" },
+    { 0x836B, "botsetpersonality" }, // 0x73A040
+    { 0x836C, "botsetdifficulty" }, // 0x739C00
+    { 0x836D, "botgetdifficulty" }, // 0x737AB0
+    { 0x836E, "botgetworldclosestedge" }, // 0x738710
+    { 0x836F, "botlookatpoint" }, // 0x738B40
+    { 0x8370, "botpredictseepoint" }, // 0x739750
+    { 0x8371, "botcanseeentity" }, // 0x7374F0
+    { 0x8372, "botgetnodesonpath" }, // 0x738040
+    { 0x8373, "botnodepickmultiple" }, // 0x7392E0
     { 0x8374, "_meth_8374" },
-    { 0x8375, "_meth_8375" },
-    { 0x8376, "_meth_8376" },
-    { 0x8377, "_meth_8377" },
-    { 0x8378, "_meth_8378" },
-    { 0x8379, "_meth_8379" },
+    { 0x8375, "botgetfovdot" }, // 0x737C60
+    { 0x8376, "botsetawareness" }, // 0x739B30
+    { 0x8377, "botpursuingscriptgoal" }, // 0x7399C0
+    { 0x8378, "botgetscriptgoalnode" }, // 0x738440
+    { 0x8379, "botgetimperfectenemyinfo" }, // 0x737DC0
     { 0x837A, "_meth_837A" },
-    { 0x837B, "_meth_837B" },
-    { 0x837C, "_meth_837C" },
-    { 0x837D, "_meth_837D" },
-    { 0x837E, "_meth_837E" },
-    { 0x837F, "_meth_837F" },
-    { 0x8380, "_meth_8380" },
-    { 0x8381, "_meth_8381" },
-    { 0x8382, "_meth_8382" },
-    { 0x8383, "_meth_8383" },
-    { 0x8384, "_meth_8384" },
-    { 0x8385, "_meth_8385" },
-    { 0x8386, "_meth_8386" },
-    { 0x8387, "_meth_8387" },
-    { 0x8388, "_meth_8388" },
-    { 0x8389, "_meth_8389" },
-    { 0x838A, "_meth_838A" },
-    { 0x838B, "_meth_838B" },
+    { 0x837B, "botsetpathingstyle" }, // 0x739F00
+    { 0x837C, "botsetdifficultysetting" }, // 0x739CF0
+    { 0x837D, "botgetdifficultysetting" }, // 0x737B70
+    { 0x837E, "botgetpathdist" }, // 0x738130
+    { 0x837F, "botisrandomized" }, // 0x7389D0
+    { 0x8380, "botpressbutton" }, // 0x739860
+    { 0x8381, "botclearbutton" }, // 0x737630
+    { 0x8382, "botnodescoremultiple" }, // 0x7394C0
+    { 0x8383, "getnodenumber" }, // 0x16A460
+    { 0x8384, "setclientowner" }, // 0x6070B0
+    { 0x8385, "setotherent" }, // 0x60F2C0
+    { 0x8386, "_meth_8386" }, // 0x5EB680
+    { 0x8387, "setentityowner" }, // 0x610FB0
+    { 0x8388, "_meth_8388" }, // 0x611260
+    { 0x8389, "nodeisdisconnected" }, // 0x16A780
+    { 0x838A, "getnearestnode" }, // 0x1A08F0
+    { 0x838B, "makeentitynomeleetarget" }, // 0x607F60
     { 0x838C, "_meth_838C" },
-    { 0x838D, "_meth_838D" },
+    { 0x838D, "botthrowgrenade" }, // 0x1A10C0
     { 0x838E, "_meth_838E" },
-    { 0x838F, "_meth_838F" },
-    { 0x8390, "_meth_8390" },
-    { 0x8391, "_meth_8391" },
-    { 0x8392, "_meth_8392" },
-    { 0x8393, "_meth_8393" },
-    { 0x8394, "_meth_8394" },
-    { 0x8395, "_meth_8395" },
-    { 0x8396, "_meth_8396" },
-    { 0x8397, "_meth_8397" },
-    { 0x8398, "_meth_8398" },
-    { 0x8399, "_meth_8399" },
-    { 0x839A, "_meth_839A" },
-    { 0x839B, "_meth_839B" },
-    { 0x839C, "_meth_839C" },
-    { 0x839D, "_meth_839D" },
-    { 0x839E, "_meth_839E" },
-    { 0x839F, "_meth_839F" },
-    { 0x83A0, "_meth_83A0" },
-    { 0x83A1, "_meth_83A1" },
-    { 0x83A2, "_meth_83A2" },
-    { 0x83A3, "_meth_83A3" },
-    { 0x83A4, "_meth_83A4" },
-    { 0x83A5, "_meth_83A5" },
-    { 0x83A6, "_meth_83A6" },
-    { 0x83A7, "_meth_83A7" },
-    { 0x83A8, "_meth_83A8" },
-    { 0x83A9, "_meth_83A9" },
-    { 0x83AA, "_meth_83AA" },
-    { 0x83AB, "_meth_83AB" },
-    { 0x83AC, "_meth_83AC" },
-    { 0x83AD, "_meth_83AD" },
-    { 0x83AE, "_meth_83AE" },
+    { 0x838F, "spawnagent" }, // 0x708A00
+    { 0x8390, "finishagentdamage" }, // 0x707DC0
+    { 0x8391, "setagentattacker" }, // 0x708740
+    { 0x8392, "cloneagent" }, // 0x707840
+    { 0x8393, "agentcanseesentient" }, // 0x707470
+    { 0x8394, "scragentsetwaypoint" }, // 0x70B8D0
+    { 0x8395, "scragentsetgoalpos" }, // 0x70AAA0
+    { 0x8396, "scragentgetgoalpos" }, // 0x7092A0
+    { 0x8397, "scragentsetgoalnode" }, // 0x70A9F0
+    { 0x8398, "scragentsetgoalentity" }, // 0x70A930
+    { 0x8399, "scragentsetgoalradius" }, // 0x70AC00
+    { 0x839A, "scragentsetanimscale" }, // 0x70A7B0
+    { 0x839B, "scragentsetorientmode" }, // 0x70B010
+    { 0x839C, "scragentsetanimmode" }, // 0x70A5A0
+    { 0x839D, "scragentsetphysicsmode" }, // 0x70B340
+    { 0x839E, "scragentsetclipmode" }, // 0x70A880
+    { 0x839F, "scragentsetmaxturnspeed" }, // 0x70AD40
+    { 0x83A0, "scragentgetmaxturnspeed" }, // 0x709420
+    { 0x83A1, "scragentbeginmelee" }, // 0x708E50
+    { 0x83A2, "scragentsetscripted" }, // 0x70B430
+    { 0x83A3, "scragentdotrajectory" }, // 0x7091F0
+    { 0x83A4, "scragentdoanimlerp" }, // 0x709080
+    { 0x83A5, "scragentsetviewheight" }, // 0x70B840
+    { 0x83A6, "_meth_83A6" }, // 0x708F30
+    { 0x83A7, "_meth_83A7" }, // 0x70A460
+    { 0x83A8, "setradarping" }, // 0x5BCE60
+    { 0x83A9, "setradarhighlight" }, // 0x5BCF40
+    { 0x83AA, "_meth_83AA" }, // 0x5BCFB0
+    { 0x83AB, "_meth_83AB" }, // 0x5BD020
+    { 0x83AC, "setmaterialscriptparam" },
+    { 0x83AD, "getaimassistdeltas" }, // 0x184910
+    { 0x83AE, "getaimassisttargetangles" }, // 0x185170
     { 0x83AF, "_meth_83AF" },
-    { 0x83B0, "_meth_83B0" },
+    { 0x83B0, "overridereflectionprobe" },
     { 0x83B1, "_meth_83B1" },
-    { 0x83B2, "_meth_83B2" },
-    { 0x83B3, "_meth_83B3" },
-    { 0x83B4, "_meth_83B4" },
+    { 0x83B2, "isholdinggrenade" },
+    { 0x83B3, "isswitchinggrenade" },
+    { 0x83B4, "ispreparinggrenade" },
     { 0x83B5, "_meth_83B5" },
     { 0x83B6, "_meth_83B6" },
-    { 0x83B7, "_meth_83B7" },
-    { 0x83B8, "_meth_83B8" },
-    { 0x83B9, "_meth_83B9" },
-    { 0x83BA, "_meth_83BA" },
-    { 0x83BB, "_meth_83BB" },
+    { 0x83B7, "_meth_83B7" }, // 0x18A4F0
+    { 0x83B8, "isjumping" }, // 0x16EAB0
+    { 0x83B9, "ishighjumping" }, // 0x16FA60
+    { 0x83BA, "vehicle_setvelocity" }, // 0x8901C0
+    { 0x83BB, "vehicle_addvelocity" }, // 0x8901D0
     { 0x83BC, "_meth_83BC" },
-    { 0x83BD, "_meth_83BD" },
-    { 0x83BE, "_meth_83BE" },
-    { 0x83BF, "_meth_83BF" },
-    { 0x83C0, "_meth_83C0" },
-    { 0x83C1, "_meth_83C1" },
-    { 0x83C2, "_meth_83C2" },
-    { 0x83C3, "_meth_83C3" },
-    { 0x83C4, "_meth_83C4" },
-    { 0x83C5, "_meth_83C5" },
-    { 0x83C6, "_meth_83C6" },
-    { 0x83C7, "_meth_83C7" },
-    { 0x83C8, "_meth_83C8" },
-    { 0x83C9, "_meth_83C9" },
-    { 0x83CA, "_meth_83CA" },
-    { 0x83CB, "_meth_83CB" },
-    { 0x83CC, "_meth_83CC" },
+    { 0x83BD, "getmodelfromentity" }, // 0x6082A0
+    { 0x83BE, "_meth_83BE" }, // 0x5F3920
+    { 0x83BF, "getweaponheatlevel" }, // 0x5EAC30
+    { 0x83C0, "isweaponoverheated" }, // 0x5EAD40
+    { 0x83C1, "sprintbuttonpressed" }, // 0x198300
+    { 0x83C2, "_meth_83C2" }, // 0x8932D0
+    { 0x83C3, "_meth_83C3" }, // 0x88E7B0
+    { 0x83C4, "_meth_83C4" }, // 0x88E820
+    { 0x83C5, "copyanimtreestate" },
+    { 0x83C6, "lightsetforplayer" }, // 0x17CCD0
+    { 0x83C7, "lightsetoverrideenableforplayer" }, // 0x17F140
+    { 0x83C8, "lightsetoverridedisableforplayer" }, // 0x181920
+    { 0x83C9, "_meth_83C9" }, // 0x617360
+    { 0x83CA, "_meth_83CA" }, // 0x892930
+    { 0x83CB, "killnotification" }, // 0x18A350
+    { 0x83CC, "setanimrate" },
     { 0x83CD, "_meth_83CD" },
     { 0x83CE, "_meth_83CE" },
     { 0x83CF, "_meth_83CF" },
     { 0x83D0, "_meth_83D0" },
     { 0x83D1, "_meth_83D1" },
-    { 0x83D2, "_meth_83D2" },
+    { 0x83D2, "isdogbeingdriven" },
     { 0x83D3, "_meth_83D3" },
     { 0x83D4, "_meth_83D4" },
-    { 0x83D5, "_meth_83D5" },
-    { 0x83D6, "_meth_83D6" },
-    { 0x83D7, "_meth_83D7" },
-    { 0x83D8, "_meth_83D8" },
-    { 0x83D9, "_meth_83D9" },
-    { 0x83DA, "_meth_83DA" },
-    { 0x83DB, "_meth_83DB" },
-    { 0x83DC, "_meth_83DC" },
-    { 0x83DD, "_meth_83DD" },
-    { 0x83DE, "_meth_83DE" },
+    { 0x83D5, "setanimclass" }, // 0x29D960
+    { 0x83D6, "enableanimstate" }, // 0x29D1D0
+    { 0x83D7, "setanimstate" }, // 0x29DA40
+    { 0x83D8, "getanimentry" }, // 0x29D3D0
+    { 0x83D9, "getanimentryname" }, // 0x29D610
+    { 0x83DA, "getanimentryalias" }, // 0x29D470
+    { 0x83DB, "getanimentrycount" }, // 0x29D4D0
+    { 0x83DC, "pushplayervector" },
+    { 0x83DD, "issprinting" }, // 0x187260
+    { 0x83DE, "playerlinkeduselinkedvelocity" }, // 0x188EE0
     { 0x83DF, "_meth_83DF" },
     { 0x83E0, "_meth_83E0" },
-    { 0x83E1, "_meth_83E1" },
+    { 0x83E1, "setclothtype" }, // 0x5E0690
     { 0x83E2, "_meth_83E2" },
     { 0x83E3, "_meth_83E3" },
-    { 0x83E4, "_meth_83E4" },
-    { 0x83E5, "_meth_83E5" },
-    { 0x83E6, "_meth_83E6" },
-    { 0x83E7, "_meth_83E7" },
-    { 0x83E8, "_meth_83E8" },
-    { 0x83E9, "_meth_83E9" },
-    { 0x83EA, "_meth_83EA" },
-    { 0x83EB, "_meth_83EB" },
-    { 0x83EC, "_meth_83EC" },
-    { 0x83ED, "_meth_83ED" },
-    { 0x83EE, "_meth_83EE" },
-    { 0x83EF, "_meth_83EF" },
-    { 0x83F0, "_meth_83F0" },
-    { 0x83F1, "_meth_83F1" },
-    { 0x83F2, "_meth_83F2" },
-    { 0x83F3, "_meth_83F3" },
-    { 0x83F4, "_meth_83F4" },
+    { 0x83E4, "jumpbuttonpressed" }, // 0x197B40
+    { 0x83E5, "rotateby" }, // 0x616A00
+    { 0x83E6, "getlookaheaddir" }, // 0x709360
+    { 0x83E7, "getpathgoalpos" }, // 0x709CA0
+    { 0x83E8, "_meth_83E8" }, // 0x5EB480
+    { 0x83E9, "_meth_83E9" }, // 0x608A90
+    { 0x83EA, "setsurfacetype" }, // 0x5E07A0
+    { 0x83EB, "aiphysicstrace" }, // 0x5F1390
+    { 0x83EC, "aiphysicstracepassed" }, // 0x5F2870
+    { 0x83ED, "_meth_83ED" }, // 0x5BB2A0
+    { 0x83EE, "forcemovingplatformentity" },
+    { 0x83EF, "setmovingplatformtrigger" }, // 0x5F4E40
+    { 0x83F0, "_meth_83F0" }, // 0x175E40
+    { 0x83F1, "_meth_83F1" }, // 0x5BB790
+    { 0x83F2, "getlinkedparent" }, // 0x5E8CB0
+    { 0x83F3, "getmovingplatformparent" }, // 0x5EA2E0
+    { 0x83F4, "setnameplatematerial" }, // 0x1859A0
     { 0x83F5, "_meth_83F5" },
     { 0x83F6, "_meth_83F6" },
-    { 0x83F7, "_meth_83F7" },
-    { 0x83F8, "_meth_83F8" },
-    { 0x83F9, "_meth_83F9" },
-    { 0x83FA, "_meth_83FA" },
-    { 0x83FB, "_meth_83FB" },
-    { 0x83FC, "_meth_83FC" },
-    { 0x83FD, "_meth_83FD" },
-    { 0x83FE, "_meth_83FE" },
-    { 0x83FF, "_meth_83FF" },
-    { 0x8400, "_meth_8400" },
-    { 0x8401, "_meth_8401" },
-    { 0x8402, "_meth_8402" },
+    { 0x83F7, "_meth_83F7" }, // 0x5E2760
+    { 0x83F8, "getbobrate" },
+    { 0x83F9, "setbobrate" },
+    { 0x83FA, "setscriptablepartstate" }, // 0x5E2220
+    { 0x83FB, "_meth_83FB" }, // 0x5E5C00
+    { 0x83FC, "_meth_83FC" }, // 0x5EB660
+    { 0x83FD, "_meth_83FD" }, // 0x892B10
+    { 0x83FE, "hudoutlineenable" }, // 0x5E1EE0
+    { 0x83FF, "hudoutlinedisable" }, // 0x5E2480
+    { 0x8400, "motionblurhqenable" }, // 0x5E30A0
+    { 0x8401, "motionblurhqdisable" }, // 0x5E30F0
+    { 0x8402, "screenshakeonentity" },
     { 0x8403, "_meth_8403" },
-    { 0x8404, "_meth_8404" },
-    { 0x8405, "_meth_8405" },
+    { 0x8404, "worldpointtoscreenpos" }, // 0x5F4830
+    { 0x8405, "_meth_8405" }, // 0x5F4F80
     { 0x8406, "_meth_8406" },
     { 0x8407, "_meth_8407" },
-    { 0x8408, "_meth_8408" },
+    { 0x8408, "_meth_8408" }, // 0x737940
     { 0x8409, "_meth_8409" },
     { 0x840A, "_meth_840A" },
     { 0x840B, "_meth_840B" },
     { 0x840C, "_meth_840C" },
     { 0x840D, "_meth_840D" },
-    { 0x840E, "_meth_840E" },
+    { 0x840E, "_meth_840E" }, // 0x60CA10
     { 0x840F, "_meth_840F" },
     { 0x8410, "_meth_8410" },
-    { 0x8411, "_meth_8411" },
-    { 0x8412, "_meth_8412" },
-    { 0x8413, "_meth_8413" },
-    { 0x8414, "_meth_8414" },
-    { 0x8415, "_meth_8415" },
-    { 0x8416, "_meth_8416" },
-    { 0x8417, "_meth_8417" },
-    { 0x8418, "_meth_8418" },
-    { 0x8419, "_meth_8419" },
-    { 0x841A, "_meth_841A" },
-    { 0x841B, "_meth_841B" },
-    { 0x841C, "_meth_841C" },
-    { 0x841D, "_meth_841D" },
-    { 0x841E, "_meth_841E" },
-    { 0x841F, "_meth_841F" },
-    { 0x8420, "_meth_8420" },
-    { 0x8421, "_meth_8421" },
-    { 0x8422, "_meth_8422" },
-    { 0x8423, "_meth_8423" },
-    { 0x8424, "_meth_8424" },
-    { 0x8425, "_meth_8425" },
-    { 0x8426, "_meth_8426" },
-    { 0x8427, "_meth_8427" },
-    { 0x8428, "_meth_8428" },
-    { 0x8429, "_meth_8429" },
-    { 0x842A, "_meth_842A" },
-    { 0x842B, "_meth_842B" },
-    { 0x842C, "_meth_842C" },
+    { 0x8411, "_meth_8411" }, // 0x5B2240
+    { 0x8412, "_meth_8412" }, // 0x5B2260
+    { 0x8413, "_meth_8413" }, // 0x5B2280
+    { 0x8414, "setviewmodeldepth" },
+    { 0x8415, "isenemyaware" },
+    { 0x8416, "hasenemybeenseen" },
+    { 0x8417, "_meth_8417" }, // 0x298940
+    { 0x8418, "_meth_8418" }, // 0x29A300
+    { 0x8419, "_meth_8419" }, // 0x617C00
+    { 0x841A, "_meth_841A" }, // 0x617CC0
+    { 0x841B, "physicsgetlinvel" }, // 0x617D90
+    { 0x841C, "_meth_841C" }, // 0x617E60
+    { 0x841D, "_meth_841D" }, // 0x617F60
+    { 0x841E, "_meth_841E" }, // 0x618030
+    { 0x841F, "_meth_841F" }, // 0x5FD740
+    { 0x8420, "_meth_8420" }, // 0x5FD7A0
+    { 0x8421, "canspawntestclient" }, // 0x6113C0
+    { 0x8422, "spawntestclient" }, // 0x6113E0
+    { 0x8423, "loadcustomizationplayerview" }, // 0x5B24A0
+    { 0x8424, "setgrenadethrowscale" }, // 0x5E4730
+    { 0x8425, "setgrenadecookscale" }, // 0x5E5530
+    { 0x8426, "_meth_8426" }, // 0x611550
+    { 0x8427, "hudoutlineenableforclient" }, // 0x5DEC40
+    { 0x8428, "hudoutlinedisableforclient" }, // 0x5DF8D0
+    { 0x8429, "hudoutlineenableforclients" }, // 0x5E13C0
+    { 0x842A, "hudoutlinedisableforclients" }, // 0x5E1C60
+    { 0x842B, "_meth_842B" }, // 0x5E80F0
+    { 0x842C, "hasloadedcustomizationplayerview" }, // 0x5B28A0
     { 0x842D, "_meth_842D" },
     { 0x842E, "_meth_842E" },
     { 0x842F, "_meth_842F" },
-    { 0x8430, "_meth_8430" },
+    { 0x8430, "getcorpseentity" }, // 0x608CA0
     { 0x8431, "_meth_8431" },
-    { 0x8432, "_meth_8432" },
+    { 0x8432, "_meth_8432" }, // 0x60CB40
     { 0x8433, "_meth_8433" },
-    { 0x8434, "_meth_8434" },
-    { 0x8435, "_meth_8435" },
-    { 0x8436, "_meth_8436" },
-    { 0x8437, "_meth_8437" },
-    { 0x8438, "_meth_8438" },
+    { 0x8434, "_meth_8434" }, // 0x60C810
+    { 0x8435, "_meth_8435" }, // 0x5B0B40
+    { 0x8436, "ismlgspectator" }, // 0x5B29E0
+    { 0x8437, "disableautoreload" }, // 0x171ED0
+    { 0x8438, "enableautoreload" }, // 0x172EC0
     { 0x8439, "_meth_8439" },
-    { 0x843A, "_meth_843A" },
-    { 0x843B, "_meth_843B" },
-    { 0x843C, "_meth_843C" },
-    { 0x843D, "_meth_843D" },
-    { 0x843E, "_meth_843E" },
-    { 0x843F, "_meth_843F" },
-    { 0x8440, "_meth_8440" },
+    { 0x843A, "getlinkedchildren" }, // 0x5E9A20
+    { 0x843B, "botpredictenemycampspots" }, // 0x739620
+    { 0x843C, "cancelmantle" }, // 0x16BCB0
+    { 0x843D, "hasfemalecustomizationmodel" }, // 0x5B30D0
+    { 0x843E, "_meth_843E" }, // 0x5B2DF0
+    { 0x843F, "_meth_843F" }, // 0x5E1530
+    { 0x8440, "_meth_8440" }, // 0x60E7C0
     { 0x8441, "_meth_8441" },
     { 0x8442, "_meth_8442" },
-    { 0x8443, "_meth_8443" },
+    { 0x8443, "enablehybridsight" }, // 0x192EF0
     { 0x8444, "_meth_8444" },
-    { 0x8445, "_meth_8445" },
-    { 0x8446, "_meth_8446" },
-    { 0x8447, "_meth_8447" },
-    { 0x8448, "_meth_8448" },
-    { 0x8449, "linktosynchronizedparent" },
-    { 0x844A, "_meth_844A" },
+    { 0x8445, "gettagindex" }, // 0x5E72F0
+    { 0x8446, "challengenotification" }, // 0x18B090
+    { 0x8447, "cancelaimove" }, // 0x88FA50
+    { 0x8448, "_meth_8448" }, // 0x88EB40
+    { 0x8449, "linktosynchronizedparent" }, // 0x5E7D30
+    { 0x844A, "getclientomnvar" }, // 0x175190
     { 0x844B, "_meth_844B" },
     { 0x844C, "_meth_844C" },
-    { 0x844D, "_meth_844D" },
-    { 0x844E, "_meth_844E" },
-    { 0x844F, "_meth_844F" },
-    { 0x8450, "_meth_8450" },
-    { 0x8451, "_meth_8451" },
-    { 0x8452, "_meth_8452" },
-    { 0x8453, "_meth_8453" },
-    { 0x8454, "_meth_8454" },
-    { 0x8455, "_meth_8455" },
-    { 0x8456, "_meth_8456" },
-    { 0x8457, "_meth_8457" },
+    { 0x844D, "getcacplayerdataforgroup" }, // 0x5E6270
+    { 0x844E, "_meth_844E" }, // 0x5E3640
+    { 0x844F, "_meth_844F" }, // 0x5E3750
+    { 0x8450, "_meth_8450" }, // 0x5E3970
+    { 0x8451, "getunnormalizedcameramovement" }, // 0x184380
+    { 0x8452, "_meth_8452" }, // 0x5F9750
+    { 0x8453, "_meth_8453" }, // 0x5FAC70
+    { 0x8454, "_meth_8454" }, // 0x88ED60
+    { 0x8455, "_meth_8455" }, // 0x88EDB0
+    { 0x8456, "_meth_8456" }, // 0x88EE00
+    { 0x8457, "_meth_8457" }, // 0x88EE50
     { 0x8458, "_meth_8458" },
     { 0x8459, "_meth_8459" },
-    { 0x845A, "_meth_845A" },
-    { 0x845B, "_meth_845B" },
-    { 0x845C, "_meth_845C" },
-    { 0x845D, "_meth_845D" },
+    { 0x845A, "_meth_845A" }, // 0x88EAA0
+    { 0x845B, "_meth_845B" }, // 0x88EB00
+    { 0x845C, "_meth_845C" }, // 0x88EC50
+    { 0x845D, "forcesprint" }, // 0x199E50
     { 0x845E, "_meth_845E" },
     { 0x845F, "_meth_845F" },
     { 0x8460, "_meth_8460" },
     { 0x8461, "_meth_8461" },
-    { 0x8462, "getvieworigin" },
-    { 0x8463, "_meth_8463" },
-    { 0x8464, "_meth_8464" },
-    { 0x8465, "_meth_8465" },
+    { 0x8462, "getvieworigin" }, // 0x5EBBE0
+    { 0x8463, "setweaponmodelvariant" }, // 0x197CA0
+    { 0x8464, "_meth_8464" }, // 0x5FC080
+    { 0x8465, "_meth_8465" }, // 0x5FC800
     { 0x8466, "_meth_8466" },
-    { 0x8467, "_meth_8467" },
-    { 0x8468, "_meth_8468" },
-    { 0x8469, "_meth_8469" },
-    { 0x846A, "_meth_846A" },
-    { 0x846B, "_meth_846B" },
-    { 0x846C, "_meth_846C" },
-    { 0x846D, "_meth_846D" },
-    { 0x846E, "_meth_846E" },
+    { 0x8467, "autoboltmissileeffects" }, // 0x5EAB90
+    { 0x8468, "_meth_8468" }, // 0x5ED620
+    { 0x8469, "_meth_8469" }, // 0x5EDBD0
+    { 0x846A, "_meth_846A" }, // 0x60DAF0
+    { 0x846B, "_meth_846B" }, // 0x60DB70
+    { 0x846C, "isoffhandweaponreadytothrow" }, // 0x16DA60
+    { 0x846D, "_meth_846D" }, // 0x18A7D0
+    { 0x846E, "_meth_846E" }, // 0x5E3590
     { 0x846F, "_meth_846F" },
-    { 0x8470, "_meth_8470" },
-    { 0x8471, "_meth_8471" },
-    { 0x8472, "_meth_8472" },
+    { 0x8470, "visionsetpostapplyforplayer" }, // 0x17A130
+    { 0x8471, "_meth_8471" }, // 0x616230
+    { 0x8472, "_meth_8472" }, // 0x6167E0
     { 0x8473, "_meth_8473" },
     { 0x8474, "_meth_8474" },
     { 0x8475, "_meth_8475" },
@@ -1158,269 +1160,269 @@ extern std::array<std::pair<u16, char const*>, meth_count> const meth_list
     { 0x8479, "_meth_8479" },
     { 0x847A, "_meth_847A" },
     { 0x847B, "_meth_847B" },
-    { 0x847C, "_meth_847C" },
-    { 0x847D, "_meth_847D" },
-    { 0x847E, "_meth_847E" },
-    { 0x847F, "_meth_847F" },
-    { 0x8480, "_meth_8480" },
-    { 0x8481, "_meth_8481" },
-    { 0x8482, "_meth_8482" },
-    { 0x8483, "_meth_8483" },
-    { 0x8484, "_meth_8484" },
-    { 0x8485, "_meth_8485" },
+    { 0x847C, "_meth_847C" }, // 0x88EF30
+    { 0x847D, "_meth_847D" }, // 0x88EF90
+    { 0x847E, "_meth_847E" }, // 0x88F020
+    { 0x847F, "_meth_847F" }, // 0x88F090
+    { 0x8480, "_meth_8480" }, // 0x88F0E0
+    { 0x8481, "getturretyawrate" }, // 0x5F2720
+    { 0x8482, "getturretpitchrate" }, // 0x5F2E00
+    { 0x8483, "setclienttriggervisionset" }, // 0x17A400
+    { 0x8484, "overridelightingorigin" },
+    { 0x8485, "defaultlightingorigin" },
     { 0x8486, "_meth_8486" },
     { 0x8487, "_meth_8487" },
     { 0x8488, "_meth_8488" },
     { 0x8489, "_meth_8489" },
-    { 0x848A, "_meth_848A" },
-    { 0x848B, "_meth_848B" },
-    { 0x848C, "_meth_848C" },
-    { 0x848D, "_meth_848D" },
-    { 0x848E, "_meth_848E" },
+    { 0x848A, "_meth_848A" }, // 0x8929D0
+    { 0x848B, "_meth_848B" }, // 0x892A00
+    { 0x848C, "showviewmodel" }, // 0x16BBD0
+    { 0x848D, "hideviewmodel" }, // 0x16C860
+    { 0x848E, "setpickupweapon" }, // 0x5F56E0
     { 0x848F, "_meth_848F" },
-    { 0x8490, "_meth_8490" },
-    { 0x8491, "_meth_8491" },
-    { 0x8492, "_meth_8492" },
-    { 0x8493, "_meth_8493" },
-    { 0x8494, "_meth_8494" },
-    { 0x8495, "_meth_8495" },
+    { 0x8490, "_meth_8490" }, // 0x18ABD0
+    { 0x8491, "despawnagent" }, // 0x707D50
+    { 0x8492, "_meth_8492" }, // 0x892060
+    { 0x8493, "_meth_8493" }, // 0x88EEC0
+    { 0x8494, "agentclearscriptvars" }, // 0x707520
+    { 0x8495, "scriptmodelplayanimdeltamotionfrompos" }, // 0x615960
     { 0x8496, "_meth_8496" },
-    { 0x8497, "_meth_8497" },
-    { 0x8498, "_meth_8498" },
-    { 0x8499, "_meth_8499" },
-    { 0x849A, "_meth_849A" },
-    { 0x849B, "_meth_849B" },
-    { 0x849C, "_meth_849C" },
+    { 0x8497, "allowdodge" }, // 0x18AA60
+    { 0x8498, "_meth_8498" }, // 0x88F250
+    { 0x8499, "_meth_8499" }, // 0x892080
+    { 0x849A, "setclutforplayer" }, // 0x185D40
+    { 0x849B, "setclutoverrideenableforplayer" }, // 0x1877B0
+    { 0x849C, "setclutoverridedisableforplayer" }, // 0x1896A0
     { 0x849D, "_meth_849D" },
-    { 0x849E, "_meth_849E" },
-    { 0x849F, "_meth_849F" },
-    { 0x84A0, "finishentitydamage" },
+    { 0x849E, "_meth_849E" }, // 0x5F3360
+    { 0x849F, "setdamagecallbackon" }, // 0x60F6F0
+    { 0x84A0, "finishentitydamage" }, // 0x60FE60
     { 0x84A1, "_meth_84A1" },
-    { 0x84A2, "_meth_84A2" },
+    { 0x84A2, "setlightshadowstate" },
     { 0x84A3, "_meth_84A3" },
-    { 0x84A4, "_meth_84A4" },
-    { 0x84A5, "_meth_84A5" },
-    { 0x84A6, "_meth_84A6" },
-    { 0x84A7, "_meth_84A7" },
-    { 0x84A8, "_meth_84A8" },
-    { 0x84A9, "_meth_84A9" },
-    { 0x84AA, "_meth_84AA" },
-    { 0x84AB, "_meth_84AB" },
-    { 0x84AC, "_meth_84AC" },
-    { 0x84AD, "_meth_84AD" },
-    { 0x84AE, "_meth_84AE" },
-    { 0x84AF, "_meth_84AF" },
-    { 0x84B0, "_meth_84B0" },
-    { 0x84B1, "_meth_84B1" },
-    { 0x84B2, "_meth_84B2" },
-    { 0x84B3, "_meth_84B3" },
-    { 0x84B4, "_meth_84B4" },
-    { 0x84B5, "_meth_84B5" },
-    { 0x84B6, "_meth_84B6" },
-    { 0x84B7, "_meth_84B7" },
-    { 0x84B8, "_meth_84B8" },
-    { 0x84B9, "_meth_84B9" },
-    { 0x84BA, "_meth_84BA" },
-    { 0x84BB, "_meth_84BB" },
-    { 0x84BC, "_meth_84BC" },
-    { 0x84BD, "_meth_84BD" },
-    { 0x84BE, "_meth_84BE" },
-    { 0x84BF, "_meth_84BF" },
-    { 0x84C0, "_meth_84C0" },
-    { 0x84C1, "_meth_84C1" },
-    { 0x84C2, "_meth_84C2" },
-    { 0x84C3, "_meth_84C3" },
-    { 0x84C4, "_meth_84C4" },
-    { 0x84C5, "_meth_84C5" },
-    { 0x84C6, "_meth_84C6" },
-    { 0x84C7, "_meth_84C7" },
-    { 0x84C8, "_meth_84C8" },
-    { 0x84C9, "_meth_84C9" },
-    { 0x84CA, "_meth_84CA" },
-    { 0x84CB, "_meth_84CB" },
-    { 0x84CC, "_meth_84CC" },
-    { 0x84CD, "_meth_84CD" },
-    { 0x84CE, "_meth_84CE" },
-    { 0x84CF, "_meth_84CF" },
-    { 0x84D0, "_meth_84D0" },
-    { 0x84D1, "_meth_84D1" },
-    { 0x84D2, "_meth_84D2" },
-    { 0x84D3, "_meth_84D3" },
-    { 0x84D4, "_meth_84D4" },
-    { 0x84D5, "_meth_84D5" },
-    { 0x84D6, "_meth_84D6" },
+    { 0x84A4, "_meth_84A4" }, // 0x60C310
+    { 0x84A5, "sethintstringvisibleonlytoowner" }, // 0x60D7B0
+    { 0x84A6, "_meth_84A6" }, // 0x60D980
+    { 0x84A7, "notifyonplayercommandremove" }, // 0x1A00A0
+    { 0x84A8, "canmantleex" }, // 0x16A850
+    { 0x84A9, "allowboostjump" }, // 0x18A980
+    { 0x84AA, "_meth_84AA" }, // 0x60C410
+    { 0x84AB, "_meth_84AB" }, // 0x60C420
+    { 0x84AC, "_meth_84AC" }, // 0x60C550
+    { 0x84AD, "_meth_84AD" }, // 0x60C560
+    { 0x84AE, "_meth_84AE" }, // 0x60C630
+    { 0x84AF, "batteryfullrecharge" }, // 0x60C650
+    { 0x84B0, "_meth_84B0" }, // 0x60C640
+    { 0x84B1, "_meth_84B1" }, // 0x60C710
+    { 0x84B2, "_meth_84B2" }, // 0x60C760
+    { 0x84B3, "_meth_84B3" }, // 0x60C700
+    { 0x84B4, "enablephysicaldepthoffieldscripting" }, // 0x5ECAE0
+    { 0x84B5, "disablephysicaldepthoffieldscripting" }, // 0x5EDB70
+    { 0x84B6, "_meth_84B6" }, // 0x5EDCF0
+    { 0x84B7, "setphysicaldepthoffield" }, // 0x5EDFF0
+    { 0x84B8, "setadsphysicaldepthoffield" }, // 0x5EF420
+    { 0x84B9, "_meth_84B9" }, // 0x5EF6F0
+    { 0x84BA, "_meth_84BA" }, // 0x891920
+    { 0x84BB, "gettoparc" }, // 0x5DE560
+    { 0x84BC, "getbottomarc" }, // 0x5DF200
+    { 0x84BD, "forcejump" }, // 0x1993E0
+    { 0x84BE, "_meth_84BE" }, // 0x8921A0
+    { 0x84BF, "vehicle_helicoptersetmaxangularacceleration" }, // 0x892290
+    { 0x84C0, "setdemigod" }, // 0x5EC770
+    { 0x84C1, "attachnobuilddobj" }, // 0x5F85E0
+    { 0x84C2, "setviewmodelanim" }, // 0x5F3390
+    { 0x84C3, "setviewmodelanimtime" }, // 0x5F33B0
+    { 0x84C4, "pauseviewmodelanim" }, // 0x5F3490
+    { 0x84C5, "setadditiveviewmodelanim" }, // 0x5F34A0
+    { 0x84C6, "_meth_84C6" }, // 0x5E2470
+    { 0x84C7, "setcostumemodels" }, // 0x5E5CF0
+    { 0x84C8, "_meth_84C8" }, // 0x890680
+    { 0x84C9, "setphysicalviewmodeldepthoffield" }, // 0x5EEF60
+    { 0x84CA, "setshadowrendering" }, // 0x615BD0
+    { 0x84CB, "disableoffhandsecondaryweapons" }, // 0x18AE60
+    { 0x84CC, "enableoffhandsecondaryweapons" }, // 0x18D910
+    { 0x84CD, "_meth_84CD" }, // 0x5B3140
+    { 0x84CE, "_meth_84CE" }, // 0x5B3380
+    { 0x84CF, "enabledetonate" }, // 0x18C700
+    { 0x84D0, "getdetonateenabled" }, // 0x18FC40
+    { 0x84D1, "playergetuseent" }, // 0x60E330
+    { 0x84D2, "refreshshieldmodels" }, // 0x5FB4E0
+    { 0x84D3, "_meth_84D3" }, // 0x88F140
+    { 0x84D4, "_meth_84D4" }, // 0x70BE00
+    { 0x84D5, "_meth_84D5" }, // 0x70B8C0
+    { 0x84D6, "_meth_84D6" }, // 0x177C30
     { 0x84D7, "_meth_84D7" },
     { 0x84D8, "_meth_84D8" },
-    { 0x84D9, "_meth_84D9" },
-    { 0x84DA, "_meth_84DA" },
-    { 0x84DB, "_meth_84DB" },
-    { 0x84DC, "_meth_84DC" },
+    { 0x84D9, "vehphys_getvelocity" }, // 0x891D00
+    { 0x84DA, "vehphys_isoffground" }, // 0x891DA0
+    { 0x84DB, "_meth_84DB" }, // 0x5B3270
+    { 0x84DC, "_meth_84DC" }, // 0x88F190
     { 0x84DD, "_meth_84DD" },
-    { 0x84DE, "_meth_84DE" },
+    { 0x84DE, "isusingoffhand" }, // 0x16CCC0
     { 0x84DF, "_meth_84DF" },
-    { 0x84E0, "_meth_84E0" },
-    { 0x84E1, "_meth_84E1" },
+    { 0x84E0, "physicsstop" }, // 0x618130
+    { 0x84E1, "_meth_84E1" }, // 0x5E1B30
     { 0x84E2, "_meth_84E2" },
     { 0x84E3, "_meth_84E3" },
     { 0x84E4, "_meth_84E4" },
     { 0x84E5, "_meth_84E5" },
-    { 0x84E6, "_meth_84E6" },
-    { 0x84E7, "_meth_84E7" },
-    { 0x84E8, "_meth_84E8" },
-    { 0x84E9, "_meth_84E9" },
-    { 0x84EA, "_meth_84EA" },
-    { 0x84EB, "_meth_84EB" },
-    { 0x84EC, "_meth_84EC" },
-    { 0x84ED, "_meth_84ED" },
-    { 0x84EE, "_meth_84EE" },
-    { 0x84EF, "_meth_84EF" },
-    { 0x84F0, "_meth_84F0" },
-    { 0x84F1, "_meth_84F1" },
+    { 0x84E6, "_meth_84E6" }, // 0x5E7C80
+    { 0x84E7, "_meth_84E7" }, // 0x5BAA00
+    { 0x84E8, "_meth_84E8" }, // 0x88F200
+    { 0x84E9, "initwaterclienttrigger" }, // 0x5EF970
+    { 0x84EA, "_meth_84EA" }, // 0x608E90
+    { 0x84EB, "_meth_84EB" }, // 0x609450
+    { 0x84EC, "_meth_84EC" }, // 0x609730
+    { 0x84ED, "_meth_84ED" }, // 0x1917C0
+    { 0x84EE, "_meth_84EE" }, // 0x5F9C00
+    { 0x84EF, "setthreatdetection" },
+    { 0x84F0, "loadcostumemodels" }, // 0x5E8960
+    { 0x84F1, "_meth_84F1" }, // 0x191160
     { 0x84F2, "_meth_84F2" },
-    { 0x84F3, "_meth_84F3" },
-    { 0x84F4, "_meth_84F4" },
-    { 0x84F5, "_meth_84F5" },
-    { 0x84F6, "_meth_84F6" },
-    { 0x84F7, "_meth_84F7" },
-    { 0x84F8, "_meth_84F8" },
-    { 0x84F9, "_meth_84F9" },
-    { 0x84FA, "_meth_84FA" },
-    { 0x84FB, "_meth_84FB" },
-    { 0x84FC, "_meth_84FC" },
-    { 0x84FD, "_meth_84FD" },
-    { 0x84FE, "_meth_84FE" },
-    { 0x84FF, "_meth_84FF" },
-    { 0x8500, "_meth_8500" },
-    { 0x8501, "_meth_8501" },
-    { 0x8502, "_meth_8502" },
-    { 0x8503, "_meth_8503" },
-    { 0x8504, "_meth_8504" },
-    { 0x8505, "_meth_8505" },
-    { 0x8506, "_meth_8506" },
-    { 0x8507, "_meth_8507" },
-    { 0x8508, "_meth_8508" },
-    { 0x8509, "_meth_8509" },
-    { 0x850A, "_meth_850A" },
-    { 0x850B, "_meth_850B" },
-    { 0x850C, "_meth_850C" },
-    { 0x850D, "_meth_850D" },
-    { 0x850E, "_meth_850E" },
-    { 0x850F, "_meth_850F" },
-    { 0x8510, "_meth_8510" },
-    { 0x8511, "_meth_8511" },
-    { 0x8512, "_meth_8512" },
-    { 0x8513, "_meth_8513" },
-    { 0x8514, "_meth_8514" },
-    { 0x8515, "_meth_8515" },
-    { 0x8516, "_meth_8516" },
-    { 0x8517, "_meth_8517" },
-    { 0x8518, "_meth_8518" },
-    { 0x8519, "_meth_8519" },
-    { 0x851A, "_meth_851A" },
-    { 0x851B, "_meth_851B" },
-    { 0x851C, "_meth_851C" },
-    { 0x851D, "_meth_851D" },
-    { 0x851E, "_meth_851E" },
-    { 0x851F, "_meth_851F" },
-    { 0x8520, "_meth_8520" },
-    { 0x8521, "_meth_8521" },
-    { 0x8522, "_meth_8522" },
-    { 0x8523, "_meth_8523" },
-    { 0x8524, "_meth_8524" },
-    { 0x8525, "_meth_8525" },
+    { 0x84F3, "getactiveanimations" }, // 0x5DE160
+    { 0x84F4, "_meth_84F4" }, // 0x5E6C10
+    { 0x84F5, "_meth_84F5" }, // 0x5FAAB0
+    { 0x84F6, "_meth_84F6" }, // 0x5F6DD0
+    { 0x84F7, "_meth_84F7" }, // 0x5E3870
+    { 0x84F8, "_meth_84F8" }, // 0x890AB0
+    { 0x84F9, "_meth_84F9" }, // 0x890B20
+    { 0x84FA, "_meth_84FA" }, // 0x5E9EF0
+    { 0x84FB, "_meth_84FB" }, // 0x5EA370
+    { 0x84FC, "_meth_84FC" }, // 0x5E7F10
+    { 0x84FD, "_meth_84FD" }, // 0x5E8690
+    { 0x84FE, "_meth_84FE" }, // 0x5E8790
+    { 0x84FF, "_meth_84FF" }, // 0x5E87A0
+    { 0x8500, "selfiescreenshottaken" }, // 0x5E88F0
+    { 0x8501, "_meth_8501" }, // 0x5E9090
+    { 0x8502, "_meth_8502" }, // 0x5E9510
+    { 0x8503, "getsystemtimesp" }, // 0x5EF3A0
+    { 0x8504, "_meth_8504" }, // 0x5FDCE0
+    { 0x8505, "_meth_8505" }, // 0x5FE4E0
+    { 0x8506, "setmlgspectator" }, // 0x5B2AE0
+    { 0x8507, "gettotalmpxp" }, // 0x60E7E0
+    { 0x8508, "_meth_8508" }, // 0x60EA60
+    { 0x8509, "_meth_8509" }, // 0x60EA90
+    { 0x850A, "hideweapontags" }, // 0x5E7890
+    { 0x850B, "getweapondamagelocationmultiplier" }, // 0x5E4F90
+    { 0x850C, "_meth_850C" }, // 0x611720
+    { 0x850D, "_meth_850D" }, // 0x5EB580
+    { 0x850E, "isgroundentoverwater" }, // 0x60F4E0
+    { 0x850F, "setballpassallowed" }, // 0x60A650
+    { 0x8510, "_meth_8510" }, // 0x611A90
+    { 0x8511, "ghost" }, // 0x611840
+    { 0x8512, "loadweapons" }, // 0x5B2B50
+    { 0x8513, "setopaqueunlitforplayer" }, // 0x18AAC0
+    { 0x8514, "setwaypointiconfadeatcenter" }, // 0x5BCD70
+    { 0x8515, "setreinforcementhintstrings" }, // 0x60D7A0
+    { 0x8516, "_meth_8516" }, // 0x609810
+    { 0x8517, "_meth_8517" }, // 0x609820
+    { 0x8518, "enablereload" }, // 0x5FDA80
+    { 0x8519, "_meth_8519" }, // 0x5FE9A0
+    { 0x851A, "vehicle_diveboatgetthrottleforce" }, // 0x88F2C0
+    { 0x851B, "_meth_851B" }, // 0x88F310
+    { 0x851C, "isdodging" }, // 0x170930
+    { 0x851D, "getusableentity" }, // 0x5FC3E0
+    { 0x851E, "getcurrentping" }, // 0x60AB00
+    { 0x851F, "sethidetrigger" }, // 0x5BBB50
+    { 0x8520, "detonatebydoubletap" }, // 0x60EC40
+    { 0x8521, "_meth_8521" }, // 0x186020
+    { 0x8522, "getdwid" }, // 0x5EF8B0
+    { 0x8523, "setplayerinfospmatchdata" }, // 0x5ED390
+    { 0x8524, "physicsisactive" }, // 0x6181C0
+    { 0x8525, "hasanimtree" },
     { 0x8526, "_meth_8526" },
-    { 0x8527, "_meth_8527" },
-    { 0x8528, "_meth_8528" },
+    { 0x8527, "isgod" }, // 0x1712A0
+    { 0x8528, "setagentcostumeindex" }, // 0x708900
     { 0x8529, "_meth_8529" },
-    { 0x852A, "_meth_852A" },
-    { 0x852B, "_meth_852B" },
-    { 0x852C, "_meth_852C" },
-    { 0x852D, "_meth_852D" },
-    { 0x852E, "_meth_852E" },
-    { 0x852F, "_meth_852F" },
-    { 0x8530, "_meth_8530" },
-    { 0x8531, "_meth_8531" },
-    { 0x8532, "_meth_8532" },
-    { 0x8533, "_meth_8533" },
-    { 0x8534, "_meth_8534" },
-    { 0x8535, "_meth_8535" },
-    { 0x8536, "_meth_8536" },
-    { 0x8537, "_meth_8537" },
-    { 0x8538, "_meth_8538" },
-    { 0x8539, "_meth_8539" },
-    { 0x853A, "_meth_853A" },
-    { 0x853B, "_meth_853B" },
-    { 0x853C, "_meth_853C" },
-    { 0x853D, "_meth_853D" },
-    { 0x853E, "_meth_853E" },
-    { 0x853F, "_meth_853F" },
-    { 0x8540, "_meth_8540" },
-    { 0x8541, "_meth_8541" },
-    { 0x8542, "_meth_8542" },
-    { 0x8543, "_meth_8543" },
-    { 0x8544, "_meth_8544" },
-    { 0x8545, "_meth_8545" },
-    { 0x8546, "_meth_8546" },
-    { 0x8547, "_meth_8547" },
-    { 0x8548, "_meth_8548" },
-    { 0x8549, "_meth_8549" },
-    { 0x854A, "_meth_854A" },
+    { 0x852A, "_meth_852A" }, // 0x5B1080
+    { 0x852B, "setowneroriginal" }, // 0x5E7E40
+    { 0x852C, "getlinkedtagname" }, // 0x5E9330
+    { 0x852D, "forcefirstpersonwhenfollowed" }, // 0x609AB0
+    { 0x852E, "disableforcefirstpersonwhenfollowed" }, // 0x609BE0
+    { 0x852F, "setwaypointaerialtargeting" }, // 0x5BCDE0
+    { 0x8530, "worldweaponsloaded" }, // 0x5B2CB0
+    { 0x8531, "enablegrenadethrowback" }, // 0x5EBA50
+    { 0x8532, "usetriggertouchcheckstance" }, // 0x5EC810
+    { 0x8533, "onlystreamactiveweapon" }, // 0x5B2A50
+    { 0x8534, "precachekillcamiconforweapon" }, // 0x5B09D0
+    { 0x8535, "selfierequestupdate" }, // 0x5E9520
+    { 0x8536, "getclanwarsbonus" }, // 0x60F460
+    { 0x8537, "scragentsetspecies" }, // 0x70B4C0
+    { 0x8538, "scragentallowboost" }, // 0x708D70
+    { 0x8539, "scragentsetnopenetrate" }, // 0x70AE80
+    { 0x853A, "finishplayerdamage_impactfx" }, // 0x5AFB60
+    { 0x853B, "finishagentdamage_impactfx" }, // 0x708470
+    { 0x853C, "scragentsetorienttoground" }, // 0x70B160
+    { 0x853D, "scragentsetallowragdoll" }, // 0x70A500
+    { 0x853E, "scragentsetobstacleavoid" }, // 0x70AF60
+    { 0x853F, "scragentsetlateralcodemove" }, // 0x70ACA0
+    { 0x8540, "scragentsetpathteamspread" }, // 0x70B2A0
+    { 0x8541, "isnotarget" }, // 0x171F60
+    { 0x8542, "setmovingplatformjitter" }, // 0x616E40
+    { 0x8543, "agentusescragentclipmask" }, // 0x707760
+    { 0x8544, "_meth_8544" }, // 0x5EA930
+    { 0x8545, "ishighjumpallowed" }, // 0x18A870
+    { 0x8546, "_meth_8546" }, // 0x188320
+    { 0x8547, "_meth_8547" }, // 0x60F550
+    { 0x8548, "agentsetfavoriteenemy" }, // 0x707600
+    { 0x8549, "getpointinmodelbounds" }, // 0x5FA2A0
+    { 0x854A, "setexomeleechargevalid" }, // 0x5EAC50
     { 0x854B, "_meth_854B" },
-    { 0x854C, "_meth_854C" },
-    { 0x854D, "_meth_854D" },
-    { 0x854E, "_meth_854E" },
-    { 0x854F, "_meth_854F" },
-    { 0x8550, "_meth_8550" },
-    { 0x8551, "_meth_8551" },
-    { 0x8552, "_meth_8552" },
-    { 0x8553, "_meth_8553" },
-    { 0x8554, "_meth_8554" },
-    { 0x8555, "_meth_8555" },
-    { 0x8556, "_meth_8556" },
-    { 0x8557, "_meth_8557" },
-    { 0x8558, "_meth_8558" },
-    { 0x8559, "_meth_8559" },
-    { 0x855A, "_meth_855A" },
-    { 0x855B, "_meth_855B" },
-    { 0x855C, "_meth_855C" },
-    { 0x855D, "_meth_855D" },
-    { 0x855E, "_meth_855E" },
-    { 0x855F, "_meth_855F" },
-    { 0x8560, "_meth_8560" },
-    { 0x8561, "_meth_8561" },
-    { 0x8562, "_meth_8562" },
+    { 0x854C, "_meth_854C" }, // 0x60F790
+    { 0x854D, "_meth_854D" }, // 0x60C800
+    { 0x854E, "scragentgetnodesonpath" }, // 0x709BD0
+    { 0x854F, "addzmexploderbloodfx" }, // 0x5B3460
+    { 0x8550, "_meth_8550" }, // 0x70B9E0
+    { 0x8551, "getgroundentity" }, // 0x19E360
+    { 0x8552, "isnoclip" }, // 0x172A60
+    { 0x8553, "deleteonhostmigration" }, // 0x6107E0
+    { 0x8554, "scragentgetphysicsmode" }, // 0x709E20
+    { 0x8555, "_meth_8555" }, // 0x5AFA30
+    { 0x8556, "_meth_8556" }, // 0x70B660
+    { 0x8557, "_meth_8557" }, // 0x70A1E0
+    { 0x8558, "allowriotshieldplant" }, // 0x615FA0
+    { 0x8559, "_meth_8559" }, // 0x5EEDC0
+    { 0x855A, "scragentsynchronizeanims" }, // 0x70BAD0
+    { 0x855B, "settertiaryhintstring" }, // 0x60D0C0
+    { 0x855C, "scragentclearpath" }, // 0x708FD0
+    { 0x855D, "_meth_855D" }, // 0x70BC20
+    { 0x855E, "getsnapshotindexforclient" }, // 0x60B310
+    { 0x855F, "getsnapshotacknowledgedindexforclient" }, // 0x60B670
+    { 0x8560, "hasanimstate" }, // 0x29D8A0
+    { 0x8561, "_meth_8561" }, // 0x60F010
+    { 0x8562, "_meth_8562" }, // 0x5F6FB0
     { 0x8563, "_meth_8563" },
-    { 0x8564, "_meth_8564" },
+    { 0x8564, "_meth_8564" }, // 0x891820
     { 0x8565, "_meth_8565" },
-    { 0x8566, "_meth_8566" },
+    { 0x8566, "_meth_8566" }, // 0x5EAD70
     { 0x8567, "_meth_8567" },
     { 0x8568, "_meth_8568" },
     { 0x8569, "_meth_8569" },
-    { 0x856A, "_meth_856A" },
-    { 0x856B, "_meth_856B" },
-    { 0x856C, "_meth_856C" },
+    { 0x856A, "_meth_856A" }, // 0x61D1E0
+    { 0x856B, "_meth_856B" }, // 0x61D1C0
+    { 0x856C, "_meth_856C" }, // 0x7087D0
     { 0x856D, "_meth_856D" },
-    { 0x856E, "_meth_856E" },
+    { 0x856E, "_meth_856E" }, // 0x5E9B70
     { 0x856F, "_meth_856F" },
     { 0x8570, "_meth_8570" },
-    { 0x8571, "_meth_8571" },
-    { 0x8572, "_meth_8572" },
-    { 0x8573, "_meth_8573" },
-    { 0x8574, "_meth_8574" },
-    { 0x8575, "_meth_8575" },
+    { 0x8571, "_meth_8571" }, // 0x617470
+    { 0x8572, "_meth_8572" }, // 0x5E91B0
+    { 0x8573, "_meth_8573" }, // 0x5E9460
+    { 0x8574, "_meth_8574" }, // 0x5E96F0
+    { 0x8575, "_meth_8575" }, // 0x5E9AC0
     { 0x8576, "_meth_8576" },
     { 0x8577, "_meth_8577" },
     { 0x8578, "_meth_8578" },
     { 0x8579, "_meth_8579" },
     { 0x857A, "_meth_857A" },
-    { 0x857B, "_meth_857B" },
-    { 0x857C, "_meth_857C" },
+    { 0x857B, "_meth_857B" }, // 0x298BA0
+    { 0x857C, "_meth_857C" }, // 0x298E10
     { 0x857D, "_meth_857D" },
     { 0x857E, "_meth_857E" },
-    { 0x857F, "_meth_857F" },
+    { 0x857F, "_meth_857F" }, // 0x709630
     { 0x8580, "_meth_8580" },
-    { 0x8581, "_meth_8581" },
-    { 0x8582, "_meth_8582" },
+    { 0x8581, "_meth_8581" }, // 0x299230
+    { 0x8582, "_meth_8582" }, // 0x299190
     { 0x8583, "_meth_8583" },
     { 0x8584, "_meth_8584" },
     { 0x8585, "_meth_8585" },
@@ -1428,12 +1430,12 @@ extern std::array<std::pair<u16, char const*>, meth_count> const meth_list
     { 0x8587, "_meth_8587" },
     { 0x8588, "_meth_8588" },
     { 0x8589, "_meth_8589" },
-    { 0x858A, "_meth_858A" },
-    { 0x858B, "_meth_858B" },
-    { 0x858C, "_meth_858C" },
-    { 0x858D, "_meth_858D" },
-    { 0x858E, "_meth_858E" },
-    { 0x858F, "_meth_858F" },
+    { 0x858A, "_meth_858A" }, // 0x7077D0
+    { 0x858B, "_meth_858B" }, // 0x5ECD30
+    { 0x858C, "_meth_858C" }, // 0x5F34F0
+    { 0x858D, "_meth_858D" }, // 0x5EC0D0
+    { 0x858E, "_meth_858E" }, // 0x5EC210
+    { 0x858F, "_meth_858F" }, // 0x5EC3D0
     { 0x8590, "_meth_8590" },
     { 0x8591, "_meth_8591" },
     { 0x8592, "_meth_8592" },
@@ -1448,157 +1450,157 @@ extern std::array<std::pair<u16, char const*>, meth_count> const meth_list
     { 0x859B, "_meth_859B" },
     { 0x859C, "_meth_859C" },
     { 0x859D, "_meth_859D" },
-    { 0x859E, "_meth_859E" },
+    { 0x859E, "_meth_859E" }, // 0x610B10
     { 0x859F, "_meth_859F" },
-    { 0x85A0, "_meth_85A0" },
-    { 0x85A1, "_meth_85A1" },
+    { 0x85A0, "_meth_85A0" }, // 0x5F63A0
+    { 0x85A1, "_meth_85A1" }, // 0x70B710
     { 0x85A2, "_meth_85A2" },
-    { 0x85A3, "_meth_85A3" },
-    { 0x85A4, "_meth_85A4" },
-    { 0x85A5, "_meth_85A5" },
-    { 0x85A6, "_meth_85A6" },
-    { 0x85A7, "_meth_85A7" },
-    { 0x85A8, "_meth_85A8" },
-    { 0x85A9, "_meth_85A9" },
-    { 0x85AA, "_meth_85AA" },
+    { 0x85A3, "_meth_85A3" }, // 0x5DDE50
+    { 0x85A4, "_meth_85A4" }, // 0x5FED30
+    { 0x85A5, "_meth_85A5" }, // 0x29D330
+    { 0x85A6, "_meth_85A6" }, // 0x5F8F80
+    { 0x85A7, "_meth_85A7" }, // 0x610B80
+    { 0x85A8, "_meth_85A8" }, // 0x709EB0
+    { 0x85A9, "setdefaultdroppitch" }, // 0x5E1B80
+    { 0x85AA, "restoredefaultdroppitch" }, // 0x5E2180
     { 0x85AB, "_meth_85AB" },
-    { 0x85AC, "_meth_85AC" },
-    { 0x85AD, "_meth_85AD" },
-    { 0x85AE, "_meth_85AE" },
-    { 0x85AF, "_meth_85AF" },
+    { 0x85AC, "_meth_85AC" }, // 0x609E50
+    { 0x85AD, "_meth_85AD" }, // 0x60A010
+    { 0x85AE, "_meth_85AE" }, // 0x1970D0
+    { 0x85AF, "_meth_85AF" }, // 0x611020
     { 0x85B0, "_meth_85B0" },
-    { 0x85B1, "_meth_85B1" },
-    { 0x85B2, "_meth_85B2" },
-    { 0x85B3, "_meth_85B3" },
-    { 0x85B4, "_meth_85B4" },
-    { 0x85B5, "_meth_85B5" },
-    { 0x85B6, "_meth_85B6" },
-    { 0x85B7, "_meth_85B7" },
-    { 0x85B8, "_meth_85B8" },
-    { 0x85B9, "_meth_85B9" },
-    { 0x85BA, "_meth_85BA" },
-    { 0x85BB, "_meth_85BB" },
-    { 0x85BC, "_meth_85BC" },
-    { 0x85BD, "_meth_85BD" },
-    { 0x85BE, "_meth_85BE" },
-    { 0x85BF, "_meth_85BF" },
-    { 0x85C0, "_meth_85C0" },
-    { 0x85C1, "_meth_85C1" },
-    { 0x85C2, "_meth_85C2" },
-    { 0x85C3, "_meth_85C3" },
+    { 0x85B1, "_meth_85B1" }, // 0x5F8BF0
+    { 0x85B2, "_meth_85B2" }, // 0x611040
+    { 0x85B3, "_meth_85B3" }, // 0x6119C0
+    { 0x85B4, "_meth_85B4" }, // 0x605740
+    { 0x85B5, "_meth_85B5" }, // 0x605D50
+    { 0x85B6, "_meth_85B6" }, // 0x6061F0
+    { 0x85B7, "_meth_85B7" }, // 0x611420
+    { 0x85B8, "_meth_85B8" }, // 0x611870
+    { 0x85B9, "_meth_85B9" }, // 0x5AED30
+    { 0x85BA, "_meth_85BA" }, // 0x5B3550
+    { 0x85BB, "_meth_85BB" }, // 0x5AF2A0
+    { 0x85BC, "_meth_85BC" }, // 0x5AF480
+    { 0x85BD, "_meth_85BD" }, // 0x5FDB80
+    { 0x85BE, "_meth_85BE" }, // 0x5FD110
+    { 0x85BF, "_meth_85BF" }, // 0x5FE920
+    { 0x85C0, "_meth_85C0" }, // 0x5DDFA0
+    { 0x85C1, "_meth_85C1" }, // 0x5F3500
+    { 0x85C2, "_meth_85C2" }, // 0x5F3990
+    { 0x85C3, "_meth_85C3" }, // 0x88FAB0
     { 0x85C4, "_meth_85C4" },
     { 0x85C5, "_meth_85C5" },
     { 0x85C6, "_meth_85C6" },
-    { 0x85C7, "_meth_85C7" },
-    { 0x85C8, "_meth_85C8" },
-    { 0x85C9, "_meth_85C9" },
-    { 0x85CA, "_meth_85CA" },
-    { 0x85CB, "_meth_85CB" },
-    { 0x85CC, "_meth_85CC" },
-    { 0x85CD, "_meth_85CD" },
-    { 0x85CE, "_meth_85CE" },
-    { 0x85CF, "_meth_85CF" },
-    { 0x85D0, "_meth_85D0" },
-    { 0x85D1, "_meth_85D1" },
-    { 0x85D2, "_meth_85D2" },
-    { 0x85D3, "_meth_85D3" },
-    { 0x85D4, "_meth_85D4" },
-    { 0x85D5, "_meth_85D5" },
-    { 0x85D6, "_meth_85D6" },
-    { 0x85D7, "_meth_85D7" },
-    { 0x85D8, "_meth_85D8" },
-    { 0x85D9, "_meth_85D9" },
-    { 0x85DA, "_meth_85DA" },
-    { 0x85DB, "_meth_85DB" },
-    { 0x85DC, "_meth_85DC" },
-    { 0x85DD, "_meth_85DD" },
-    { 0x85DE, "_meth_85DE" },
-    { 0x85DF, "_meth_85DF" },
-    { 0x85E0, "_meth_85E0" },
-    { 0x85E1, "_meth_85E1" },
-    { 0x85E2, "_meth_85E2" },
-    { 0x85E3, "_meth_85E3" },
-    { 0x85E4, "_meth_85E4" },
-    { 0x85E5, "_meth_85E5" },
-    { 0x85E6, "_meth_85E6" },
-    { 0x85E7, "_meth_85E7" },
-    { 0x85E8, "_meth_85E8" },
-    { 0x85E9, "_meth_85E9" },
-    { 0x85EA, "_meth_85EA" },
-    { 0x85EB, "_meth_85EB" },
-    { 0x85EC, "_meth_85EC" },
-    { 0x85ED, "_meth_85ED" },
-    { 0x85EE, "_meth_85EE" },
-    { 0x85EF, "_meth_85EF" },
-    { 0x85F0, "_meth_85F0" },
+    { 0x85C7, "_meth_85C7" }, // 0x609CF0
+    { 0x85C8, "_meth_85C8" }, // 0x609D90
+    { 0x85C9, "_meth_85C9" }, // 0x6095A0
+    { 0x85CA, "_meth_85CA" }, // 0x609EE0
+    { 0x85CB, "_meth_85CB" }, // 0x609FD0
+    { 0x85CC, "_meth_85CC" }, // 0x6057C0
+    { 0x85CD, "_meth_85CD" }, // 0x605850
+    { 0x85CE, "_meth_85CE" }, // 0x5EC3E0
+    { 0x85CF, "_meth_85CF" }, // 0x5F72E0
+    { 0x85D0, "_meth_85D0" }, // 0x5F7CA0
+    { 0x85D1, "_meth_85D1" }, // 0x5F8240
+    { 0x85D2, "_meth_85D2" }, // 0x70A280
+    { 0x85D3, "_meth_85D3" }, // 0x70BD60
+    { 0x85D4, "_meth_85D4" }, // 0x70A6E0
+    { 0x85D5, "_meth_85D5" }, // 0x70A080
+    { 0x85D6, "_meth_85D6" }, // 0x7097A0
+    { 0x85D7, "_meth_85D7" }, // 0x610330
+    { 0x85D8, "_meth_85D8" }, // 0x890BF0
+    { 0x85D9, "_meth_85D9" }, // 0x890F40
+    { 0x85DA, "_meth_85DA" }, // 0x8910B0
+    { 0x85DB, "_meth_85DB" }, // 0x5E0090
+    { 0x85DC, "_meth_85DC" }, // 0x610620
+    { 0x85DD, "_meth_85DD" }, // 0x7094D0
+    { 0x85DE, "_meth_85DE" }, // 0x70ADE0
+    { 0x85DF, "_meth_85DF" }, // 0x709D80
+    { 0x85E0, "_meth_85E0" }, // 0x70B200
+    { 0x85E1, "_meth_85E1" }, // 0x198F00
+    { 0x85E2, "_meth_85E2" }, // 0x5F47B0
+    { 0x85E3, "_meth_85E3" }, // 0x5F4130
+    { 0x85E4, "_meth_85E4" }, // 0x5E3040
+    { 0x85E5, "_meth_85E5" }, // 0x5E3530
+    { 0x85E6, "_meth_85E6" }, // 0x5E2AC0
+    { 0x85E7, "_meth_85E7" }, // 0x5E2700
+    { 0x85E8, "_meth_85E8" }, // 0x1A0B10
+    { 0x85E9, "_meth_85E9" }, // 0x5F8A70
+    { 0x85EA, "_meth_85EA" }, // 0x5B2C00
+    { 0x85EB, "_meth_85EB" }, // 0x1960B0
+    { 0x85EC, "_meth_85EC" }, // 0x19AF20
+    { 0x85ED, "_meth_85ED" }, // 0x70A320
+    { 0x85EE, "_meth_85EE" }, // 0x194C60
+    { 0x85EF, "_meth_85EF" }, // 0x5FA6B0
+    { 0x85F0, "_meth_85F0" }, // 0x5ECDD0
     { 0x85F1, "_meth_85F1" },
-    { 0x85F2, "_meth_85F2" },
+    { 0x85F2, "_meth_85F2" }, // 0x5F4A60
     { 0x85F3, "_meth_85F3" },
     { 0x85F4, "_meth_85F4" },
     { 0x85F5, "_meth_85F5" },
     { 0x85F6, "_meth_85F6" },
     { 0x85F7, "_meth_85F7" },
     { 0x85F8, "_meth_85F8" },
-    { 0x85F9, "_meth_85F9" },
-    { 0x85FA, "_meth_85FA" },
+    { 0x85F9, "_meth_85F9" }, // 0x5EDC60
+    { 0x85FA, "_meth_85FA" }, // 0x5EE1D0
     { 0x85FB, "_meth_85FB" },
     { 0x85FC, "_meth_85FC" },
-    { 0x85FD, "isitemunlocked2" },
-    { 0x85FE, "isitemunlocked" },
-    { 0x85FF, "_meth_85FF" },
+    { 0x85FD, "isitemunlocked2" }, // 0x5FE3C0
+    { 0x85FE, "isitemunlocked" }, // 0x5FE680
+    { 0x85FF, "_meth_85FF" }, // 0x5EEBD0
     { 0x8600, "_meth_8600" },
-    { 0x8601, "_meth_8601" },
-    { 0x8602, "_meth_8602" },
+    { 0x8601, "_meth_8601" }, // 0x5EECF0
+    { 0x8602, "_meth_8602" }, // 0x5FBDB0
     { 0x8603, "_meth_8603" },
     { 0x8604, "_meth_8604" },
     { 0x8605, "_meth_8605" },
-    { 0x8606, "_meth_8606" },
-    { 0x8607, "_meth_8607" },
-    { 0x8608, "_meth_8608" },
-    { 0x8609, "_meth_8609" },
-    { 0x860A, "_meth_860A" },
-    { 0x860B, "_meth_860B" },
-    { 0x860C, "_meth_860C" },
-    { 0x860D, "_meth_860D" },
-    { 0x860E, "_meth_860E" },
-    { 0x860F, "_meth_860F" },
+    { 0x8606, "_meth_8606" }, // 0x5EEEE0
+    { 0x8607, "_meth_8607" }, // 0x5EF310
+    { 0x8608, "_meth_8608" }, // 0x5EF630
+    { 0x8609, "_meth_8609" }, // 0x5EF830
+    { 0x860A, "_meth_860A" }, // 0x5EFB10
+    { 0x860B, "_meth_860B" }, // 0x5F0300
+    { 0x860C, "_meth_860C" }, // 0x5F07D0
+    { 0x860D, "_meth_860D" }, // 0x5F0CB0
+    { 0x860E, "playsoundtoteam" }, // 0x287E30
+    { 0x860F, "playsoundtoplayer" }, // 0x287F30
     { 0x8610, "_meth_8610" },
-    { 0x8611, "_meth_8611" },
-    { 0x8612, "_meth_8612" },
-    { 0x8613, "_meth_8613" },
-    { 0x8614, "_meth_8614" },
-    { 0x8615, "playlocalsound" },
-    { 0x8616, "_meth_8616" },
-    { 0x8617, "playsound" },
+    { 0x8611, "setsoundblend" },
+    { 0x8612, "stoploopsound" }, // 0x289200
+    { 0x8613, "stopsound" }, // 0x289300
+    { 0x8614, "stopsounds" }, // 0x289400
+    { 0x8615, "playlocalsound" }, // 0x288AB0
+    { 0x8616, "_meth_8616" }, // 0x289100
+    { 0x8617, "playsound" }, // 0x288F80
     { 0x8618, "_meth_8618" },
     { 0x8619, "_meth_8619" },
-    { 0x861A, "_meth_861A" },
-    { 0x861B, "_meth_861B" },
-    { 0x861C, "_meth_861C" },
-    { 0x861D, "_meth_861D" },
-    { 0x861E, "_meth_861E" },
-    { 0x861F, "_meth_861F" },
-    { 0x8620, "_meth_8620" },
-    { 0x8621, "_meth_8621" },
-    { 0x8622, "_meth_8622" },
-    { 0x8623, "_meth_8623" },
-    { 0x8624, "_meth_8624" },
-    { 0x8625, "_meth_8625" },
-    { 0x8626, "_meth_8626" },
-    { 0x8627, "_meth_8627" },
-    { 0x8628, "_meth_8628" },
-    { 0x8629, "_meth_8629" },
-    { 0x862A, "_meth_862A" },
-    { 0x862B, "_meth_862B" },
-    { 0x862C, "_meth_862C" },
-    { 0x862D, "_meth_862D" },
-    { 0x862E, "_meth_862E" },
-    { 0x862F, "_meth_862F" },
-    { 0x8630, "_meth_8630" },
-    { 0x8631, "_meth_8631" },
-    { 0x8632, "_meth_8632" },
-    { 0x8633, "_meth_8633" },
-    { 0x8634, "_meth_8634" },
+    { 0x861A, "scalepitch" }, // 0x2894D0
+    { 0x861B, "scalevolume" }, // 0x2895A0
+    { 0x861C, "playsoundasmaster" }, // 0x2880E0
+    { 0x861D, "playloopsound" }, // 0x2883F0
+    { 0x861E, "_meth_861E" }, // 0x2884E0
+    { 0x861F, "playsoundonmovingent" }, // 0x288000
+    { 0x8620, "_meth_8620" }, // 0x288E30
+    { 0x8621, "_meth_8621" }, // 0x28B470
+    { 0x8622, "setclienttriggeraudiozone" }, // 0x28B0C0
+    { 0x8623, "_meth_8623" }, // 0x28B210
+    { 0x8624, "_meth_8624" }, // 0x28B300
+    { 0x8625, "scragentdoanimrelative" }, // 0x709130
+    { 0x8626, "clientaddsoundsubmix" }, // 0x28AF80
+    { 0x8627, "clientclearsoundsubmix" }, // 0x28AFA0
+    { 0x8628, "clientclearallsubmixes" }, // 0x28AFC0
+    { 0x8629, "clientblendsoundsubmix" }, // 0x28AFE0
+    { 0x862A, "clientmakesoundsubmixsticky" }, // 0x28B000
+    { 0x862B, "_meth_862B" }, // 0x28B020
+    { 0x862C, "_meth_862C" }, // 0x28B040
+    { 0x862D, "_meth_862D" }, // 0x28B060
+    { 0x862E, "enablecustomweaponcontext" }, // 0x28AEA0
+    { 0x862F, "disablecustomweaponcontext" }, // 0x28AF10
+    { 0x8630, "_meth_8630" }, // 0x28B5E0
+    { 0x8631, "setreverb" }, // 0x28B5C0
+    { 0x8632, "deactivatereverb" }, // 0x28B5D0
+    { 0x8633, "playdynamicambience" }, // 0x28B730
+    { 0x8634, "stopdynamicambience" }, // 0x28B880
     { 0x8635, "_meth_8635" },
     { 0x8636, "_meth_8636" },
     { 0x8637, "_meth_8637" },
@@ -1606,110 +1608,160 @@ extern std::array<std::pair<u16, char const*>, meth_count> const meth_list
     { 0x8639, "_meth_8639" },
     { 0x863A, "_meth_863A" },
     { 0x863B, "_meth_863B" },
-    { 0x863C, "_meth_863C" },
-    { 0x863D, "_meth_863D" },
-    { 0x863E, "_meth_863E" },
-    { 0x863F, "_meth_863F" },
-    { 0x8640, "_meth_8640" },
-    { 0x8641, "_meth_8641" },
-    { 0x8642, "_meth_8642" },
+    { 0x863C, "iswaitingonsound" }, // 0x289670
+    { 0x863D, "_meth_863D" }, // 0x28BA90
+    { 0x863E, "_meth_863E" }, // 0x288200
+    { 0x863F, "_meth_863F" }, // 0x288630
+    { 0x8640, "_meth_8640" }, // 0x288700
+    { 0x8641, "_meth_8641" }, // 0x288C00
+    { 0x8642, "_meth_8642" }, // 0x288D00
     { 0x8643, "_meth_8643" },
     { 0x8644, "_meth_8644" },
     { 0x8645, "_meth_8645" },
     { 0x8646, "_meth_8646" },
     { 0x8647, "_meth_8647" },
-    { 0x8648, "_meth_8648" },
-    { 0x8649, "_meth_8649" },
-    { 0x864A, "_meth_864A" },
-    { 0x864B, "_meth_864B" },
-    { 0x864C, "_meth_864C" },
-    { 0x864D, "_meth_864D" },
-    { 0x864E, "_meth_864E" },
-    { 0x864F, "_meth_864F" },
-    { 0x8650, "_meth_8650" },
-    { 0x8651, "_meth_8651" },
+    { 0x8648, "_meth_8648" }, // 0x184BE0
+    { 0x8649, "_meth_8649" }, // 0x189C40
+    { 0x864A, "_meth_864A" }, // 0x18FBC0
+    { 0x864B, "_meth_864B" }, // 0x5EB8B0
+    { 0x864C, "_meth_864C" }, // 0x5E87D0
+    { 0x864D, "_meth_864D" }, // 0x5EB3B0
+    { 0x864E, "_meth_864E" }, // 0x5BC9E0
+    { 0x864F, "_meth_864F" }, // 0x88A2F0
+    { 0x8650, "_meth_8650" }, // 0x88A4F0
+    { 0x8651, "_meth_8651" }, // 0x5F5B50
     { 0x8652, "_meth_8652" },
-    { 0x8653, "_meth_8653" },
-    { 0x8654, "_meth_8654" },
-    { 0x8655, "_meth_8655" },
-    { 0x8656, "_meth_8656" },
+    { 0x8653, "_meth_8653" }, // 0x7076B0
+    { 0x8654, "_meth_8654" }, // 0x16F040
+    { 0x8655, "_meth_8655" }, // 0x170410
+    { 0x8656, "_meth_8656" }, // 0x60B6D0
     { 0x8657, "_meth_8657" },
     { 0x8658, "_meth_8658" },
-    { 0x8659, "_meth_8659" },
-    { 0x865A, "_meth_865A" },
-    { 0x865B, "_meth_865B" },
-    { 0x865C, "_meth_865C" },
-    { 0x865D, "_meth_865D" },
-    { 0x865E, "_meth_865E" },
+    { 0x8659, "_meth_8659" }, // 0x891140
+    { 0x865A, "_meth_865A" }, // 0x8913D0
+    { 0x865B, "_meth_865B" }, // 0x891440
+    { 0x865C, "_meth_865C" }, // 0x891510
+    { 0x865D, "_meth_865D" }, // 0x891630
+    { 0x865E, "_meth_865E" }, // 0x737D10
     { 0x865F, "_meth_865F" },
-    { 0x8660, "_meth_8660" },
-    { 0x8661, "_meth_8661" },
+    { 0x8660, "_meth_8660" }, // 0x5EC330
+    { 0x8661, "_meth_8661" }, // 0x16EDD0
     { 0x8662, "_meth_8662" },
     { 0x8663, "_meth_8663" },
     { 0x8664, "_meth_8664" },
-    { 0x8665, "_meth_8665" },
+    { 0x8665, "_meth_8665" }, // 0x6060C0
     { 0x8666, "_meth_8666" },
-    { 0x8667, "_meth_8667" },
-    { 0x8668, "_meth_8668" },
-    { 0x8669, "_meth_8669" },
-    { 0x866A, "_meth_866A" },
-    { 0x866B, "_meth_866B" },
-    { 0x866C, "_meth_866C" },
-    { 0x866D, "_meth_866D" },
-    { 0x866E, "_meth_866E" },
-    { 0x866F, "_meth_866F" },
-    { 0x8670, "_meth_8670" },
+    { 0x8667, "_meth_8667" }, // 0x5F5F50
+    { 0x8668, "_meth_8668" }, // 0x5F6BD0
+    { 0x8669, "_meth_8669" }, // 0x5F7930
+    { 0x866A, "_meth_866A" }, // 0x5F89B0
+    { 0x866B, "_meth_866B" }, // 0x5E3650
+    { 0x866C, "_meth_866C" }, // 0x5FA240
+    { 0x866D, "_meth_866D" }, // 0x5FD530
+    { 0x866E, "_meth_866E" }, // 0x60AA30
+    { 0x866F, "_meth_866F" }, // 0x5EBDA0
+    { 0x8670, "_meth_8670" }, // 0x5EC8C0
     { 0x8671, "_meth_8671" },
-    { 0x8672, "_meth_8672" },
-    { 0x8673, "_meth_8673" },
-    { 0x8674, "_meth_8674" },
-    { 0x8675, "_meth_8675" },
-    { 0x8676, "_meth_8676" },
-    { 0x8677, "_meth_8677" },
-    { 0x8678, "_meth_8678" },
-    { 0x8679, "_meth_8679" },
-    { 0x867A, "_meth_867A" },
-    { 0x867B, "_meth_867B" },
-    { 0x867C, "_meth_867C" },
+    { 0x8672, "_meth_8672" }, // 0x5F4090
+    { 0x8673, "_meth_8673" }, // 0x606410
+    { 0x8674, "_meth_8674" }, // 0x606210
+    { 0x8675, "_meth_8675" }, // 0x18B500
+    { 0x8676, "_meth_8676" }, // 0x19AC40
+    { 0x8677, "_meth_8677" }, // 0x1A06F0
+    { 0x8678, "_meth_8678" }, // 0x16A0A0
+    { 0x8679, "_meth_8679" }, // 0x5EEA50
+    { 0x867A, "_meth_867A" }, // 0x29A2A0
+    { 0x867B, "_meth_867B" }, // 0x88E930
+    { 0x867C, "_meth_867C" }, // 0x16AE30
     { 0x867D, "_meth_867D" },
     { 0x867E, "_meth_867E" },
-    { 0x867F, "_meth_867F" },
-    { 0x8680, "_meth_8680" },
-    { 0x8681, "_meth_8681" },
-    { 0x8682, "_meth_8682" },
-    { 0x8683, "_meth_8683" },
-    { 0x8684, "_meth_8684" },
-    { 0x8685, "_meth_8685" },
-    { 0x8686, "_meth_8686" },
-    { 0x8687, "_meth_8687" },
-    { 0x8688, "_meth_8688" },
-    { 0x8689, "_meth_8689" },
+    { 0x867F, "_meth_867F" }, // 0x608570
+    { 0x8680, "_meth_8680" }, // 0x5EDF70
+    { 0x8681, "_meth_8681" }, // 0x5EEB60
+    { 0x8682, "_meth_8682" }, // 0x5EE880
+    { 0x8683, "_meth_8683" }, // 0x5F7D20
+    { 0x8684, "_meth_8684" }, // 0x5F7500
+    { 0x8685, "_meth_8685" }, // 0x5F78C0
+    { 0x8686, "_meth_8686" }, // 0x5EAAB0
+    { 0x8687, "_meth_8687" }, // 0x5F3C10
+    { 0x8688, "_meth_8688" }, // 0x613EF0
+    { 0x8689, "_meth_8689" }, // 0x738A80
     { 0x868A, "_meth_868A" },
     { 0x868B, "_meth_868B" },
-    { 0x868C, "_meth_868C" },
+    { 0x868C, "_meth_868C" }, // 0x198000
     { 0x868D, "_meth_868D" },
-    { 0x868E, "_meth_868E" },
-    { 0x868F, "_meth_868F" },
-    { 0x8690, "_meth_8690" },
-    { 0x8691, "_meth_8691" },
+    { 0x868E, "_meth_868E" }, // 0x6087B0
+    { 0x868F, "_meth_868F" }, // 0x5F54F0
+    { 0x8690, "_meth_8690" }, // 0x5F58A0
+    { 0x8691, "_meth_8691" }, // 0x60C670
     { 0x8692, "_meth_8692" },
     { 0x8693, "_meth_8693" },
     { 0x8694, "_meth_8694" },
-    { 0x8695, "_meth_8695" },
-    { 0x8696, "_meth_8696" },
-    { 0x8697, "_meth_8697" },
-    { 0x8698, "_meth_8698" },
-    { 0x8699, "_meth_8699" },
-    { 0x869A, "_meth_869A" },
-    { 0x869B, "_meth_869B" },
-    { 0x869C, "_meth_869C" },
-    { 0x869D, "_meth_869D" },
-    { 0x869E, "_meth_869E" },
-    { 0x869F, "_meth_869F" },
-    { 0x86A0, "_meth_86A0" },
+    { 0x8695, "_meth_8695" }, // 0x5E2350
+    { 0x8696, "_meth_8696" }, // 0x5E2D10
+    { 0x8697, "_meth_8697" }, // 0x18E9D0
+    { 0x8698, "_meth_8698" }, // 0x5E3CA0
+    { 0x8699, "_meth_8699" }, // 0x19D600
+    { 0x869A, "_meth_869A" }, // 0x19E860
+    { 0x869B, "_meth_869B" }, // 0x19F4D0
+    { 0x869C, "_meth_869C" }, // 0x5FE5F0
+    { 0x869D, "_meth_869D" }, // 0x5BACC0
+    { 0x869E, "_meth_869E" }, // 0x5BAD40
+    { 0x869F, "_meth_869F" }, // 0x5BAD90
+    { 0x86A0, "_meth_86A0" }, // 0x5EF010
     { 0x86A1, "_meth_86A1" },
-    { 0x86A2, "_meth_86A2" },
+    { 0x86A2, "_meth_86A2" }, // 0x5EAD50
     { 0x86A3, "_meth_86A3" },
+    { 0x86A4, "_meth_86A4" }, // 0x183DE0
+    { 0x86A5, "_meth_86A5" }, // 0x1883C0
+    { 0x86A6, "_meth_86A6" }, // 0x5E97E0
+    { 0x86A7, "_meth_86A7" }, // 0x5BAE70
+    { 0x86A8, "_meth_86A8" },
+    { 0x86A9, "_meth_86A9" }, // 0x615EE0
+    { 0x86AA, "_meth_86AA" }, // 0x60B3E0
+    { 0x86AB, "_meth_86AB" }, // 0x608A40
+    { 0x86AC, "_meth_86AC" }, // 0x737F80
+    { 0x86AD, "_meth_86AD" }, // 0x608B40
+    { 0x86AE, "_meth_86AE" }, // 0x5E4230
+    { 0x86AF, "_meth_86AF" }, // 0x5E55A0
+    { 0x86B0, "_meth_86B0" }, // 0x5E7D50
+    { 0x86B1, "_meth_86B1" }, // 0x198160
+    { 0x86B2, "_meth_86B2" }, // 0x5F63F0
+    { 0x86B3, "_meth_86B3" }, // 0x5F5ED0
+    { 0x86B4, "_meth_86B4" }, // 0x60A1C0
+    { 0x86B5, "_meth_86B5" },
+    { 0x86B6, "_meth_86B6" },
+    { 0x86B7, "_meth_86B7" }, // 0x608720
+    { 0x86B8, "_meth_86B8" }, // 0x609CA0
+    { 0x86B9, "_meth_86B9" }, // 0x5EA9E0
+    { 0x86BA, "_meth_86BA" }, // 0x608DD0
+    { 0x86BB, "_meth_86BB" }, // 0x5AF520
+    { 0x86BC, "_meth_86BC" }, // 0x5AF770
+    { 0x86BD, "_meth_86BD" }, // 0x5AF860
+    { 0x86BE, "_meth_86BE" }, // 0x199260
+    { 0x86BF, "_meth_86BF" }, // 0x199960
+    { 0x86C0, "_meth_86C0" }, // 0x6102F0
+    { 0x86C1, "_meth_86C1" }, // 0x608930
+    { 0x86C2, "_meth_86C2" }, // 0x738910
+    { 0x86C3, "_meth_86C3" }, // 0x5B23A0
+    { 0x86C4, "_meth_86C4" }, // 0x5B26E0
+    { 0x86C5, "_meth_86C5" }, // 0x5B2E00
+    { 0x86C6, "_meth_86C6" }, // 0x60D900
+    { 0x86C7, "_meth_86C7" }, // 0x60D720
+    { 0x86C8, "_meth_86C8" }, // 0x8920C0
+    { 0x86C9, "_meth_86C9" }, // 0x17A640
+    { 0x86CA, "_meth_86CA" }, // 0x19E7E0
+    { 0x86CB, "_meth_86CB" }, // 0x60A1A0
+    { 0x86CC, "_meth_86CC" }, // 0x5E28D0
+    { 0x86CD, "_meth_86CD" }, // 0x19CF60
+    { 0x86CE, "_meth_86CE" }, // 0x19D370
+    { 0x86CF, "_meth_86CF" }, // 0x19E430
+    { 0x86D0, "_meth_86D0" }, // 0x606B90
+    { 0x86D1, "_meth_86D1" }, // 0x606D50
+    { 0x86D2, "_meth_86D2" }, // 0x606F50
+    { 0x86D3, "_meth_86D3" }, // 0x707590
+    { 0x86D4, "_meth_86D4" }, // 0x19F200
+    { 0x86D5, "_meth_86D5" }, // 0x19FA30
 }};
 
 } // namespace xsk::gsc::s2
