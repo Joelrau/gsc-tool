@@ -34,8 +34,8 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x014, "_func_014" }, // 0x5F29F0
     { 0x015, "_func_015" }, // 0x5F2B10
     { 0x016, "spawnturret" }, // 0x5F79F0
-    { 0x017, "_func_017" }, // 0x5F8050
-    { 0x018, "_func_018" }, // 0x5F30F0
+    { 0x017, "canspawnturret" }, // 0x5F8050
+    { 0x018, "assert" }, // 0x5F30F0
     { 0x019, "_func_019" },
     { 0x01A, "_func_01A" },
     { 0x01B, "bulletspread" },
@@ -55,8 +55,8 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x029, "_func_029" },
     { 0x02A, "_func_02A" },
     { 0x02B, "updategamerprofile" },
-    { 0x02C, "_func_02C" }, // 0x5F3120
-    { 0x02D, "_func_02D" }, // 0x5F3370
+    { 0x02C, "assertex" }, // 0x5F3120
+    { 0x02D, "assertmsg" }, // 0x5F3370
     { 0x02E, "isdefined" }, // 0x5F33C0
     { 0x02F, "isvalidmissile" }, // 0x5F39A0
     { 0x030, "_func_030" }, // 0x5F3CB0
@@ -66,16 +66,16 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x034, "setdvar" }, // 0x5F8070
     { 0x035, "setdynamicdvar" }, // 0x5F88B0
     { 0x036, "setdvarifuninitialized" }, // 0x5F9620
-    { 0x037, "_func_037" }, // 0x5F9110
-    { 0x038, "_func_038" }, // 0x5F9E50
+    { 0x037, "setdevdvar" }, // 0x5F9110
+    { 0x038, "setdevdvarifuninitialized" }, // 0x5F9E50
     { 0x039, "getdvar" }, // 0x5FA1D0
     { 0x03A, "getdvarint" }, // 0x5FA730
     { 0x03B, "getdvarfloat" }, // 0x5FB030
     { 0x03C, "getdvarvector" }, // 0x5FBE90
     { 0x03D, "gettime" }, // 0x5FCB60
     { 0x03E, "gettimeutc" }, // 0x5FCCF0
-    { 0x03F, "_func_03F" }, // 0x5FD020
-    { 0x040, "_func_040" }, // 0x5FD0D0
+    { 0x03F, "getradiometricunit" }, // 0x5FD020
+    { 0x040, "getentbynum" }, // 0x5FD0D0
     { 0x041, "getweaponmodel" }, // 0x5FD420
     { 0x042, "_func_042" },
     { 0x043, "_func_043" },
@@ -109,9 +109,9 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x05F, "getweaponbasename" }, // 0x5FDC00
     { 0x060, "getweaponattachmentsbasenames" }, // 0x5FE3E0
     { 0x061, "getweaponattachments" }, // 0x5DE5D0
-    { 0x062, "_func_062" }, // 0x5DF550
-    { 0x063, "_func_063" }, // 0x5E0A20
-    { 0x064, "_func_064" }, // 0x5E2C40
+    { 0x062, "getweaponattachmentdisplaynames" }, // 0x5DF550
+    { 0x063, "getweaponcamoname" }, // 0x5E0A20
+    { 0x064, "getweaponreticlename" }, // 0x5E2C40
     { 0x065, "getanimlength" }, // 0x5E8630
     { 0x066, "animhasnotetrack" }, // 0x5EAB30
     { 0x067, "getnotetracktimes" }, // 0x5EACF0
@@ -205,7 +205,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x0BF, "_func_0BF" },
     { 0x0C0, "isarray" }, // 0x5F3D00
     { 0x0C1, "isai" }, // 0x606CA0
-    { 0x0C2, "_func_0C2" }, // 0x5F5840
+    { 0x0C2, "getindexforluincstring" }, // 0x5F5840
     { 0x0C3, "issentient" }, // 0x5F4020
     { 0x0C4, "_func_0C4" },
     { 0x0C5, "_func_0C5" },
@@ -300,12 +300,12 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x11E, "getuavstrengthlevelshowenemydirectional" }, // 0x607220
     { 0x11F, "blockteamradar" }, // 0x607230
     { 0x120, "unblockteamradar" }, // 0x6074E0
-    { 0x121, "_func_121" }, // 0x607710
-    { 0x122, "_func_122" }, // 0x6089F0
+    { 0x121, "isteamradarblocked" }, // 0x607710
+    { 0x122, "getassignedteam" }, // 0x6089F0
     { 0x123, "setmatchdata" }, // 0x60E610
     { 0x124, "getmatchdata" }, // 0x608E00
     { 0x125, "sendmatchdata" }, // 0x609070
-    { 0x126, "_func_126" }, // 0x60B450
+    { 0x126, "clearmatchdata" }, // 0x60B450
     { 0x127, "setmatchdatadef" }, // 0x60EC10
     { 0x128, "_func_128" }, // 0x60BAA0
     { 0x129, "setmatchdataid" }, // 0x60ABF0
@@ -334,7 +334,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x140, "precachestring" }, // 0x5DDD20
     { 0x141, "precachemenu" }, // 0x5DE020
     { 0x142, "precacherumble" }, // 0x5DE300
-    { 0x143, "_func_143" }, // 0x5ED180
+    { 0x143, "precachelocationselector" }, // 0x5ED180
     { 0x144, "_func_144" }, // 0x5FEDA0
     { 0x145, "loadfx" }, // 0x5EF250
     { 0x146, "playfx" }, // 0x5F04E0
@@ -348,8 +348,8 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x14E, "setfxkillondelete" }, // 0x614CA0
     { 0x14F, "playimpactheadfatalfx" }, // 0x5F3AA0
     { 0x150, "setwinningteam" }, // 0x607170
-    { 0x151, "_func_151" }, // 0x6072F0
-    { 0x152, "_func_152" }, // 0x607380
+    { 0x151, "announcement" }, // 0x6072F0
+    { 0x152, "clientannouncement" }, // 0x607380
     { 0x153, "setteammode" }, // 0x6075A0
     { 0x154, "_func_154" }, // 0x607920
     { 0x155, "getteamscore" }, // 0x6079F0
@@ -362,9 +362,9 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x15C, "obituary" }, // 0x60E400
     { 0x15D, "positionwouldtelefrag" }, // 0x60E890
     { 0x15E, "canspawn" }, // 0x60EAF0
-    { 0x15F, "_func_15F" }, // 0x6106D0
+    { 0x15F, "getstarttime" }, // 0x6106D0
     { 0x160, "precacheheadicon" }, // 0x5DDA60
-    { 0x161, "_func_161" }, // 0x606050
+    { 0x161, "precacheminimapicon" }, // 0x606050
     { 0x162, "precachempanim" }, // 0x606090
     { 0x163, "map_restart" }, // 0x6106E0
     { 0x164, "_func_164" }, // 0x610760
@@ -372,9 +372,9 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x166, "addtestclient" }, // 0x6111A0
     { 0x167, "addagent" }, // 0x611A70
     { 0x168, "_func_168" }, // 0x6087A0
-    { 0x169, "_func_169" }, // 0x611B30
+    { 0x169, "allclientsprint" }, // 0x611B30
     { 0x16A, "_func_16A" }, // 0x605EF0
-    { 0x16B, "_func_16B" }, // 0x605650
+    { 0x16B, "mapexists" }, // 0x605650
     { 0x16C, "_func_16C" }, // 0x6057F0
     { 0x16D, "_func_16D" }, // 0x608860
     { 0x16E, "setplayerteamrank" }, // 0x608870
@@ -395,7 +395,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x17D, "setplayerignoreradiusdamage" }, // 0x5E7E20
     { 0x17E, "glassradiusdamage" }, // 0x5E6AC0
     { 0x17F, "earthquake" }, // 0x5F1DB0
-    { 0x180, "_func_180" }, // 0x5FE550
+    { 0x180, "getnumparts" }, // 0x5FE550
     { 0x181, "objective_onentity" }, // 0x61A7C0
     { 0x182, "objective_onentitywithrotation" }, // 0x61A830
     { 0x183, "objective_team" }, // 0x61A970
@@ -428,11 +428,11 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x19E, "_func_19E" }, // 0x6F98F0
     { 0x19F, "isplayer" }, // 0x606B40
     { 0x1A0, "isplayernumber" }, // 0x606DB0
-    { 0x1A1, "_func_1A1" }, // 0x5FE7E0
+    { 0x1A1, "getpartname" }, // 0x5FE7E0
     { 0x1A2, "weaponfiretime" }, // 0x5FB2D0
     { 0x1A3, "weaponclipsize" }, // 0x5F0B60
-    { 0x1A4, "_func_1A4" }, // 0x5F7680
-    { 0x1A5, "_func_1A5" }, // 0x5F7BE0
+    { 0x1A4, "weaponisauto" }, // 0x5F7680
+    { 0x1A5, "weaponissemiauto" }, // 0x5F7BE0
     { 0x1A6, "weaponisboltaction" }, // 0x5F83E0
     { 0x1A7, "weaponinheritsperks" }, // 0x5F8B40
     { 0x1A8, "weaponburstcount" }, // 0x5F7E00
@@ -504,11 +504,11 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x1EA, "botmemoryflags" }, // 0x73B200
     { 0x1EB, "botflagmemoryevents" }, // 0x73AB80
     { 0x1EC, "botzonegetindoorpercent" }, // 0x73B710
-    { 0x1ED, "_func_1ED" }, // 0x73B2F0
+    { 0x1ED, "botsentientswap" }, // 0x73B2F0
     { 0x1EE, "isbot" }, // 0x73BA60
     { 0x1EF, "isagent" }, // 0x607F80
     { 0x1F0, "getmaxagents" }, // 0x70BE90
-    { 0x1F1, "_func_1F1" }, // 0x73AB70
+    { 0x1F1, "botdebugdrawtrigger" }, // 0x73AB70
     { 0x1F2, "botgetclosestnavigablepoint" }, // 0x73ADC0
     { 0x1F3, "getnodesintrigger" }, // 0x5A23B0
     { 0x1F4, "nodesvisible" }, // 0x5A3C00
