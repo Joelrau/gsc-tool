@@ -14,9 +14,9 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
 {{
     { 0x001, "precacheturret" }, // 0x5F8200
     { 0x002, "getweaponarray" }, // 0x5F97D0
-    { 0x003, "_func_003" }, // 0x5F0B40
+    { 0x003, "createprintchannel" }, // 0x5F0B40
     { 0x004, "updategamerprofileall" },
-    { 0x005, "_func_005" },
+    { 0x005, "clearlocalizedstrings" },
     { 0x006, "setphysicsgravitydir" }, // 0x5FCBF0
     { 0x007, "gettimescale" },
     { 0x008, "settimescale" },
@@ -24,20 +24,20 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x00A, "_func_00A" },
     { 0x00B, "_func_00B" },
     { 0x00C, "notifyoncommand" },
-    { 0x00D, "_func_00D" }, // 0x5F0B50
-    { 0x00E, "_func_00E" }, // 0x5F0C80
-    { 0x00F, "_func_00F" }, // 0x5F0D50
-    { 0x010, "_func_010" }, // 0x5F2190
-    { 0x011, "_func_011" }, // 0x5F2380
-    { 0x012, "_func_012" }, // 0x5F2440
-    { 0x013, "_func_013" }, // 0x5F29D0
-    { 0x014, "_func_014" }, // 0x5F29F0
-    { 0x015, "_func_015" }, // 0x5F2B10
+    { 0x00D, "setprintchannel" }, // 0x5F0B50
+    { 0x00E, "print" }, // 0x5F0C80
+    { 0x00F, "println" }, // 0x5F0D50
+    { 0x010, "print3d" }, // 0x5F2190
+    { 0x011, "line" }, // 0x5F2380
+    { 0x012, "box" }, // 0x5F2440
+    { 0x013, "orientedbox" }, // 0x5F29D0
+    { 0x014, "sphere" }, // 0x5F29F0
+    { 0x015, "cylinder" }, // 0x5F2B10
     { 0x016, "spawnturret" }, // 0x5F79F0
     { 0x017, "canspawnturret" }, // 0x5F8050
     { 0x018, "assert" }, // 0x5F30F0
-    { 0x019, "_func_019" },
-    { 0x01A, "_func_01A" },
+    { 0x019, "pausecinematicingame" },
+    { 0x01A, "drawcompassfriendlies" },
     { 0x01B, "bulletspread" },
     { 0x01C, "bullettracer" },
     { 0x01D, "badplace_delete" }, // 0x5EBB00
@@ -77,31 +77,31 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x03F, "getradiometricunit" }, // 0x5FD020
     { 0x040, "getentbynum" }, // 0x5FD0D0
     { 0x041, "getweaponmodel" }, // 0x5FD420
-    { 0x042, "_func_042" },
-    { 0x043, "_func_043" },
+    { 0x042, "getculldist" },
+    { 0x043, "sethalfresparticles" },
     { 0x044, "getmapsunlight" },
     { 0x045, "setsunlight" }, // 0x606EC0
     { 0x046, "resetsunlight" }, // 0x606FB0
     { 0x047, "getmapsundirection" },
     { 0x048, "getmapsunangles" },
     { 0x049, "setsundirection" },
-    { 0x04A, "_func_04A" },
+    { 0x04A, "lerpsundirection" },
     { 0x04B, "lerpsunangles" },
     { 0x04C, "resetsundirection" },
-    { 0x04D, "_func_04D" },
-    { 0x04E, "_func_04E" },
-    { 0x04F, "_func_04F" },
-    { 0x050, "_func_050" },
-    { 0x051, "_func_051" },
-    { 0x052, "_func_052" },
+    { 0x04D, "enableforcedsunshadows" },
+    { 0x04E, "enableforcednosunshadows" },
+    { 0x04F, "disableforcedsunshadows" },
+    { 0x050, "enableouterspacemodellighting" },
+    { 0x051, "disableouterspacemodellighting" },
+    { 0x052, "remapstage" },
     { 0x053, "changelevel" },
     { 0x054, "_func_054" },
     { 0x055, "_func_055" },
     { 0x056, "missionfailed" },
-    { 0x057, "_func_057" },
+    { 0x057, "cinematic" },
     { 0x058, "cinematicingame" },
     { 0x059, "cinematicingamesync" },
-    { 0x05A, "_func_05A" },
+    { 0x05A, "cinematicingameloop" },
     { 0x05B, "cinematicingameloopresident" },
     { 0x05C, "iscinematicplaying" },
     { 0x05D, "stopcinematicingame" },
@@ -117,9 +117,9 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x067, "getnotetracktimes" }, // 0x5EACF0
     { 0x068, "spawn" }, // 0x5F6750
     { 0x069, "bullettrace" }, // 0x5ED9A0
-    { 0x06A, "_func_06A" },
-    { 0x06B, "_func_06B" },
-    { 0x06C, "_func_06C" },
+    { 0x06A, "target_setmaxsize" },
+    { 0x06B, "target_setcolor" },
+    { 0x06C, "target_setdelay" },
     { 0x06D, "getstartorigin" }, // 0x60FD60
     { 0x06E, "getstartangles" }, // 0x6101E0
     { 0x06F, "getcycleoriginoffset" },
@@ -135,8 +135,8 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x079, "savegamenocommit" },
     { 0x07A, "commitsave" },
     { 0x07B, "commitwouldbevalid" },
-    { 0x07C, "_func_07C" },
-    { 0x07D, "_func_07D" },
+    { 0x07C, "getfxvisibility" },
+    { 0x07D, "setculldist" },
     { 0x07E, "bullettracepassed" }, // 0x5EEBE0
     { 0x07F, "sighttracepassed" }, // 0x5EF480
     { 0x080, "physicstrace" }, // 0x5EFBC0
@@ -145,13 +145,13 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x083, "getmovedelta" }, // 0x5EC220
     { 0x084, "getangledelta" }, // 0x5EC9D0
     { 0x085, "getnorthyaw" }, // 0x5EE540
-    { 0x086, "_func_086" },
+    { 0x086, "getcommandfromkey" },
     { 0x087, "getsticksconfig" },
     { 0x088, "weaponfightdist" },
     { 0x089, "weaponmaxdist" },
     { 0x08A, "isturretactive" },
-    { 0x08B, "_func_08B" },
-    { 0x08C, "_func_08C" },
+    { 0x08B, "target_alloc" },
+    { 0x08C, "target_flush" },
     { 0x08D, "target_set" },
     { 0x08E, "_func_08E" },
     { 0x08F, "_func_08F" },
@@ -164,13 +164,13 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x096, "_func_096" },
     { 0x097, "_func_097" },
     { 0x098, "target_setjavelinonly" },
-    { 0x099, "_func_099" },
-    { 0x09A, "_func_09A" },
-    { 0x09B, "_func_09B" },
-    { 0x09C, "_func_09C" },
-    { 0x09D, "_func_09D" },
-    { 0x09E, "_func_09E" },
-    { 0x09F, "_func_09F" },
+    { 0x099, "target_hidefromplayer" },
+    { 0x09A, "target_showtoplayer" },
+    { 0x09B, "target_setscaledrendermode" },
+    { 0x09C, "target_drawcornersonly" },
+    { 0x09D, "target_drawsquare" },
+    { 0x09E, "target_drawsingle" },
+    { 0x09F, "target_setminsize" },
     { 0x0A0, "setnorthyaw" }, // 0x5EE640
     { 0x0A1, "setslowmotion" }, // 0x5FE1F0
     { 0x0A2, "randomint" }, // 0x5F7010
@@ -187,8 +187,8 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x0AD, "float" }, // 0x5F9F20
     { 0x0AE, "abs" }, // 0x5FA440
     { 0x0AF, "min" }, // 0x5FA480
-    { 0x0B0, "_func_0B0" },
-    { 0x0B1, "_func_0B1" },
+    { 0x0B0, "objective_additionalcurrent" },
+    { 0x0B1, "objective_ring" },
     { 0x0B2, "objective_setpointertextoverride" },
     { 0x0B3, "_func_0B3" },
     { 0x0B4, "_func_0B4" },
@@ -200,19 +200,19 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x0BA, "getclosestnodeinsight" }, // 0x5A1BA0
     { 0x0BB, "_func_0BB" },
     { 0x0BC, "_func_0BC" },
-    { 0x0BD, "_func_0BD" },
-    { 0x0BE, "_func_0BE" },
-    { 0x0BF, "_func_0BF" },
+    { 0x0BD, "getvehicletracksegment" },
+    { 0x0BE, "getvehicletracksegmentarray" },
+    { 0x0BF, "getallvehicletracksegments" },
     { 0x0C0, "isarray" }, // 0x5F3D00
     { 0x0C1, "isai" }, // 0x606CA0
     { 0x0C2, "getindexforluincstring" }, // 0x5F5840
     { 0x0C3, "issentient" }, // 0x5F4020
     { 0x0C4, "_func_0C4" },
-    { 0x0C5, "_func_0C5" },
-    { 0x0C6, "_func_0C6" },
-    { 0x0C7, "_func_0C7" },
+    { 0x0C5, "getdebugdvar" },
+    { 0x0C6, "getdebugdvarint" },
+    { 0x0C7, "getdebugdvarfloat" },
     { 0x0C8, "setsaveddvar" },
-    { 0x0C9, "_func_0C9" },
+    { 0x0C9, "getfreeaicount" },
     { 0x0CA, "getaicount" },
     { 0x0CB, "getaiarray" },
     { 0x0CC, "getaispeciesarray" },
@@ -220,7 +220,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x0CE, "getcorpsearray" },
     { 0x0CF, "getspawnerteamarray" }, // 0x5F5250
     { 0x0D0, "getweaponclipmodel" },
-    { 0x0D1, "_func_0D1" },
+    { 0x0D1, "getbrushmodelcenter" },
     { 0x0D2, "getkeybinding" },
     { 0x0D3, "max" }, // 0x5FA5E0
     { 0x0D4, "floor" }, // 0x5FA690
@@ -255,7 +255,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x0F1, "getcountertotal" }, // 0x60AD70
     { 0x0F2, "getlevelticks" },
     { 0x0F3, "perlinnoise2d" },
-    { 0x0F4, "_func_0F4" },
+    { 0x0F4, "calcrockingangles" },
     { 0x0F5, "reconevent" }, // 0x6DE490
     { 0x0F6, "reconspatialevent" }, // 0x6DE4A0
     { 0x0F7, "setsunflareposition" },
@@ -271,9 +271,9 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x101, "objective_additionalentity" },
     { 0x102, "objective_state_nomessage" },
     { 0x103, "objective_string" },
-    { 0x104, "_func_104" },
+    { 0x104, "objective_string_nomessage" },
     { 0x105, "objective_additionalposition" },
-    { 0x106, "_func_106" },
+    { 0x106, "objective_current_nomessage" },
     { 0x107, "vectornormalize" }, // 0x5DF480
     { 0x108, "vectortoangles" }, // 0x5DF870
     { 0x109, "vectortoyaw" }, // 0x5DFC50
@@ -373,9 +373,9 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x167, "addagent" }, // 0x611A70
     { 0x168, "_func_168" }, // 0x6087A0
     { 0x169, "allclientsprint" }, // 0x611B30
-    { 0x16A, "_func_16A" }, // 0x605EF0
+    { 0x16A, "clientprint" }, // 0x605EF0
     { 0x16B, "mapexists" }, // 0x605650
-    { 0x16C, "_func_16C" }, // 0x6057F0
+    { 0x16C, "isvalidgametype" }, // 0x6057F0
     { 0x16D, "_func_16D" }, // 0x608860
     { 0x16E, "setplayerteamrank" }, // 0x608870
     { 0x16F, "endparty" }, // 0x6089E0
@@ -537,21 +537,21 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x20B, "unloadalltransients" },
     { 0x20C, "synctransients" },
     { 0x20D, "aretransientsbusy" },
-    { 0x20E, "_func_20E" },
+    { 0x20E, "istransientqueued" },
     { 0x20F, "istransientloaded" }, // 0x761E10
     { 0x210, "loadstartpointtransient" },
     { 0x211, "distance2dsquared" }, // 0x5DDD60
     { 0x212, "getangledelta3d" }, // 0x5ED680
     { 0x213, "activateclientexploder" }, // 0x5F04B0
     { 0x214, "trajectorycalculateinitialvelocity" }, // 0x5F20C0
-    { 0x215, "_func_215" }, // 0x5F27E0
-    { 0x216, "_func_216" }, // 0x5F2C00
-    { 0x217, "_func_217" }, // 0x5F3150
-    { 0x218, "_func_218" }, // 0x5F3410
-    { 0x219, "_func_219" }, // 0x5F3510
+    { 0x215, "trajectorycalculateminimumvelocity" }, // 0x5F27E0
+    { 0x216, "trajectorycalculateexitangle" }, // 0x5F2C00
+    { 0x217, "trajectoryestimatedesiredinairtime" }, // 0x5F3150
+    { 0x218, "trajectorycomputedeltaheightattime" }, // 0x5F3410
+    { 0x219, "trajectorycanattemptaccuratejump" }, // 0x5F3510
     { 0x21A, "_func_21A" }, // 0x5F33A0
     { 0x21B, "ispointinvolume" }, // 0x5FEAB0
-    { 0x21C, "_func_21C" },
+    { 0x21C, "cinematicgettimeinmsec" },
     { 0x21D, "cinematicgetframe" },
     { 0x21E, "iscinematicloaded" },
     { 0x21F, "getscriptablearray" }, // 0x5FB9F0
@@ -570,7 +570,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x22C, "dopplerpitch" }, // 0x5E3140
     { 0x22D, "piecewiselinearlookup" }, // 0x5FCDD0
     { 0x22E, "anglestoaxis" }, // 0x5E0B80
-    { 0x22F, "_func_22F" },
+    { 0x22F, "visionsetwater" },
     { 0x230, "_func_230" }, // 0x5FB2C0
     { 0x231, "_func_231" }, // 0x5FB470
     { 0x232, "_func_232" }, // 0x5FB4D0
@@ -689,8 +689,8 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x2A3, "isonlinegame" }, // 0x5FC750
     { 0x2A4, "issystemlink" }, // 0x5FCA80
     { 0x2A5, "getstanceandmotionstateforplayer" }, // 0x60E250
-    { 0x2A6, "_func_2A6" }, // 0x5A3900
-    { 0x2A7, "_func_2A7" }, // 0x5A3AC0
+    { 0x2A6, "nodeisnotusable" }, // 0x5A3900
+    { 0x2A7, "nodesetnotusable" }, // 0x5A3AC0
     { 0x2A8, "spawnlinkedfx" }, // 0x610BD0
     { 0x2A9, "spawnlinkedfxforclient" }, // 0x610E40
     { 0x2AA, "getplaylistname" }, // 0x60A5C0
@@ -851,7 +851,7 @@ extern std::array<std::pair<u16, char const*>, func_count> const func_list
     { 0x345, "_func_345" }, // 0x288990
     { 0x346, "musicplay" },
     { 0x347, "musicstop" },
-    { 0x348, "_func_348" },
+    { 0x348, "soundfade" },
     { 0x349, "addsoundsubmix" }, // 0x28AC70
     { 0x34A, "clearsoundsubmix" }, // 0x28AC80
     { 0x34B, "clearallsubmixes" }, // 0x28AC90
